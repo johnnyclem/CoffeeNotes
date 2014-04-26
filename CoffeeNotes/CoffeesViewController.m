@@ -7,6 +7,7 @@
 //
 
 #import "CoffeesViewController.h"
+#import "CoffeeDetailViewController.h"
 
 @interface CoffeesViewController ()
 
@@ -24,6 +25,14 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"CoffeesToCoffeeDetailSegue"]) {
+        CoffeeDetailViewController *destination = segue.destinationViewController;
+//        add datasource and object information
+    }
 }
 
 @end

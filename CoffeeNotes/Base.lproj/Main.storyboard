@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="NIi-8W-wJo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -295,6 +295,17 @@
                     </view>
                     <navigationItem key="navigationItem" id="K77-aG-EcF"/>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+                    <connections>
+                        <outlet property="coffeeAddNewCuppingButton" destination="n1e-5g-Kxs" id="ayU-Fm-XVR"/>
+                        <outlet property="coffeeCuppingsTableView" destination="hfy-si-OBH" id="fdT-3g-yU5"/>
+                        <outlet property="coffeeDetailEditButton" destination="kYY-f1-FoW" id="dMN-cz-xad"/>
+                        <outlet property="coffeeDetailMainView" destination="rrr-qC-ZDp" id="FPX-cC-xdx"/>
+                        <outlet property="coffeeNameOrOriginLabel" destination="YKT-5p-Qwi" id="Brq-GD-Fb4"/>
+                        <outlet property="coffeePhotosCollectionView" destination="Ben-Hu-lMm" id="FmD-6r-zlx"/>
+                        <outlet property="coffeeRatingView" destination="UT0-DL-LMh" id="wYA-pZ-Kfm"/>
+                        <outlet property="coffeeRoasterLabel" destination="K7T-9e-3kp" id="vdN-G4-o97"/>
+                        <outlet property="coffeeTastingWheelView" destination="vP2-cU-KNn" id="vri-4Y-osu"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5mA-CI-vIS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
