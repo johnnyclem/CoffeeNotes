@@ -1,18 +1,18 @@
 //
-//  NewCoffeeViewController.m
+//  NueueCoffeeViewController.m
 //  CoffeeNotes
 //
-//  Created by Cole Bratcher on 4/25/14.
+//  Created by Cole Bratcher on 4/26/14.
 //  Copyright (c) 2014 Cole Bratcher. All rights reserved.
 //
 
-#import "NewCoffeeViewController.h"
+#import "NueueCoffeeViewController.h"
 
-@interface NewCoffeeViewController ()
+@interface NueueCoffeeViewController ()
 
 @end
 
-@implementation NewCoffeeViewController
+@implementation NueueCoffeeViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

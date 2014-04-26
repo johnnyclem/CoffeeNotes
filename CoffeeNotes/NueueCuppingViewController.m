@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Cole Bratcher. All rights reserved.
 //
 
-#import "NewCuppingViewController.h"
+#import "NueueCuppingViewController.h"
 
-@interface NewCuppingViewController ()
+@interface NueueCuppingViewController ()
 
 @end
 
-@implementation NewCuppingViewController
+@implementation NueueCuppingViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

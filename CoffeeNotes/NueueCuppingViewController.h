@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NewCuppingViewController : UIViewController
+@interface NueueCuppingViewController : UIViewController
 
 @end

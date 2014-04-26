@@ -10,8 +10,7 @@
 		3DD8872F190B0FAD002521AD /* CuppingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD8872E190B0FAD002521AD /* CuppingsViewController.m */; };
 		3DD88732190B1180002521AD /* CoffeeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD88731190B1180002521AD /* CoffeeDetailViewController.m */; };
 		3DD88735190B1196002521AD /* CuppingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD88734190B1196002521AD /* CuppingDetailViewController.m */; };
-		3DD88738190B11C2002521AD /* NewCoffeeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD88737190B11C2002521AD /* NewCoffeeViewController.m */; };
-		3DD8873B190B11D5002521AD /* NewCuppingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD8873A190B11D5002521AD /* NewCuppingViewController.m */; };
+		3DD8873B190B11D5002521AD /* NueueCuppingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD8873A190B11D5002521AD /* NueueCuppingViewController.m */; };
 		3DD88740190B166A002521AD /* CoffeeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD8873F190B166A002521AD /* CoffeeCell.m */; };
 		3DE46009190984D8002AF3C0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE46008190984D8002AF3C0 /* Foundation.framework */; };
 		3DE4600B190984D8002AF3C0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3DE4600A190984D8002AF3C0 /* CoreGraphics.framework */; };
@@ -30,6 +29,8 @@
 		3DE4603F190984FE002AF3C0 /* Coffee.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE4603E190984FE002AF3C0 /* Coffee.m */; };
 		3DE4604219098514002AF3C0 /* Cupping.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE4604119098514002AF3C0 /* Cupping.m */; };
 		3DE460451909852F002AF3C0 /* TastingWheel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE460441909852F002AF3C0 /* TastingWheel.m */; };
+		3DFF2FB6190C60F100D465F4 /* UIColor+ColorScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFF2FB5190C60F100D465F4 /* UIColor+ColorScheme.m */; };
+		3DFF2FBA190C789B00D465F4 /* NueueCoffeeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFF2FB9190C789B00D465F4 /* NueueCoffeeViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,10 +50,8 @@
 		3DD88731190B1180002521AD /* CoffeeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoffeeDetailViewController.m; sourceTree = "<group>"; };
 		3DD88733190B1196002521AD /* CuppingDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CuppingDetailViewController.h; sourceTree = "<group>"; };
 		3DD88734190B1196002521AD /* CuppingDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CuppingDetailViewController.m; sourceTree = "<group>"; };
-		3DD88736190B11C2002521AD /* NewCoffeeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewCoffeeViewController.h; sourceTree = "<group>"; };
-		3DD88737190B11C2002521AD /* NewCoffeeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewCoffeeViewController.m; sourceTree = "<group>"; };
-		3DD88739190B11D5002521AD /* NewCuppingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewCuppingViewController.h; sourceTree = "<group>"; };
-		3DD8873A190B11D5002521AD /* NewCuppingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewCuppingViewController.m; sourceTree = "<group>"; };
+		3DD88739190B11D5002521AD /* NueueCuppingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NueueCuppingViewController.h; sourceTree = "<group>"; };
+		3DD8873A190B11D5002521AD /* NueueCuppingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NueueCuppingViewController.m; sourceTree = "<group>"; };
 		3DD8873E190B166A002521AD /* CoffeeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoffeeCell.h; sourceTree = "<group>"; };
 		3DD8873F190B166A002521AD /* CoffeeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoffeeCell.m; sourceTree = "<group>"; };
 		3DE46005190984D8002AF3C0 /* CoffeeNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoffeeNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -80,6 +79,10 @@
 		3DE4604119098514002AF3C0 /* Cupping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cupping.m; sourceTree = "<group>"; };
 		3DE460431909852F002AF3C0 /* TastingWheel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TastingWheel.h; sourceTree = "<group>"; };
 		3DE460441909852F002AF3C0 /* TastingWheel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TastingWheel.m; sourceTree = "<group>"; };
+		3DFF2FB4190C60F100D465F4 /* UIColor+ColorScheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ColorScheme.h"; sourceTree = "<group>"; };
+		3DFF2FB5190C60F100D465F4 /* UIColor+ColorScheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ColorScheme.m"; sourceTree = "<group>"; };
+		3DFF2FB8190C789B00D465F4 /* NueueCoffeeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NueueCoffeeViewController.h; path = ../NueueCoffeeViewController.h; sourceTree = "<group>"; };
+		3DFF2FB9190C789B00D465F4 /* NueueCoffeeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NueueCoffeeViewController.m; path = ../NueueCoffeeViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,14 +131,14 @@
 				3DD8873F190B166A002521AD /* CoffeeCell.m */,
 				3DD88730190B1180002521AD /* CoffeeDetailViewController.h */,
 				3DD88731190B1180002521AD /* CoffeeDetailViewController.m */,
-				3DD88736190B11C2002521AD /* NewCoffeeViewController.h */,
-				3DD88737190B11C2002521AD /* NewCoffeeViewController.m */,
+				3DFF2FB8190C789B00D465F4 /* NueueCoffeeViewController.h */,
+				3DFF2FB9190C789B00D465F4 /* NueueCoffeeViewController.m */,
 				3DD8872D190B0FAD002521AD /* CuppingsViewController.h */,
 				3DD8872E190B0FAD002521AD /* CuppingsViewController.m */,
 				3DD88733190B1196002521AD /* CuppingDetailViewController.h */,
 				3DD88734190B1196002521AD /* CuppingDetailViewController.m */,
-				3DD88739190B11D5002521AD /* NewCuppingViewController.h */,
-				3DD8873A190B11D5002521AD /* NewCuppingViewController.m */,
+				3DD88739190B11D5002521AD /* NueueCuppingViewController.h */,
+				3DD8873A190B11D5002521AD /* NueueCuppingViewController.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 				3DE4601A190984D8002AF3C0 /* Main.storyboard */,
 				3DD8873C190B11E7002521AD /* Model */,
 				3DD8873D190B11FA002521AD /* View */,
+				3DFF2FB7190C60F600D465F4 /* Controller */,
 				3DE46020190984D8002AF3C0 /* Images.xcassets */,
 				3DE4600F190984D8002AF3C0 /* Supporting Files */,
 			);
@@ -211,6 +215,15 @@
 				3DE46030190984D8002AF3C0 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		3DFF2FB7190C60F600D465F4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				3DFF2FB4190C60F100D465F4 /* UIColor+ColorScheme.h */,
+				3DFF2FB5190C60F100D465F4 /* UIColor+ColorScheme.m */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -312,15 +325,16 @@
 			files = (
 				3DE4601F190984D8002AF3C0 /* CoffeesViewController.m in Sources */,
 				3DD88732190B1180002521AD /* CoffeeDetailViewController.m in Sources */,
+				3DFF2FB6190C60F100D465F4 /* UIColor+ColorScheme.m in Sources */,
 				3DE46019190984D8002AF3C0 /* AppDelegate.m in Sources */,
 				3DE460451909852F002AF3C0 /* TastingWheel.m in Sources */,
 				3DE46015190984D8002AF3C0 /* main.m in Sources */,
-				3DD88738190B11C2002521AD /* NewCoffeeViewController.m in Sources */,
 				3DE4603F190984FE002AF3C0 /* Coffee.m in Sources */,
-				3DD8873B190B11D5002521AD /* NewCuppingViewController.m in Sources */,
+				3DD8873B190B11D5002521AD /* NueueCuppingViewController.m in Sources */,
 				3DE4604219098514002AF3C0 /* Cupping.m in Sources */,
 				3DD88735190B1196002521AD /* CuppingDetailViewController.m in Sources */,
 				3DD8872F190B0FAD002521AD /* CuppingsViewController.m in Sources */,
+				3DFF2FBA190C789B00D465F4 /* NueueCoffeeViewController.m in Sources */,
 				3DD88740190B166A002521AD /* CoffeeCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
