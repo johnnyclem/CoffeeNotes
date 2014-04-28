@@ -8,9 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CoffeesViewController : UIViewController
-
-@property (weak, nonatomic) IBOutlet UINavigationBar *coffeesNavigationBar;
-@property (weak, nonatomic) IBOutlet UITableView *coffeesTableView;
+@interface CoffeesViewController : UIViewController <UITableViewDelegate>
 
 @end

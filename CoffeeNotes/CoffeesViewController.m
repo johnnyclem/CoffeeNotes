@@ -8,8 +8,13 @@
 
 #import "CoffeesViewController.h"
 #import "CoffeeDetailViewController.h"
+#import "DataController.h"
 
 @interface CoffeesViewController ()
+
+@property (weak, nonatomic) IBOutlet UINavigationBar *coffeesNavigationBar;
+@property (weak, nonatomic) IBOutlet UITableView *coffeesTableView;
+@property (nonatomic, strong) DataController *dataController;
 
 @end
 
@@ -18,7 +23,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    self.dataController = [DataController new];
+
+    self.coffeesTableView.delegate = self;
+    self.coffeesTableView.dataSource = self.dataController;
 }
 
 - (void)didReceiveMemoryWarning

@@ -1,18 +1,18 @@
 //
-//  NueueCoffeeViewController.m
+//  NewCuppingViewController.m
 //  CoffeeNotes
 //
-//  Created by Cole Bratcher on 4/26/14.
+//  Created by Cole Bratcher on 4/25/14.
 //  Copyright (c) 2014 Cole Bratcher. All rights reserved.
 //
 
-#import "NueueCoffeeViewController.h"
+#import "AddCuppingViewController.h"
 
-@interface NueueCoffeeViewController ()
+@interface AddCuppingViewController ()
 
 @end
 
-@implementation NueueCoffeeViewController
+@implementation AddCuppingViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

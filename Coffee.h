@@ -15,8 +15,8 @@
 
 @property (nonatomic, strong) NSString *nameOrOrigin;
 @property (nonatomic, strong) NSString *roaster;
-@property (nonatomic, strong) NSNumber *userAverageRating;
-//@property (nonatomic, strong) NSMutableArray *cuppings;
-@property (nonatomic, strong) TastingWheel *coffeeTastingWheel;
+@property (nonatomic, strong) NSNumber *averageRating;
+@property (nonatomic, strong) NSMutableArray *cuppings;
+//@property (nonatomic, strong) TastingWheel *coffeeTastingWheel;
 
 @end

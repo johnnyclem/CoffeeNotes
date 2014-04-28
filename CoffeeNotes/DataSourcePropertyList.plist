@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Coffees</key>
+	<array>
+		<dict>
+			<key>nameOrOrigin</key>
+			<string>Default NameOrOrigin</string>
+			<key>roaster</key>
+			<string>Default Roaster</string>
+			<key>averageRating</key>
+			<integer>0</integer>
+			<key>Cuppings</key>
+			<array>
+				<dict>
+					<key>cuppingNameOrOrigin</key>
+					<string>Default Name</string>
+					<key>cuppingRoaster</key>
+					<string>Default Roaster</string>
+					<key>cuppingDate</key>
+					<date>2014-04-28T20:42:33Z</date>
+					<key>cuppingLocation</key>
+					<string>My Favorite Coffee Shop</string>
+					<key>roastDate</key>
+					<date>2014-04-28T20:43:26Z</date>
+					<key>brewingMethod</key>
+					<string>French Press</string>
+					<key>cuppingRating</key>
+					<integer>0</integer>
+				</dict>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>
