@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CoffeesViewController : UIViewController <UITableViewDelegate>
+@class DataController;
+
+@interface CoffeesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+
+@property (nonatomic, strong) DataController *dataController;
 
 @end

@@ -7,25 +7,29 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import "Coffee.h"
 
 @interface DataController : NSObject
 
 @property (nonatomic, strong) NSMutableArray *coffees;
 
+// Init
++(NSString *)applicationDocumentsDirectory;
+-(instancetype)initWithCoffees;
+//-(instancetype)initwithCuppingsFromCoffee:(Coffee *)coffee;
 
-+ (DataController *)sharedData;
 
-- (instancetype)initWithCoffeeAndCuppings;
+// Edit
+-(void)addCoffee:(Coffee *)newCoffee;
+-(void)addCupping:(Cupping *)newCupping ToCoffee:(Coffee *)coffee;
+-(void)deleteCoffee:(Coffee *)coffeeToDelete;
+-(void)deleteCupping:(Cupping *)cuppingToDelete FromCoffee:(Coffee *)coffee;
 
-- (void)addCoffee;
-- (void)addCuppingToCoffee;
-- (void)deleteCoffee;
-- (void)deleteCupping;
-- (void)sortByCoffeeNameOrOrigin;
-- (void)sortByCuppingDate;
+// Management
+-(NSInteger)averageRatingFromCuppingRatingInCoffee:(Coffee *)coffee;
+-(void)sortByCoffeeNameOrOrigin;
+-(void)sortByCuppingDateInCoffee:(Coffee *)coffee;
 
-- (void)save;
-
+-(void)save;
 
 @end

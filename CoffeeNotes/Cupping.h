@@ -20,5 +20,6 @@
 @property (nonatomic) NSInteger cuppingRating;
 @property (nonatomic, strong) UIImage *image;
 //@property (nonatomic, strong) TastingWheel *cuppingTastingWheel;
+@property (nonatomic, strong) NSString *cuppingNotes;
 
 @end

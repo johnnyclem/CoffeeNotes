@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D0518AD191025540020029B /* CuppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0518AC191025540020029B /* CuppingCell.m */; };
 		3DD8872F190B0FAD002521AD /* CuppingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD8872E190B0FAD002521AD /* CuppingsViewController.m */; };
 		3DD88732190B1180002521AD /* CoffeeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD88731190B1180002521AD /* CoffeeDetailViewController.m */; };
 		3DD88735190B1196002521AD /* CuppingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD88734190B1196002521AD /* CuppingDetailViewController.m */; };
@@ -46,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3D0518AB191025540020029B /* CuppingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CuppingCell.h; sourceTree = "<group>"; };
+		3D0518AC191025540020029B /* CuppingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CuppingCell.m; sourceTree = "<group>"; };
 		3DD8872D190B0FAD002521AD /* CuppingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CuppingsViewController.h; sourceTree = "<group>"; };
 		3DD8872E190B0FAD002521AD /* CuppingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CuppingsViewController.m; sourceTree = "<group>"; };
 		3DD88730190B1180002521AD /* CoffeeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoffeeDetailViewController.h; sourceTree = "<group>"; };
@@ -136,6 +139,8 @@
 				3DD8873F190B166A002521AD /* CoffeeCell.m */,
 				3DD88730190B1180002521AD /* CoffeeDetailViewController.h */,
 				3DD88731190B1180002521AD /* CoffeeDetailViewController.m */,
+				3D0518AB191025540020029B /* CuppingCell.h */,
+				3D0518AC191025540020029B /* CuppingCell.m */,
 				3DFF2FB8190C789B00D465F4 /* AddCoffeeViewController.h */,
 				3DFF2FB9190C789B00D465F4 /* AddCoffeeViewController.m */,
 				3DD8872D190B0FAD002521AD /* CuppingsViewController.h */,
@@ -345,6 +350,7 @@
 				3DD8872F190B0FAD002521AD /* CuppingsViewController.m in Sources */,
 				3DFC9A23190EEEFB00970C84 /* DataController.m in Sources */,
 				3DFF2FBA190C789B00D465F4 /* AddCoffeeViewController.m in Sources */,
+				3D0518AD191025540020029B /* CuppingCell.m in Sources */,
 				3DD88740190B166A002521AD /* CoffeeCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

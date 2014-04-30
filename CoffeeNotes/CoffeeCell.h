@@ -15,6 +15,4 @@
 @property (weak, nonatomic) IBOutlet UIView *coffeeRating;
 @property (weak, nonatomic) IBOutlet UIImageView *coffeeImage;
 
-
-
 @end

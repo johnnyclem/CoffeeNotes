@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DataController.h"
 
 @interface AddCoffeeViewController : UIViewController
-
-// NavigationBar
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *addCoffeeNavigationBarSaveButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelBarButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *saveBarButton;
 
 // ScrollView
 @property (weak, nonatomic) IBOutlet UIView *addCoffeeMainView;
@@ -30,5 +30,9 @@
 @property (weak, nonatomic) IBOutlet UITextView *addCoffeeNotesTextView;
 @property (weak, nonatomic) IBOutlet UIButton *addCoffeeMainViewSaveButton;
 
+@property (weak, nonatomic) DataController *dataController;
+
+-(IBAction)addCoffeeCancel;
+-(IBAction)addCoffeeSave;
 
 @end

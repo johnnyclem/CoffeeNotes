@@ -17,6 +17,7 @@
 @property (nonatomic, strong) NSString *roaster;
 @property (nonatomic, strong) NSNumber *averageRating;
 @property (nonatomic, strong) NSMutableArray *cuppings;
+@property (nonatomic, strong) UIImage *mostRecentCoffeeImage;
 //@property (nonatomic, strong) TastingWheel *coffeeTastingWheel;
 
 @end

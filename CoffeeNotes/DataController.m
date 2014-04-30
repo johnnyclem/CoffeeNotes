@@ -9,67 +9,17 @@
 #import "DataController.h"
 #import "Coffee.h"
 #import "Cupping.h"
+#import "CoffeeCell.h"
+#import "CuppingCell.h"
 
 #define dataSourcePListPath [[DataController applicationDocumentsDirectory] stringByAppendingPathComponent:@"DataSourcePropertyList.plist" ]
 
 
 @implementation DataController
 
-//+ (DataController *)sharedData
-//{
-//    
-//}
-
-+( NSString *)applicationDocumentsDirectory
++(NSString *)applicationDocumentsDirectory
 {
     return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
-}
-
-- (void)save
-{
-    [NSKeyedArchiver archiveRootObject:self.coffees toFile:dataSourcePListPath];
-}
-
-
--(instancetype)initWithCoffeeAndCuppings
-{
-    self = [super init];
-    
-    self.coffees = [[NSMutableArray alloc] init];
-    
-    
-    if ([[NSFileManager defaultManager] fileExistsAtPath:dataSourcePListPath]){
-        self.coffees = [NSKeyedUnarchiver unarchiveObjectWithFile:dataSourcePListPath];
-    } else {
-        NSString *pListBundlePath = [[NSBundle mainBundle] pathForResource:@"DataSourcePropertyList" ofType:@"plist"];
-        NSDictionary *rootDictionary = [[NSDictionary alloc] initWithContentsOfFile:pListBundlePath];
-        
-        NSMutableArray *tempCoffeesArray = [rootDictionary objectForKey:@"Coffees"];
-        
-        for (NSDictionary *coffeeDictionary in tempCoffeesArray) {
-            Coffee *newCoffee = [Coffee new];
-            newCoffee.nameOrOrigin  = [coffeeDictionary objectForKey:@"nameOrOrigin"];
-            newCoffee.roaster       = [coffeeDictionary objectForKey:@"roaster"];
-            newCoffee.averageRating = [coffeeDictionary objectForKey:@"averageRating"];
-            newCoffee.cuppings      = [coffeeDictionary objectForKey:@"Cuppings"];
-            
-            for (NSDictionary *cuppingDictionary in newCoffee.cuppings) {
-                Cupping *newCupping = [Cupping new];
-                newCupping.cuppingNameOrOrigin  = [cuppingDictionary objectForKey:@"cuppingNameOrOrigin"];
-                newCupping.cuppingRoaster       = [cuppingDictionary objectForKey:@"cuppingRoaster"];
-                newCupping.cuppingDate          = [cuppingDictionary objectForKey:@"cuppingDate"];
-                newCupping.location             = [cuppingDictionary objectForKey:@"location"];
-                newCupping.roastDate            = [cuppingDictionary objectForKey:@"roastDate"];
-                newCupping.brewingMethod        = [cuppingDictionary objectForKey:@"brewingMethod"];
-                newCupping.cuppingRating        = [[cuppingDictionary objectForKey:@"cuppingRating"] intValue];
-                
-                [newCoffee.cuppings addObject:newCupping];
-                }
-            [self.coffees addObject:newCoffee];
-        }
-        [self save];
-    }
-    return self;
 }
 
 -(void)addCoffee:(Coffee *)newCoffee
@@ -123,6 +73,53 @@
                                                     initWithKey:@"cuppingDate" ascending:YES selector:@selector(localizedStandardCompare:)];
     
     coffee.cuppings = [[coffee.cuppings sortedArrayUsingDescriptors:@[cuppingDateSortDescriptor]]mutableCopy];
+}
+
+- (void)save
+{
+    [NSKeyedArchiver archiveRootObject:self.coffees toFile:dataSourcePListPath];
+}
+
+-(instancetype)initWithCoffees
+{
+    self = [super init];
+    
+    self.coffees = [[NSMutableArray alloc] init];
+    
+    if ([[NSFileManager defaultManager] fileExistsAtPath:dataSourcePListPath]){
+        self.coffees = [[NSKeyedUnarchiver unarchiveObjectWithFile:dataSourcePListPath] mutableCopy];
+    } else {
+        NSString *pListBundlePath = [[NSBundle mainBundle] pathForResource:@"DataSourcePropertyList" ofType:@"plist"];
+        NSDictionary *rootDictionary = [[NSDictionary alloc] initWithContentsOfFile:pListBundlePath];
+        
+        NSMutableArray *tempCoffeesArray = [rootDictionary objectForKey:@"Coffees"];
+        
+        for (NSDictionary *coffeeDictionary in tempCoffeesArray) {
+            Coffee *newCoffee = [Coffee new];
+            newCoffee.nameOrOrigin  = [coffeeDictionary objectForKey:@"nameOrOrigin"];
+            newCoffee.roaster       = [coffeeDictionary objectForKey:@"roaster"];
+            newCoffee.averageRating = [coffeeDictionary objectForKey:@"averageRating"];
+            newCoffee.cuppings      = [[coffeeDictionary objectForKey:@"Cuppings"] mutableCopy];
+            
+            for (NSDictionary *cuppingDictionary in newCoffee.cuppings) {
+                Cupping *newCupping = [Cupping new];
+                newCupping.cuppingNameOrOrigin  = [cuppingDictionary objectForKey:@"cuppingNameOrOrigin"];
+                newCupping.cuppingRoaster       = [cuppingDictionary objectForKey:@"cuppingRoaster"];
+                newCupping.cuppingDate          = [cuppingDictionary objectForKey:@"cuppingDate"];
+                newCupping.location             = [cuppingDictionary objectForKey:@"location"];
+                newCupping.roastDate            = [cuppingDictionary objectForKey:@"roastDate"];
+                newCupping.brewingMethod        = [cuppingDictionary objectForKey:@"brewingMethod"];
+                newCupping.cuppingRating        = [[cuppingDictionary objectForKey:@"cuppingRating"] intValue];
+                
+                [newCoffee.cuppings addObject:newCupping];
+            }
+            [self.coffees addObject:newCoffee];
+        }
+        [self save];
+    }
+    NSLog(@"%@", self.coffees);
+    
+    return self;
 }
 
 @end

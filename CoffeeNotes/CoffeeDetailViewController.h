@@ -7,21 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DataController.h"
+#import "Coffee.h"
+#import "Cupping.h"
 
-@interface CoffeeDetailViewController : UIViewController
 
-// Navigation Bar
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *coffeeDetailEditButton;
+@interface CoffeeDetailViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource>
 
-// Main View
-@property (weak, nonatomic) IBOutlet UIView *coffeeDetailMainView;
-@property (weak, nonatomic) IBOutlet UILabel *coffeeNameOrOriginLabel;
-@property (weak, nonatomic) IBOutlet UILabel *coffeeRoasterLabel;
-@property (weak, nonatomic) IBOutlet UIView *coffeeRatingView;
-@property (weak, nonatomic) IBOutlet UICollectionView *coffeePhotosCollectionView;
-@property (weak, nonatomic) IBOutlet UIView *coffeeTastingWheelView;
-@property (weak, nonatomic) IBOutlet UITableView *coffeeCuppingsTableView;
-@property (weak, nonatomic) IBOutlet UIButton *coffeeAddNewCuppingButton;
-
+@property (nonatomic, weak) DataController *dataController;
+@property (nonatomic, weak) Coffee *coffee;
 
 @end

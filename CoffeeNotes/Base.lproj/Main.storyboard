@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5056" systemVersion="13C1021" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="QK8-d5-8kz">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
@@ -20,22 +20,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="y25-nJ-mok">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <items>
-                                        <navigationItem title="My Coffees" id="j9N-8h-8WX">
-                                            <barButtonItem key="rightBarButtonItem" systemItem="add" id="kaE-PY-Vxj">
-                                                <connections>
-                                                    <segue destination="5Ll-dC-t14" kind="push" identifier="CoffeesToNewCoffeeSegue" id="fCd-0k-BkA"/>
-                                                </connections>
-                                            </barButtonItem>
-                                        </navigationItem>
-                                    </items>
-                                </navigationBar>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CoffeeCell" rowHeight="125" id="3OC-Td-3LP" customClass="CoffeeCell">
-                                        <rect key="frame" x="0.0" y="66" width="320" height="125"/>
+                                        <rect key="frame" x="0.0" y="86" width="320" height="125"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3OC-Td-3LP" id="TL3-OA-bpl">
                                             <rect key="frame" x="0.0" y="0.0" width="287" height="124"/>
@@ -77,14 +64,21 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="aEN-Jq-maR">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="hIf-LK-AJ8">
+                            <connections>
+                                <segue destination="2Fd-0V-wRK" kind="modal" id="oMf-BJ-h4C"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
-                        <outlet property="coffeesNavigationBar" destination="y25-nJ-mok" id="N2N-gk-Cqz"/>
                         <outlet property="coffeesTableView" destination="aNe-lT-ja6" id="TML-re-bIb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <exit id="ySp-l1-clf" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-53" y="-785"/>
+            <point key="canvasLocation" x="473" y="-785"/>
         </scene>
         <!--Coffee Detail View Controller-->
         <scene sceneID="gJi-wh-tI6">
@@ -200,7 +194,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="hfy-si-OBH">
+                                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="hfy-si-OBH">
                                                 <rect key="frame" x="20" y="769" width="280" height="280"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -209,18 +203,45 @@
                                                     <constraint firstAttribute="height" constant="280" id="l4d-D1-tub"/>
                                                 </constraints>
                                                 <prototypes>
-                                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="e2J-B7-x0d">
-                                                        <rect key="frame" x="0.0" y="22" width="280" height="44"/>
+                                                    <tableViewCell contentMode="scaleToFill" restorationIdentifier="CuppingCell" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CuppingCell" rowHeight="70" id="e2J-B7-x0d" customClass="CuppingCell">
+                                                        <rect key="frame" x="0.0" y="22" width="280" height="70"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e2J-B7-x0d" id="NDC-s8-ntd">
-                                                            <rect key="frame" x="0.0" y="0.0" width="247" height="43"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="247" height="69"/>
                                                             <autoresizingMask key="autoresizingMask"/>
+                                                            <subviews>
+                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kix-2k-Ihp">
+                                                                    <rect key="frame" x="20" y="9" width="36" height="21"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LG2-Ux-Eno">
+                                                                    <rect key="frame" x="20" y="38" width="67" height="21"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <nil key="highlightedColor"/>
+                                                                </label>
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oZA-lg-ixu">
+                                                                    <rect key="frame" x="182" y="2" width="65" height="65"/>
+                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                </imageView>
+                                                            </subviews>
                                                         </tableViewCellContentView>
                                                         <connections>
+                                                            <outlet property="cuppingCellImageView" destination="oZA-lg-ixu" id="zfA-VD-Q8k"/>
+                                                            <outlet property="cuppingDate" destination="kix-2k-Ihp" id="TDb-VD-G8a"/>
+                                                            <outlet property="cuppingDateLabel" destination="kix-2k-Ihp" id="4A5-2G-cFt"/>
+                                                            <outlet property="locationLabel" destination="LG2-Ux-Eno" id="fpX-xN-JwR"/>
                                                             <segue destination="tdF-AX-WGQ" kind="push" id="Ysx-i9-uJo"/>
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>
+                                                <connections>
+                                                    <outlet property="dataSource" destination="NIi-8W-wJo" id="7ho-TT-Yus"/>
+                                                    <outlet property="delegate" destination="NIi-8W-wJo" id="KwN-xU-BTr"/>
+                                                </connections>
                                             </tableView>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Cuppings:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lz4-Uj-29I">
                                                 <rect key="frame" x="20" y="735" width="118" height="22"/>
@@ -331,7 +352,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5mA-CI-vIS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="643" y="-785"/>
+            <point key="canvasLocation" x="1169" y="-785"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="mJt-Lf-XXA">
@@ -363,7 +384,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mru-88-PVP" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1388" y="-1614"/>
+            <point key="canvasLocation" x="3694" y="-1774"/>
         </scene>
         <!--Add Coffee View Controller-->
         <scene sceneID="Q0a-jm-Bum">
@@ -378,7 +399,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OAE-4i-Dcf">
-                                <rect key="frame" x="0.0" y="44" width="320" height="1265"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="1265"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Q6f-CQ-V1Q">
@@ -588,6 +609,9 @@
                                                 <state key="normal" title="Save">
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <segue destination="ySp-l1-clf" kind="unwind" unwindAction="exitSegue:" id="j4h-LR-u3E"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -660,34 +684,34 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="Q6f-CQ-V1Q" secondAttribute="trailing" id="5bW-G9-KFg"/>
-                                    <constraint firstItem="Q6f-CQ-V1Q" firstAttribute="top" secondItem="OAE-4i-Dcf" secondAttribute="top" id="Ama-hf-g7n"/>
-                                    <constraint firstAttribute="bottom" secondItem="Q6f-CQ-V1Q" secondAttribute="bottom" id="rHf-Co-FZM"/>
-                                    <constraint firstItem="Q6f-CQ-V1Q" firstAttribute="leading" secondItem="OAE-4i-Dcf" secondAttribute="leading" id="rhv-yM-Qvc"/>
+                                    <constraint firstItem="Q6f-CQ-V1Q" firstAttribute="leading" secondItem="OAE-4i-Dcf" secondAttribute="leading" id="H4t-kC-f43"/>
+                                    <constraint firstAttribute="bottom" secondItem="Q6f-CQ-V1Q" secondAttribute="bottom" constant="4" id="eay-RW-NZI"/>
+                                    <constraint firstAttribute="trailing" secondItem="Q6f-CQ-V1Q" secondAttribute="trailing" id="kLM-Xq-gEL"/>
+                                    <constraint firstItem="Q6f-CQ-V1Q" firstAttribute="top" secondItem="OAE-4i-Dcf" secondAttribute="top" id="qdJ-gU-B7h"/>
                                 </constraints>
                             </scrollView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pqL-TJ-HQt">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="New Coffee" id="ov1-HS-fSw">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="tgy-66-yk0"/>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="pqL-TJ-HQt" firstAttribute="trailing" secondItem="OAE-4i-Dcf" secondAttribute="trailing" id="2R6-k0-VoC"/>
-                            <constraint firstItem="pqL-TJ-HQt" firstAttribute="leading" secondItem="OAE-4i-Dcf" secondAttribute="leading" id="IIU-bC-fBf"/>
-                            <constraint firstAttribute="trailing" secondItem="OAE-4i-Dcf" secondAttribute="trailing" id="YJl-db-Ogf"/>
-                            <constraint firstItem="OAE-4i-Dcf" firstAttribute="leading" secondItem="eKl-7o-pEf" secondAttribute="leading" id="awD-fM-1Sd"/>
-                            <constraint firstItem="OAE-4i-Dcf" firstAttribute="top" secondItem="pqL-TJ-HQt" secondAttribute="bottom" id="fiK-tB-J5o"/>
-                            <constraint firstItem="XHM-QT-cLU" firstAttribute="top" secondItem="OAE-4i-Dcf" secondAttribute="bottom" id="i0W-Ct-x7M"/>
-                            <constraint firstItem="pqL-TJ-HQt" firstAttribute="top" secondItem="eKl-7o-pEf" secondAttribute="top" id="jgD-fc-ghQ"/>
+                            <constraint firstItem="OAE-4i-Dcf" firstAttribute="leading" secondItem="eKl-7o-pEf" secondAttribute="leading" id="4VI-u5-qXZ"/>
+                            <constraint firstItem="OAE-4i-Dcf" firstAttribute="top" secondItem="eKl-7o-pEf" secondAttribute="top" id="NOT-2t-TZR"/>
+                            <constraint firstItem="XHM-QT-cLU" firstAttribute="top" secondItem="OAE-4i-Dcf" secondAttribute="bottom" constant="44" id="of0-CZ-tlS"/>
+                            <constraint firstAttribute="trailing" secondItem="OAE-4i-Dcf" secondAttribute="trailing" id="pp9-HK-0eo"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="PEu-dQ-0in"/>
+                    <navigationItem key="navigationItem" id="PEu-dQ-0in">
+                        <barButtonItem key="leftBarButtonItem" title="Item" systemItem="cancel" id="G4d-Bd-wEQ">
+                            <connections>
+                                <action selector="addCoffeeCancel" destination="5Ll-dC-t14" id="NyV-pD-G21"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="OGs-g2-tFN">
+                            <connections>
+                                <action selector="addCoffeeSave" destination="5Ll-dC-t14" id="PCJ-QZ-b5w"/>
+                                <segue destination="ySp-l1-clf" kind="unwind" unwindAction="exitSegue:" id="tzQ-oh-Eqv"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="1309"/>
                     <connections>
@@ -697,31 +721,19 @@
                         <outlet property="addCoffeeMainView" destination="Q6f-CQ-V1Q" id="5W2-8H-bvY"/>
                         <outlet property="addCoffeeMainViewSaveButton" destination="bDZ-6o-aWX" id="00R-Vh-Pyg"/>
                         <outlet property="addCoffeeNameOrOriginTextField" destination="F0w-Zp-0xZ" id="Drk-8V-FAq"/>
-                        <outlet property="addCoffeeNavigationBarSaveButton" destination="tgy-66-yk0" id="NUE-GB-mBI"/>
                         <outlet property="addCoffeeNotesTextView" destination="FPH-Bl-eba" id="PXs-Je-cID"/>
                         <outlet property="addCoffeePhotoImageView" destination="MPo-A6-Gdf" id="KnR-5i-RAe"/>
                         <outlet property="addCoffeeRatingView" destination="huQ-72-ZxP" id="sl3-Mj-YEb"/>
                         <outlet property="addCoffeeRoastDateTextField" destination="VvN-nr-z0u" id="ae7-GY-qOX"/>
                         <outlet property="addCoffeeRoasterTextField" destination="Vqs-Hb-TDG" id="z7Y-Yl-3U6"/>
                         <outlet property="addCoffeeTastingWheelImageView" destination="rxj-tW-nyR" id="L3R-1F-dvm"/>
-                        <outlet property="nueueCoffeeBrewingMethodTextField" destination="3hO-5f-xBy" id="TXX-Pb-eq7"/>
-                        <outlet property="nueueCoffeeCuppingDateTextField" destination="6Tg-Y3-Oul" id="0A5-q4-VY5"/>
-                        <outlet property="nueueCoffeeLocationTextField" destination="Bbi-37-2d7" id="Tuf-6E-Uot"/>
-                        <outlet property="nueueCoffeeMainView" destination="Q6f-CQ-V1Q" id="xpj-6r-t1m"/>
-                        <outlet property="nueueCoffeeMainViewSaveButton" destination="bDZ-6o-aWX" id="jpM-54-Z0s"/>
-                        <outlet property="nueueCoffeeNameOrOriginTextField" destination="F0w-Zp-0xZ" id="2V6-iG-PDf"/>
-                        <outlet property="nueueCoffeeNavigationBarSaveButton" destination="tgy-66-yk0" id="Rhs-5q-ljf"/>
-                        <outlet property="nueueCoffeeNotesTextView" destination="FPH-Bl-eba" id="hmN-b2-IcV"/>
-                        <outlet property="nueueCoffeePhotoImageView" destination="MPo-A6-Gdf" id="rwT-7K-uwm"/>
-                        <outlet property="nueueCoffeeRatingView" destination="huQ-72-ZxP" id="48H-0d-Qem"/>
-                        <outlet property="nueueCoffeeRoastDateTextField" destination="VvN-nr-z0u" id="XWs-2m-PNO"/>
-                        <outlet property="nueueCoffeeRoasterTextField" destination="Vqs-Hb-TDG" id="plo-eP-HHU"/>
-                        <outlet property="nueueCoffeeTastingWheelImageView" destination="rxj-tW-nyR" id="ftK-Rj-81W"/>
+                        <outlet property="cancelBarButton" destination="G4d-Bd-wEQ" id="aVw-bh-erK"/>
+                        <outlet property="saveBarButton" destination="OGs-g2-tFN" id="d9Q-eO-WHX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SHB-57-mgv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="643" y="-2266"/>
+            <point key="canvasLocation" x="1695" y="-2234"/>
         </scene>
         <!--Cuppings View Controller-->
         <scene sceneID="zXw-cj-GcY">
@@ -739,7 +751,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="h2c-Da-lzN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1915" y="-1614"/>
+            <point key="canvasLocation" x="4221" y="-1774"/>
         </scene>
         <!--Cupping Detail View Controller-->
         <scene sceneID="wz4-RM-VkM">
@@ -1007,7 +1019,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V5u-gp-FhH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="649" y="590"/>
+            <point key="canvasLocation" x="1169" y="590"/>
         </scene>
         <!--Add Cupping View Controller-->
         <scene sceneID="fMy-uZ-6JZ">
@@ -1313,7 +1325,43 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BK0-Bd-4ll" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1283" y="-785"/>
+            <point key="canvasLocation" x="1809" y="-785"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="7LW-Mx-Qzo">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="QK8-d5-8kz" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vk8-wX-LnO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="lqE-Mv-TcC"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gy0-t4-RpX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-53" y="-785"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="tRb-bt-JL3">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2Fd-0V-wRK" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3lW-ff-n4b">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="5Ll-dC-t14" kind="relationship" relationship="rootViewController" id="Yed-sM-4Gl"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iLb-Wb-f2S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1169" y="-2234"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
