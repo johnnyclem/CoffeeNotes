@@ -9,21 +9,23 @@
 #import "CoffeeDetailViewController.h"
 #import "DataController.h"
 #import "CuppingCell.h"
+#import "CuppingDetailViewController.h"
+#import "AddOrEditCuppingViewController.h"
 
-@interface CoffeeDetailViewController () 
+@interface CoffeeDetailViewController () <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource>
 
 // Navigation Bar
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *coffeeDetailEditButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 
 // Outlets
-@property (weak, nonatomic) IBOutlet UIView *coffeeDetailMainView;
-@property (weak, nonatomic) IBOutlet UILabel *coffeeNameOrOriginLabel;
-@property (weak, nonatomic) IBOutlet UILabel *coffeeRoasterLabel;
-@property (weak, nonatomic) IBOutlet UIView *coffeeRatingView;
-@property (weak, nonatomic) IBOutlet UICollectionView *coffeePhotosCollectionView;
-@property (weak, nonatomic) IBOutlet UIView *coffeeTastingWheelView;
-@property (weak, nonatomic) IBOutlet UITableView *coffeeCuppingsTableView;
-@property (weak, nonatomic) IBOutlet UIButton *coffeeAddNewCuppingButton;
+@property (weak, nonatomic) IBOutlet UIView *mainView;
+@property (weak, nonatomic) IBOutlet UILabel *nameOrOriginLabel;
+@property (weak, nonatomic) IBOutlet UILabel *roasterLabel;
+@property (weak, nonatomic) IBOutlet UIView *ratingView;
+@property (weak, nonatomic) IBOutlet UICollectionView *photosCollectionView;
+@property (weak, nonatomic) IBOutlet UIView *tastingWheelView;
+@property (weak, nonatomic) IBOutlet UITableView *cuppingsTableView;
+@property (weak, nonatomic) IBOutlet UIButton *addNewCuppingButton;
 
 // Objects
 @property (weak, nonatomic) Cupping *cupping;
@@ -37,11 +39,11 @@
 {
     [super viewDidLoad];
     
-    self.coffeeNameOrOriginLabel.text = self.coffee.nameOrOrigin;
-    self.coffeeRoasterLabel.text = self.coffee.roaster;
+    self.nameOrOriginLabel.text = self.coffeeDetailCoffee.nameOrOrigin;
+    self.roasterLabel.text = self.coffeeDetailCoffee.roaster;
     
-    self.coffeeCuppingsTableView.delegate = self;
-    self.coffeeCuppingsTableView.dataSource = self;
+    self.cuppingsTableView.delegate = self;
+    self.cuppingsTableView.dataSource = self;
     
 //    self.coffeeratingview = self.coffee.averageRating;
 //    self.coffeePhotosCollectionView
@@ -49,10 +51,33 @@
     
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.cuppingsTableView reloadData];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"CuppingDetailSegue"]) {
+        
+        CuppingDetailViewController *destination = segue.destinationViewController;
+        destination.dataController = self.coffeeDetailDataController;
+        destination.cupping = [self.coffeeDetailCoffee.cuppings objectAtIndex:[self.cuppingsTableView indexPathForSelectedRow].row];
+        
+    } else if ([segue.identifier isEqualToString:@"AddCuppingSegue"]) {
+        
+        AddOrEditCuppingViewController *destination = segue.destinationViewController;
+        destination.addOrEditCuppingDataController = self.coffeeDetailDataController;
+        destination.currentCoffee = self.coffeeDetailCoffee;
+    }
 }
 
 #pragma mark - UITableViewDelegate Methods
@@ -64,15 +89,15 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.coffee.cuppings.count;
+    return self.coffeeDetailCoffee.cuppings.count;
 }
 
 -(CuppingCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CuppingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CuppingCell" forIndexPath:indexPath];
-    Cupping *cupping = [self.coffee.cuppings objectAtIndex:indexPath.row];
-    cell.cuppingDateLabel.text = [NSString stringWithFormat:@"%@", cupping.cuppingDate];
-    cell.locationLabel.text = [NSString stringWithFormat:@"%@", cupping.location];
+    Cupping *cupping = [self.coffeeDetailCoffee.cuppings objectAtIndex:indexPath.row];
+    cell.cuppingCellDateLabel.text = [NSString stringWithFormat:@"%@", cupping.cuppingDate];
+    cell.cuppingCellLocationLabel.text = [NSString stringWithFormat:@"%@", cupping.location];
     
     cell.cuppingCellImageView.layer.cornerRadius = 22;
     cell.cuppingCellImageView.layer.masksToBounds = YES;

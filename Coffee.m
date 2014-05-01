@@ -19,6 +19,11 @@
         self.roaster                = [aDecoder decodeObjectForKey:@"roaster"];
         self.mostRecentCoffeeImage  = [UIImage imageWithData:[aDecoder decodeObjectForKey:@"image"]];
         self.averageRating          = [aDecoder decodeObjectForKey:@"averageRating"];
+        self.cuppings               = [aDecoder decodeObjectForKey:@"cuppings"];
+        if (!self.cuppings)
+        {
+            self.cuppings = [NSMutableArray new];
+        }
     }
     
     return self;
@@ -30,6 +35,7 @@
     [aCoder encodeObject:self.roaster           forKey:@"roaster"];
     [aCoder encodeObject:self.averageRating     forKey:@"averageRating"];
     [aCoder encodeObject:UIImagePNGRepresentation(self.mostRecentCoffeeImage) forKey:@"image"];
+    [aCoder encodeObject:self.cuppings          forKey:@"cuppings"];
 
 }
 

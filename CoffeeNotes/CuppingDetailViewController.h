@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@class DataController;
+@class Cupping;
+
 @interface CuppingDetailViewController : UIViewController
+
+@property (weak, nonatomic) DataController *dataController;
+@property (weak, nonatomic) Cupping *cupping;
 
 @end

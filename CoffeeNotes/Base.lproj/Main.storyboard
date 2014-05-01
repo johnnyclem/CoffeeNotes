@@ -13,11 +13,11 @@
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="125" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="aNe-lT-ja6">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -52,11 +52,11 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="coffeeImage" destination="EwB-WS-504" id="ebu-cQ-11u"/>
-                                            <outlet property="coffeeNameLabel" destination="TyN-eq-G7A" id="tJm-F6-eFT"/>
-                                            <outlet property="coffeeRating" destination="x6F-7N-BuD" id="fp1-0B-5Tf"/>
-                                            <outlet property="roasterLabel" destination="zPB-mS-16L" id="fXI-Zs-O9K"/>
-                                            <segue destination="NIi-8W-wJo" kind="push" identifier="CoffeesToCoffeeDetailSegue" id="iIg-Cd-6hN"/>
+                                            <outlet property="coffeeCellAverageRating" destination="x6F-7N-BuD" id="R8h-8S-o0x"/>
+                                            <outlet property="coffeeCellImage" destination="EwB-WS-504" id="2cm-kR-Xh7"/>
+                                            <outlet property="coffeeCellNameOrOriginLabel" destination="TyN-eq-G7A" id="buR-R6-z40"/>
+                                            <outlet property="coffeeCellRoasterLabel" destination="zPB-mS-16L" id="KIv-1z-d2z"/>
+                                            <segue destination="NIi-8W-wJo" kind="push" identifier="CoffeeDetailSegue" id="iIg-Cd-6hN"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -67,7 +67,7 @@
                     <navigationItem key="navigationItem" id="aEN-Jq-maR">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="hIf-LK-AJ8">
                             <connections>
-                                <segue destination="2Fd-0V-wRK" kind="modal" id="oMf-BJ-h4C"/>
+                                <segue destination="5Ll-dC-t14" kind="push" id="BBJ-LZ-y2C"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -230,11 +230,10 @@
                                                             </subviews>
                                                         </tableViewCellContentView>
                                                         <connections>
+                                                            <outlet property="cuppingCellDateLabel" destination="kix-2k-Ihp" id="Drg-Mb-7iC"/>
                                                             <outlet property="cuppingCellImageView" destination="oZA-lg-ixu" id="zfA-VD-Q8k"/>
-                                                            <outlet property="cuppingDate" destination="kix-2k-Ihp" id="TDb-VD-G8a"/>
-                                                            <outlet property="cuppingDateLabel" destination="kix-2k-Ihp" id="4A5-2G-cFt"/>
-                                                            <outlet property="locationLabel" destination="LG2-Ux-Eno" id="fpX-xN-JwR"/>
-                                                            <segue destination="tdF-AX-WGQ" kind="push" id="Ysx-i9-uJo"/>
+                                                            <outlet property="cuppingCellLocationLabel" destination="LG2-Ux-Eno" id="if6-M0-xhC"/>
+                                                            <segue destination="tdF-AX-WGQ" kind="push" identifier="CuppingDetailSegue" id="Ysx-i9-uJo"/>
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>
@@ -264,7 +263,7 @@
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="hnC-WX-J8e" kind="push" id="s10-Sy-q0l"/>
+                                                    <segue destination="hnC-WX-J8e" kind="push" identifier="AddCuppingSegue" id="YEJ-8o-byp"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -339,57 +338,25 @@
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="1114"/>
                     <connections>
-                        <outlet property="coffeeAddNewCuppingButton" destination="n1e-5g-Kxs" id="ayU-Fm-XVR"/>
-                        <outlet property="coffeeCuppingsTableView" destination="hfy-si-OBH" id="fdT-3g-yU5"/>
-                        <outlet property="coffeeDetailEditButton" destination="kYY-f1-FoW" id="dMN-cz-xad"/>
-                        <outlet property="coffeeDetailMainView" destination="rrr-qC-ZDp" id="FPX-cC-xdx"/>
-                        <outlet property="coffeeNameOrOriginLabel" destination="YKT-5p-Qwi" id="Brq-GD-Fb4"/>
-                        <outlet property="coffeePhotosCollectionView" destination="Ben-Hu-lMm" id="FmD-6r-zlx"/>
-                        <outlet property="coffeeRatingView" destination="UT0-DL-LMh" id="wYA-pZ-Kfm"/>
-                        <outlet property="coffeeRoasterLabel" destination="K7T-9e-3kp" id="vdN-G4-o97"/>
-                        <outlet property="coffeeTastingWheelView" destination="vP2-cU-KNn" id="vri-4Y-osu"/>
+                        <outlet property="addNewCuppingButton" destination="n1e-5g-Kxs" id="5Za-LM-Cie"/>
+                        <outlet property="cuppingsTableView" destination="hfy-si-OBH" id="0JI-58-hDw"/>
+                        <outlet property="editButton" destination="kYY-f1-FoW" id="2xz-B2-Z5n"/>
+                        <outlet property="mainView" destination="rrr-qC-ZDp" id="dEC-xX-o8r"/>
+                        <outlet property="nameOrOriginLabel" destination="YKT-5p-Qwi" id="0sF-0h-Amb"/>
+                        <outlet property="photosCollectionView" destination="Ben-Hu-lMm" id="aIF-Ak-OeF"/>
+                        <outlet property="ratingView" destination="UT0-DL-LMh" id="D3T-dF-Yfb"/>
+                        <outlet property="roasterLabel" destination="K7T-9e-3kp" id="rXT-nh-U7o"/>
+                        <outlet property="tastingWheelView" destination="vP2-cU-KNn" id="QCz-30-Nbc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5mA-CI-vIS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1169" y="-785"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="mJt-Lf-XXA">
-            <objects>
-                <viewController id="BP7-rF-0VG" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="6IW-AY-KXi"/>
-                        <viewControllerLayoutGuide type="bottom" id="9o8-PO-4jK"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="fCD-L2-4yb">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uzx-uG-MBl">
-                                <rect key="frame" x="0.0" y="44" width="320" height="320"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
-                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="umv-Vj-kNE">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Title" id="vq9-bC-QkH"/>
-                                </items>
-                            </navigationBar>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Mru-88-PVP" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3694" y="-1774"/>
-        </scene>
-        <!--Add Coffee View Controller-->
+        <!--Add Or Edit Coffee View Controller-->
         <scene sceneID="Q0a-jm-Bum">
             <objects>
-                <viewController id="5Ll-dC-t14" customClass="AddCoffeeViewController" sceneMemberID="viewController">
+                <viewController id="5Ll-dC-t14" customClass="AddOrEditCoffeeViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="84R-zb-LBW"/>
                         <viewControllerLayoutGuide type="bottom" id="XHM-QT-cLU"/>
@@ -552,14 +519,8 @@
                                                     <constraint firstAttribute="height" constant="54" id="OsD-1C-FwD"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Photo:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iPk-M6-QPk">
-                                                <rect key="frame" x="63" y="636" width="87" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MPo-A6-Gdf">
-                                                <rect key="frame" x="158" y="597" width="100" height="100"/>
+                                                <rect key="frame" x="200" y="597" width="100" height="100"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="100" id="02L-3E-5r0"/>
@@ -610,7 +571,17 @@
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="ySp-l1-clf" kind="unwind" unwindAction="exitSegue:" id="j4h-LR-u3E"/>
+                                                    <segue destination="ySp-l1-clf" kind="unwind" identifier="addCoffeeExitSegue" unwindAction="addCoffeeExitSegue:" id="j4h-LR-u3E"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LAI-mR-4ZF">
+                                                <rect key="frame" x="56" y="632" width="136" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Add/Change Photo:">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="addOrChangePhoto:" destination="5Ll-dC-t14" eventType="touchUpInside" id="gSN-Tt-pfa"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -629,7 +600,6 @@
                                             <constraint firstAttribute="trailing" secondItem="Vqs-Hb-TDG" secondAttribute="trailing" constant="20" id="C13-Mp-RqX"/>
                                             <constraint firstAttribute="trailing" secondItem="6Tg-Y3-Oul" secondAttribute="trailing" constant="20" id="CwG-LI-Mfp"/>
                                             <constraint firstItem="F0w-Zp-0xZ" firstAttribute="top" secondItem="4TF-o1-MHH" secondAttribute="bottom" constant="8" id="DdP-zz-GlH"/>
-                                            <constraint firstItem="iPk-M6-QPk" firstAttribute="leading" secondItem="Q6f-CQ-V1Q" secondAttribute="leading" constant="63" id="Ezu-8A-bTh"/>
                                             <constraint firstAttribute="trailing" secondItem="tbp-eW-xw9" secondAttribute="trailing" constant="20" id="GqQ-4Y-9cG"/>
                                             <constraint firstItem="bDZ-6o-aWX" firstAttribute="leading" secondItem="Q6f-CQ-V1Q" secondAttribute="leading" constant="20" id="K0w-cL-Hye"/>
                                             <constraint firstAttribute="trailing" secondItem="7ly-x3-1lZ" secondAttribute="trailing" constant="20" id="LHU-hy-hcP"/>
@@ -666,14 +636,12 @@
                                             <constraint firstItem="6Tg-Y3-Oul" firstAttribute="leading" secondItem="Q6f-CQ-V1Q" secondAttribute="leading" constant="20" id="nOx-uP-eWG"/>
                                             <constraint firstItem="4TF-o1-MHH" firstAttribute="top" secondItem="Q6f-CQ-V1Q" secondAttribute="top" constant="20" id="nUF-13-fHN"/>
                                             <constraint firstItem="feb-Ed-2iV" firstAttribute="leading" secondItem="Q6f-CQ-V1Q" secondAttribute="leading" constant="20" id="ncT-tD-gdB"/>
-                                            <constraint firstItem="MPo-A6-Gdf" firstAttribute="leading" secondItem="iPk-M6-QPk" secondAttribute="trailing" constant="8" id="nhh-fw-Eo7"/>
                                             <constraint firstAttribute="trailing" secondItem="VvN-nr-z0u" secondAttribute="trailing" constant="20" id="oiZ-wZ-X3I"/>
-                                            <constraint firstAttribute="trailing" secondItem="MPo-A6-Gdf" secondAttribute="trailing" constant="62" id="pdd-ZL-kky"/>
+                                            <constraint firstAttribute="trailing" secondItem="MPo-A6-Gdf" secondAttribute="trailing" constant="20" id="pdd-ZL-kky"/>
                                             <constraint firstItem="rxj-tW-nyR" firstAttribute="top" secondItem="HVc-4i-Fmx" secondAttribute="bottom" constant="8" id="pj1-z5-5Nz"/>
                                             <constraint firstAttribute="trailing" secondItem="feb-Ed-2iV" secondAttribute="trailing" constant="20" id="ptL-cg-ku2"/>
                                             <constraint firstAttribute="trailing" secondItem="4TF-o1-MHH" secondAttribute="trailing" constant="20" id="r6a-b2-sRl"/>
                                             <constraint firstAttribute="bottom" secondItem="bDZ-6o-aWX" secondAttribute="bottom" constant="20" id="rDD-Lz-kwJ"/>
-                                            <constraint firstItem="iPk-M6-QPk" firstAttribute="top" secondItem="huQ-72-ZxP" secondAttribute="bottom" constant="59" id="tIg-Vo-ddl"/>
                                             <constraint firstItem="huQ-72-ZxP" firstAttribute="leading" secondItem="Q6f-CQ-V1Q" secondAttribute="leading" constant="20" id="v3A-bW-d33"/>
                                             <constraint firstAttribute="trailing" secondItem="rxj-tW-nyR" secondAttribute="trailing" constant="20" id="v92-NP-X6E"/>
                                             <constraint firstAttribute="trailing" secondItem="3hO-5f-xBy" secondAttribute="trailing" constant="20" id="wQz-IC-LWb"/>
@@ -703,55 +671,39 @@
                         <barButtonItem key="leftBarButtonItem" title="Item" systemItem="cancel" id="G4d-Bd-wEQ">
                             <connections>
                                 <action selector="addCoffeeCancel" destination="5Ll-dC-t14" id="NyV-pD-G21"/>
+                                <segue destination="ySp-l1-clf" kind="unwind" identifier="CancelSegue" unwindAction="addCoffeeExitSegue:" id="BXp-5I-BvS"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="OGs-g2-tFN">
                             <connections>
                                 <action selector="addCoffeeSave" destination="5Ll-dC-t14" id="PCJ-QZ-b5w"/>
-                                <segue destination="ySp-l1-clf" kind="unwind" unwindAction="exitSegue:" id="tzQ-oh-Eqv"/>
+                                <segue destination="ySp-l1-clf" kind="unwind" identifier="addCoffeeExitSegue" unwindAction="addCoffeeExitSegue:" id="tzQ-oh-Eqv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="1309"/>
                     <connections>
-                        <outlet property="addCoffeeBrewingMethodTextField" destination="3hO-5f-xBy" id="C7f-rE-27M"/>
-                        <outlet property="addCoffeeCuppingDateTextField" destination="6Tg-Y3-Oul" id="XEa-mY-2dB"/>
-                        <outlet property="addCoffeeLocationTextField" destination="Bbi-37-2d7" id="ynW-Go-bs6"/>
-                        <outlet property="addCoffeeMainView" destination="Q6f-CQ-V1Q" id="5W2-8H-bvY"/>
-                        <outlet property="addCoffeeMainViewSaveButton" destination="bDZ-6o-aWX" id="00R-Vh-Pyg"/>
-                        <outlet property="addCoffeeNameOrOriginTextField" destination="F0w-Zp-0xZ" id="Drk-8V-FAq"/>
-                        <outlet property="addCoffeeNotesTextView" destination="FPH-Bl-eba" id="PXs-Je-cID"/>
-                        <outlet property="addCoffeePhotoImageView" destination="MPo-A6-Gdf" id="KnR-5i-RAe"/>
-                        <outlet property="addCoffeeRatingView" destination="huQ-72-ZxP" id="sl3-Mj-YEb"/>
-                        <outlet property="addCoffeeRoastDateTextField" destination="VvN-nr-z0u" id="ae7-GY-qOX"/>
-                        <outlet property="addCoffeeRoasterTextField" destination="Vqs-Hb-TDG" id="z7Y-Yl-3U6"/>
-                        <outlet property="addCoffeeTastingWheelImageView" destination="rxj-tW-nyR" id="L3R-1F-dvm"/>
+                        <outlet property="brewingMethodTextField" destination="3hO-5f-xBy" id="BT5-WH-nnt"/>
                         <outlet property="cancelBarButton" destination="G4d-Bd-wEQ" id="aVw-bh-erK"/>
+                        <outlet property="cuppingDateTextField" destination="6Tg-Y3-Oul" id="wV2-hI-sYs"/>
+                        <outlet property="locationTextField" destination="Bbi-37-2d7" id="tXE-RZ-T9N"/>
+                        <outlet property="mainView" destination="Q6f-CQ-V1Q" id="VKK-m2-Kt9"/>
+                        <outlet property="mainViewSaveButton" destination="bDZ-6o-aWX" id="brQ-GU-KVH"/>
+                        <outlet property="nameOrOriginTextField" destination="F0w-Zp-0xZ" id="Rno-rl-SQg"/>
+                        <outlet property="notesTextView" destination="FPH-Bl-eba" id="67a-g7-lyg"/>
+                        <outlet property="photoImageView" destination="MPo-A6-Gdf" id="OhA-wq-4Ah"/>
+                        <outlet property="ratingView" destination="huQ-72-ZxP" id="efa-zP-1H1"/>
+                        <outlet property="roastDateTextField" destination="VvN-nr-z0u" id="d7i-1L-pag"/>
+                        <outlet property="roasterTextField" destination="Vqs-Hb-TDG" id="8an-5a-ro6"/>
                         <outlet property="saveBarButton" destination="OGs-g2-tFN" id="d9Q-eO-WHX"/>
+                        <outlet property="scrollView" destination="OAE-4i-Dcf" id="fJy-1b-Bnd"/>
+                        <outlet property="tastingWheelImageView" destination="rxj-tW-nyR" id="pFc-2G-5nv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SHB-57-mgv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1695" y="-2234"/>
-        </scene>
-        <!--Cuppings View Controller-->
-        <scene sceneID="zXw-cj-GcY">
-            <objects>
-                <viewController id="naF-h0-kAC" customClass="CuppingsViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="014-0G-xJS"/>
-                        <viewControllerLayoutGuide type="bottom" id="9eL-bN-2ic"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="ZHi-2S-LZ2">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="h2c-Da-lzN" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4221" y="-1774"/>
+            <point key="canvasLocation" x="1169" y="-2242"/>
         </scene>
         <!--Cupping Detail View Controller-->
         <scene sceneID="wz4-RM-VkM">
@@ -833,15 +785,6 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BqK-0a-Vny">
-                                                <rect key="frame" x="174" y="255" width="126" height="21"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="126" id="bW8-No-tgy"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MA3-Ur-G7z">
                                                 <rect key="frame" x="-48" y="0.0" width="42" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -871,6 +814,15 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="173" id="3c2-PZ-ryR"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BqK-0a-Vny">
+                                                <rect key="frame" x="174" y="255" width="126" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="126" id="bW8-No-tgy"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <nil key="highlightedColor"/>
@@ -1013,18 +965,32 @@
                             <constraint firstItem="Sb3-UK-jEy" firstAttribute="leading" secondItem="FS1-S8-mey" secondAttribute="leading" id="z7z-7s-o2k"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="go0-Wx-55f"/>
+                    <navigationItem key="navigationItem" id="go0-Wx-55f">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="0LC-ZC-R8u">
+                            <connections>
+                                <segue destination="hnC-WX-J8e" kind="push" identifier="EditCuppingSegue" id="Ujx-FW-K0z"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="1195"/>
+                    <connections>
+                        <outlet property="brewingMethodDisplayLabel" destination="BqK-0a-Vny" id="0n8-co-Og2"/>
+                        <outlet property="cuppingDateDisplayLabel" destination="qkS-MX-cct" id="LdI-oZ-pPj"/>
+                        <outlet property="locationDisplayLabel" destination="Qn8-p8-Ebo" id="upq-wq-MzQ"/>
+                        <outlet property="notesTextField" destination="ZXj-np-ebI" id="sg2-Lo-1QX"/>
+                        <outlet property="photoImageView" destination="DA3-Jj-S8K" id="e0q-1i-HC8"/>
+                        <outlet property="roastDateDisplayLabel" destination="Vsr-DN-Vts" id="CxK-nn-4G0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V5u-gp-FhH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1169" y="590"/>
         </scene>
-        <!--Add Cupping View Controller-->
+        <!--Add Or Edit Cupping View Controller-->
         <scene sceneID="fMy-uZ-6JZ">
             <objects>
-                <viewController id="hnC-WX-J8e" customClass="AddCuppingViewController" sceneMemberID="viewController">
+                <viewController id="hnC-WX-J8e" customClass="AddOrEditCuppingViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KB7-bC-fGl"/>
                         <viewControllerLayoutGuide type="bottom" id="MnS-Hd-0eL"/>
@@ -1199,18 +1165,6 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
-                                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jrP-76-QCy">
-                                                <rect key="frame" x="20" y="1167" width="280" height="38"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="280" id="APE-JE-G1E"/>
-                                                    <constraint firstAttribute="height" constant="38" id="R9H-bV-TjA"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                                <state key="normal" title="Save">
-                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                                </state>
-                                            </button>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coffee Name/Origin" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oYm-rK-6Z9">
                                                 <rect key="frame" x="20" y="20" width="280" height="38"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1231,6 +1185,21 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jrP-76-QCy">
+                                                <rect key="frame" x="243" y="105" width="57" height="38"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="57" id="APE-JE-G1E"/>
+                                                    <constraint firstAttribute="height" constant="38" id="R9H-bV-TjA"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
+                                                <state key="normal" title="Save">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="saveCupping:" destination="hnC-WX-J8e" eventType="touchUpInside" id="xAP-tM-pMl"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <constraints>
@@ -1243,7 +1212,7 @@
                                             <constraint firstItem="kZw-pb-Dyd" firstAttribute="top" secondItem="fNE-lr-hRi" secondAttribute="bottom" constant="8" id="4ut-iL-bjQ"/>
                                             <constraint firstItem="fNE-lr-hRi" firstAttribute="top" secondItem="0Ui-e1-sKe" secondAttribute="bottom" constant="20" id="5F9-Ac-dBp"/>
                                             <constraint firstItem="803-k9-MWu" firstAttribute="top" secondItem="LtN-5x-Vm1" secondAttribute="bottom" constant="8" id="6bX-PN-2IS"/>
-                                            <constraint firstItem="jrP-76-QCy" firstAttribute="leading" secondItem="T0g-LX-hJM" secondAttribute="leading" constant="20" id="7Fj-R6-Kkz"/>
+                                            <constraint firstItem="jrP-76-QCy" firstAttribute="leading" secondItem="T0g-LX-hJM" secondAttribute="leading" constant="243" id="7Fj-R6-Kkz"/>
                                             <constraint firstAttribute="trailing" secondItem="RPk-f8-lvG" secondAttribute="trailing" constant="20" id="8yZ-6A-IfY"/>
                                             <constraint firstItem="fNE-lr-hRi" firstAttribute="leading" secondItem="T0g-LX-hJM" secondAttribute="leading" constant="20" id="9oj-UP-atq"/>
                                             <constraint firstAttribute="trailing" secondItem="Vrf-bk-tFM" secondAttribute="trailing" constant="20" id="A2k-6B-ywI"/>
@@ -1286,8 +1255,8 @@
                                             <constraint firstItem="8sx-o9-67q" firstAttribute="leading" secondItem="T0g-LX-hJM" secondAttribute="leading" constant="20" id="oh5-iM-IJW"/>
                                             <constraint firstAttribute="trailing" secondItem="jrP-76-QCy" secondAttribute="trailing" constant="20" id="opc-UV-DPc"/>
                                             <constraint firstItem="803-k9-MWu" firstAttribute="leading" secondItem="T0g-LX-hJM" secondAttribute="leading" constant="20" id="pG3-nN-7Rt"/>
-                                            <constraint firstItem="jrP-76-QCy" firstAttribute="top" secondItem="6Ph-ca-wsc" secondAttribute="bottom" constant="20" id="rsh-Nw-Ruu"/>
-                                            <constraint firstAttribute="bottom" secondItem="jrP-76-QCy" secondAttribute="bottom" constant="20" id="uiv-By-gim"/>
+                                            <constraint firstItem="jrP-76-QCy" firstAttribute="top" secondItem="6Ph-ca-wsc" secondAttribute="bottom" constant="-1042" id="rsh-Nw-Ruu"/>
+                                            <constraint firstAttribute="bottom" secondItem="jrP-76-QCy" secondAttribute="bottom" constant="1082" id="uiv-By-gim"/>
                                             <constraint firstItem="fDR-XM-LIs" firstAttribute="leading" secondItem="T0g-LX-hJM" secondAttribute="leading" constant="20" id="yZZ-6P-oSt"/>
                                             <constraint firstItem="Iow-SV-4oX" firstAttribute="top" secondItem="803-k9-MWu" secondAttribute="bottom" constant="59" id="z9O-NC-DXA"/>
                                         </constraints>
@@ -1304,9 +1273,6 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ydd-W0-SYH">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Title" id="A0Q-mD-O1K"/>
-                                </items>
                             </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -1322,10 +1288,19 @@
                     <navigationItem key="navigationItem" id="7tg-7R-9zf"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="1270"/>
+                    <connections>
+                        <outlet property="brewingMethodTextField" destination="8sx-o9-67q" id="YTD-lP-NTH"/>
+                        <outlet property="coffeeNameOrOriginLabel" destination="oYm-rK-6Z9" id="B5t-WE-eKV"/>
+                        <outlet property="cuppingDateTextField" destination="0Ui-e1-sKe" id="6bo-qf-XEq"/>
+                        <outlet property="locationTextField" destination="toj-MS-uhL" id="wBl-V1-jr7"/>
+                        <outlet property="notesTextView" destination="6Ph-ca-wsc" id="qG9-da-l6S"/>
+                        <outlet property="roastDateTextField" destination="kZw-pb-Dyd" id="j6N-AM-Z3H"/>
+                        <outlet property="roasterLabel" destination="RPk-f8-lvG" id="HjM-7X-Gde"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BK0-Bd-4ll" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1809" y="-785"/>
+            <point key="canvasLocation" x="1695" y="-785"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7LW-Mx-Qzo">
@@ -1345,28 +1320,13 @@
             </objects>
             <point key="canvasLocation" x="-53" y="-785"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="tRb-bt-JL3">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2Fd-0V-wRK" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="3lW-ff-n4b">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="5Ll-dC-t14" kind="relationship" relationship="rootViewController" id="Yed-sM-4Gl"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="iLb-Wb-f2S" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1169" y="-2234"/>
-        </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
+        <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="Ujx-FW-K0z"/>
+    </inferredMetricsTieBreakers>
 </document>

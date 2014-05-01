@@ -10,8 +10,8 @@
 
 @interface CuppingCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *cuppingDateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *cuppingCellDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *cuppingCellLocationLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *cuppingCellImageView;
 
 @end

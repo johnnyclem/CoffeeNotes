@@ -8,15 +8,16 @@
 
 #import "CoffeesViewController.h"
 #import "CoffeeDetailViewController.h"
-#import "DataController.h"
 #import "CoffeeCell.h"
 
-@interface CoffeesViewController ()
+@interface CoffeesViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *coffeesTableView;
-@property (nonatomic, weak) Coffee *coffee;
+
+@property (weak, nonatomic) Coffee *coffee;
 
 @end
+
 
 @implementation CoffeesViewController
 
@@ -34,7 +35,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -48,14 +48,14 @@
 {
 //    NSIndexPath *indexPath = [self.coffeesTableView indexPathForSelectedRow];
     
-    if ([segue.identifier isEqualToString:@"CoffeesToCoffeeDetailSegue"]) {
+    if ([segue.identifier isEqualToString:@"CoffeeDetailSegue"]) {
         CoffeeDetailViewController *destination = segue.destinationViewController;
-        destination.dataController = self.dataController;
-        destination.coffee = [_dataController.coffees objectAtIndex:[self.coffeesTableView indexPathForSelectedRow].row];
+        destination.coffeeDetailDataController = self.dataController;
+        destination.coffeeDetailCoffee = [self.dataController.coffees objectAtIndex:[self.coffeesTableView indexPathForSelectedRow].row];
     }
 }
 
--(IBAction)exitSegue:(UIStoryboardSegue *)sender
+-(IBAction)addCoffeeExitSegue:(UIStoryboardSegue *)sender
 {
     [self.dataController save];
 }
@@ -76,12 +76,12 @@
 {
     CoffeeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CoffeeCell" forIndexPath:indexPath];
     Coffee *coffee = [self.dataController.coffees objectAtIndex:indexPath.row];
-    cell.coffeeNameLabel.text = [NSString stringWithFormat:@"%@", coffee.nameOrOrigin];
-    cell.roasterLabel.text = [NSString stringWithFormat:@"%@", coffee.roaster];
+    cell.coffeeCellNameOrOriginLabel.text = [NSString stringWithFormat:@"%@", coffee.nameOrOrigin];
+    cell.coffeeCellRoasterLabel.text = [NSString stringWithFormat:@"%@", coffee.roaster];
     
-    cell.coffeeImage.layer.cornerRadius = 22;
-    cell.coffeeImage.layer.masksToBounds = YES;
-    cell.coffeeImage.image = coffee.mostRecentCoffeeImage;
+    cell.coffeeCellImage.layer.cornerRadius = 22;
+    cell.coffeeCellImage.layer.masksToBounds = YES;
+    cell.coffeeCellImage.image = coffee.mostRecentCoffeeImage;
     
     return cell;
 }

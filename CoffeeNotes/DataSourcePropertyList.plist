@@ -19,11 +19,11 @@
 					<key>cuppingRoaster</key>
 					<string>Default Roaster</string>
 					<key>cuppingDate</key>
-					<date>2014-04-28T20:42:33Z</date>
+					<string>Hello</string>
 					<key>cuppingLocation</key>
 					<string>My Favorite Coffee Shop</string>
 					<key>roastDate</key>
-					<date>2014-04-28T20:43:26Z</date>
+					<string>Hello</string>
 					<key>brewingMethod</key>
 					<string>French Press</string>
 					<key>cuppingRating</key>

@@ -1,5 +1,5 @@
 //
-//  CoffeeDetailViewController.h
+//  NewCuppingViewController.h
 //  CoffeeNotes
 //
 //  Created by Cole Bratcher on 4/25/14.
@@ -12,9 +12,11 @@
 #import "Cupping.h"
 
 
-@interface CoffeeDetailViewController : UIViewController 
+@interface AddOrEditCuppingViewController : UIViewController
 
-@property (nonatomic, weak) DataController *coffeeDetailDataController;
-@property (nonatomic, weak) Coffee *coffeeDetailCoffee;
+@property DataController *addOrEditCuppingDataController;
+
+@property Coffee *currentCoffee;
+@property Cupping *currentCupping;
 
 @end

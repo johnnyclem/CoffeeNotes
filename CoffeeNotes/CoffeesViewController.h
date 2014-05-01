@@ -10,8 +10,8 @@
 
 @class DataController;
 
-@interface CoffeesViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface CoffeesViewController : UIViewController
 
-@property (nonatomic, strong) DataController *dataController;
+@property (strong, nonatomic) DataController *dataController;
 
 @end

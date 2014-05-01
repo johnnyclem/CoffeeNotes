@@ -10,9 +10,9 @@
 
 @interface CoffeeCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *coffeeNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *roasterLabel;
-@property (weak, nonatomic) IBOutlet UIView *coffeeRating;
-@property (weak, nonatomic) IBOutlet UIImageView *coffeeImage;
+@property (weak, nonatomic) IBOutlet UILabel *coffeeCellNameOrOriginLabel;
+@property (weak, nonatomic) IBOutlet UILabel *coffeeCellRoasterLabel;
+@property (weak, nonatomic) IBOutlet UIView *coffeeCellAverageRating;
+@property (weak, nonatomic) IBOutlet UIImageView *coffeeCellImage;
 
 @end

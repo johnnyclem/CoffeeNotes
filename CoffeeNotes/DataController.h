@@ -11,7 +11,7 @@
 
 @interface DataController : NSObject
 
-@property (nonatomic, strong) NSMutableArray *coffees;
+@property (strong, nonatomic) NSMutableArray *coffees;
 
 // Init
 +(NSString *)applicationDocumentsDirectory;
