@@ -11,6 +11,9 @@
 
 @interface CuppingDetailViewController ()
 
+@property (weak, nonatomic) IBOutlet UILabel *coffeeNameOrOriginLabel;
+@property (weak, nonatomic) IBOutlet UILabel *coffeeRoasterLabel;
+
 @property (weak, nonatomic) IBOutlet UILabel *locationDisplayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *cuppingDateDisplayLabel;
 @property (weak, nonatomic) IBOutlet UILabel *roastDateDisplayLabel;
@@ -26,7 +29,16 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.coffeeNameOrOriginLabel.text       = self.currentCoffee.nameOrOrigin;
+    self.coffeeRoasterLabel.text            = self.currentCoffee.roaster;
+
+    self.locationDisplayLabel.text          = self.currentCupping.location;
+    self.cuppingDateDisplayLabel.text       = self.currentCupping.cuppingDate;
+    self.roastDateDisplayLabel.text         = self.currentCupping.roastDate;
+    self.brewingMethodDisplayLabel.text     = self.currentCupping.brewingMethod;
+    self.photoImageView.image               = self.currentCupping.image;
+    self.notesTextField.text                = self.currentCupping.cuppingNotes;
 }
 
 - (void)didReceiveMemoryWarning
@@ -39,8 +51,8 @@
 {
     if ([segue.identifier isEqualToString:@"EditCuppingSegue"]) {
         AddOrEditCuppingViewController *destination = segue.destinationViewController;
-        destination.currentCupping = self.cupping;
-        
+        destination.editableCupping = self.currentCupping;
+        destination.currentCoffee = self.currentCoffee;
     }
 }
 

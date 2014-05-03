@@ -70,7 +70,9 @@
         
         CuppingDetailViewController *destination = segue.destinationViewController;
         destination.dataController = self.coffeeDetailDataController;
-        destination.cupping = [self.coffeeDetailCoffee.cuppings objectAtIndex:[self.cuppingsTableView indexPathForSelectedRow].row];
+        destination.currentCoffee = self.coffeeDetailCoffee;
+        destination.currentCupping = [self.coffeeDetailCoffee.cuppings objectAtIndex:[self.cuppingsTableView indexPathForSelectedRow].row];
+        
         
     } else if ([segue.identifier isEqualToString:@"AddCuppingSegue"]) {
         
@@ -79,6 +81,12 @@
         destination.currentCoffee = self.coffeeDetailCoffee;
     }
 }
+
+-(IBAction)addCuppingExitSegue:(UIStoryboardSegue *)sender
+{
+    // Does this method mean anything?
+}
+
 
 #pragma mark - UITableViewDelegate Methods
 

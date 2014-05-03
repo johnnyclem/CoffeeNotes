@@ -43,4 +43,5 @@
     [aCoder encodeObject:UIImagePNGRepresentation(self.image) forKey:@"image"];
     [aCoder encodeObject:self.cuppingNotes          forKey:@"cuppingNotes"];
 }
+
 @end

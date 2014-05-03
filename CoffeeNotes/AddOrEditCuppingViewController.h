@@ -17,6 +17,8 @@
 @property DataController *addOrEditCuppingDataController;
 
 @property Coffee *currentCoffee;
-@property Cupping *currentCupping;
+@property Cupping *editableCupping;
+
+@property (weak, nonatomic) IBOutlet UIButton *deleteCuppingButton;
 
 @end

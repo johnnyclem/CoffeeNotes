@@ -13,7 +13,4 @@
 
 @property (weak, nonatomic) DataController *dataController;
 
--(IBAction)addCoffeeCancel;
--(IBAction)addCoffeeSave;
-
 @end

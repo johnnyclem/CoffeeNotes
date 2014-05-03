@@ -20,8 +20,8 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *saveBarButton;
 
 // ScrollView
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet UIView *mainView;
+@property (weak, nonatomic) IBOutlet UIScrollView *addOrEditCoffeeScrollView;
+//@property (weak, nonatomic) IBOutlet UIView *mainView;
 
 
 // MainView
@@ -62,17 +62,49 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void)viewDidDisappear:(BOOL)animated {
+    
+}
+
+//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+//{
+//    NSString *newNameOrOriginText = [self.nameOrOriginTextField.text
+//                         stringByReplacingCharactersInRange:range withString:string];
+//    NSString *newCuppingDateText = [self.cuppingDateTextField.text stringByReplacingCharactersInRange:range withString:string];
+//
+//    self.saveBarButton.enabled = ([newNameOrOriginText length] > 0 && [newCuppingDateText length] > 1);
+//
+//    return YES;
+//}
+
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
     [textField resignFirstResponder];
     return NO;
 }
 
-- (IBAction)addCoffeeCancel {
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+-(void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    if (textField == self.nameOrOriginTextField) {
+        [self.addOrEditCoffeeScrollView setContentOffset:CGPointMake(0, self.nameOrOriginTextField.frame.origin.y - 100) animated:YES];
+    } else if (textField == self.roasterTextField) {
+        [self.addOrEditCoffeeScrollView setContentOffset:CGPointMake(0, self.roasterTextField.frame.origin.y - 100) animated:YES];
+    } else if (textField == self.locationTextField) {
+        [self.addOrEditCoffeeScrollView setContentOffset:CGPointMake(0, self.locationTextField.frame.origin.y - 100) animated:YES];
+    } else if (textField == self.cuppingDateTextField) {
+        [self.addOrEditCoffeeScrollView setContentOffset:CGPointMake(0, self.cuppingDateTextField.frame.origin.y - 100) animated:YES];
+    } else if (textField == self.roastDateTextField) {
+        [self.addOrEditCoffeeScrollView setContentOffset:CGPointMake(0, self.roastDateTextField.frame.origin.y - 100) animated:YES];
+    } else if (textField == self.brewingMethodTextField) {
+        [self.addOrEditCoffeeScrollView setContentOffset:CGPointMake(0, self.brewingMethodTextField.frame.origin.y - 100) animated:YES];
+    }
 }
-- (IBAction)addCoffeeSave {
-    
+
+-(void)textViewDidBeginEditing:(UITextView *)textView
+{
+    if (textView == self.notesTextView) {
+        [self.addOrEditCoffeeScrollView setContentOffset:CGPointMake(0, self.notesTextView.frame.origin.y - 100) animated:YES];
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -91,7 +123,7 @@
         newCupping.cuppingDate = self.cuppingDateTextField.text;
         newCupping.roastDate = self.roastDateTextField.text;
         newCupping.brewingMethod = self.brewingMethodTextField.text;
-//        newCupping.cuppingRating = self.addCoffeeRatingView;
+        //        newCupping.cuppingRating = self.addCoffeeRatingView;
         newCupping.image = self.photoImageView.image;
         newCupping.cuppingNotes = self.notesTextView.text;
         [newCoffee.cuppings addObject:newCupping];
@@ -106,44 +138,6 @@
     }
 }
 
--(void)viewDidDisappear:(BOOL)animated {
-    
-}
-
-//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-//{
-//    NSString *newNameOrOriginText = [self.nameOrOriginTextField.text
-//                         stringByReplacingCharactersInRange:range withString:string];
-//    NSString *newCuppingDateText = [self.cuppingDateTextField.text stringByReplacingCharactersInRange:range withString:string];
-//    
-//    self.saveBarButton.enabled = ([newNameOrOriginText length] > 0 && [newCuppingDateText length] > 1);
-//
-//    return YES;
-//}
-
--(void)textFieldDidBeginEditing:(UITextField *)textField
-{
-    if (textField == self.nameOrOriginTextField) {
-        [self.scrollView setContentOffset:CGPointMake(0, self.nameOrOriginTextField.frame.origin.y - 100) animated:YES];
-    } else if (textField == self.roasterTextField) {
-        [self.scrollView setContentOffset:CGPointMake(0, self.roasterTextField.frame.origin.y - 100) animated:YES];
-    } else if (textField == self.locationTextField) {
-        [self.scrollView setContentOffset:CGPointMake(0, self.locationTextField.frame.origin.y - 100) animated:YES];
-    } else if (textField == self.cuppingDateTextField) {
-        [self.scrollView setContentOffset:CGPointMake(0, self.cuppingDateTextField.frame.origin.y - 100) animated:YES];
-    } else if (textField == self.roastDateTextField) {
-        [self.scrollView setContentOffset:CGPointMake(0, self.roastDateTextField.frame.origin.y - 100) animated:YES];
-    } else if (textField == self.brewingMethodTextField) {
-        [self.scrollView setContentOffset:CGPointMake(0, self.brewingMethodTextField.frame.origin.y - 100) animated:YES];
-    }
-}
-
--(void)textViewDidBeginEditing:(UITextView *)textView
-{
-    if (textView == self.notesTextView) {
-        [self.notesTextView setContentOffset:CGPointMake(0, self.notesTextView.frame.origin.y - 100) animated:YES];
-    }
-}
 
 -(IBAction)addOrChangePhoto:(id)sender
 {

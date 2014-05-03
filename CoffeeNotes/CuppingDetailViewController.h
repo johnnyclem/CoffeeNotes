@@ -9,11 +9,15 @@
 #import <UIKit/UIKit.h>
 
 @class DataController;
+@class Coffee;
 @class Cupping;
+
 
 @interface CuppingDetailViewController : UIViewController
 
 @property (weak, nonatomic) DataController *dataController;
-@property (weak, nonatomic) Cupping *cupping;
+
+@property (weak, nonatomic) Coffee *currentCoffee;
+@property (weak, nonatomic) Cupping *currentCupping;
 
 @end
