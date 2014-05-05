@@ -681,13 +681,11 @@
                     <navigationItem key="navigationItem" id="PEu-dQ-0in">
                         <barButtonItem key="leftBarButtonItem" title="Item" systemItem="cancel" id="G4d-Bd-wEQ">
                             <connections>
-                                <action selector="addCoffeeCancel" destination="5Ll-dC-t14" id="NyV-pD-G21"/>
                                 <segue destination="ySp-l1-clf" kind="unwind" identifier="addCoffeeCancelSegue" unwindAction="addCoffeeExitSegue:" id="BXp-5I-BvS"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="OGs-g2-tFN">
                             <connections>
-                                <action selector="addCoffeeSave" destination="5Ll-dC-t14" id="PCJ-QZ-b5w"/>
                                 <segue destination="ySp-l1-clf" kind="unwind" identifier="addCoffeeExitSegue" unwindAction="addCoffeeExitSegue:" id="tzQ-oh-Eqv"/>
                             </connections>
                         </barButtonItem>
@@ -700,7 +698,6 @@
                         <outlet property="cancelBarButton" destination="G4d-Bd-wEQ" id="aVw-bh-erK"/>
                         <outlet property="cuppingDateTextField" destination="6Tg-Y3-Oul" id="wV2-hI-sYs"/>
                         <outlet property="locationTextField" destination="Bbi-37-2d7" id="tXE-RZ-T9N"/>
-                        <outlet property="mainView" destination="Q6f-CQ-V1Q" id="VKK-m2-Kt9"/>
                         <outlet property="mainViewSaveButton" destination="bDZ-6o-aWX" id="brQ-GU-KVH"/>
                         <outlet property="nameOrOriginTextField" destination="F0w-Zp-0xZ" id="Rno-rl-SQg"/>
                         <outlet property="notesTextView" destination="FPH-Bl-eba" id="67a-g7-lyg"/>
@@ -1206,7 +1203,7 @@
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="addOrChangePhoto:" destination="hnC-WX-J8e" eventType="touchUpInside" id="Rce-ny-fNh"/>
+                                                    <action selector="addOrChangePhotoButtonPressed:" destination="hnC-WX-J8e" eventType="touchUpInside" id="1UG-hM-Lwt"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GJt-Pb-5ef">
@@ -1224,6 +1221,10 @@
                                                 <state key="disabled">
                                                     <color key="titleColor" white="0.66666666666666663" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="deleteCuppingButtonPressed:" destination="hnC-WX-J8e" eventType="touchUpInside" id="9di-BP-8bf"/>
+                                                    <segue destination="K6o-eO-7HI" kind="unwind" identifier="DeleteCuppingSegue" unwindAction="addCuppingExitSegue:" id="G8r-gk-Nhn"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

@@ -120,7 +120,7 @@
     }
 }
 
--(IBAction)addOrChangePhoto:(id)sender
+-(IBAction)addOrChangePhotoButtonPressed:(id)sender
 {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
@@ -132,6 +132,14 @@
     }
     [self.addOrChangePhotoActionSheet showInView:self.view];
 }
+
+- (IBAction)deleteCuppingButtonPressed:(id)sender
+{
+    if ([self.deleteCuppingButton isEnabled]) {
+        [self.currentCoffee.cuppings removeObject:self.editableCupping];
+    }
+}
+
 
 #pragma mark - UIActionSheet Delegate Methods
 
