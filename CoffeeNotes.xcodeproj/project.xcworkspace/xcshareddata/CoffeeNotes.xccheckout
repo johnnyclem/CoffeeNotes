@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>229C4D22-F6C2-4EDC-9ACB-E183E8C5D168</string>
+	<key>IDESourceControlProjectName</key>
+	<string>CoffeeNotes</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>F96327D4-52C2-4DE6-A1AF-A65C1E9F8486</key>
+		<string>https://github.com/ShivKatall/CoffeeNotes</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>CoffeeNotes.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>F96327D4-52C2-4DE6-A1AF-A65C1E9F8486</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/ShivKatall/CoffeeNotes</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>F96327D4-52C2-4DE6-A1AF-A65C1E9F8486</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>F96327D4-52C2-4DE6-A1AF-A65C1E9F8486</string>
+			<key>IDESourceControlWCCName</key>
+			<string>CoffeeNotes</string>
+		</dict>
+	</array>
+</dict>
+</plist>

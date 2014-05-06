@@ -1,0 +1,13 @@
+PODS:
+  - AXRatingView (0.9.6)
+  - MZDayPicker (0.0.5)
+
+DEPENDENCIES:
+  - AXRatingView (~> 0.9.6)
+  - MZDayPicker (~> 0.0.5)
+
+SPEC CHECKSUMS:
+  AXRatingView: 1313deff621ed54f6db88a9360aa3e14c4768da8
+  MZDayPicker: 1ebc98a0aa72906dc367de4c5b7d4ddb054bb910
+
+COCOAPODS: 0.32.1
