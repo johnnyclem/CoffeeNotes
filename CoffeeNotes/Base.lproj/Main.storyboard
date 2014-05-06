@@ -344,7 +344,6 @@
                     <connections>
                         <outlet property="addNewCuppingButton" destination="n1e-5g-Kxs" id="5Za-LM-Cie"/>
                         <outlet property="cuppingsTableView" destination="hfy-si-OBH" id="0JI-58-hDw"/>
-                        <outlet property="mainView" destination="rrr-qC-ZDp" id="dEC-xX-o8r"/>
                         <outlet property="nameOrOriginLabel" destination="YKT-5p-Qwi" id="0sF-0h-Amb"/>
                         <outlet property="photosCollectionView" destination="Ben-Hu-lMm" id="aIF-Ak-OeF"/>
                         <outlet property="ratingView" destination="UT0-DL-LMh" id="D3T-dF-Yfb"/>
@@ -355,7 +354,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5mA-CI-vIS" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="3E3-cS-WgT" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1169" y="-785"/>
+            <point key="canvasLocation" x="929" y="-753"/>
         </scene>
         <!--Add Or Edit Coffee View Controller-->
         <scene sceneID="Q0a-jm-Bum">
@@ -614,7 +613,6 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="deleteCoffeeButtonPressed:" destination="5Ll-dC-t14" eventType="touchUpInside" id="5f1-qf-BlT"/>
-                                                    <segue destination="ySp-l1-clf" kind="unwind" identifier="DeleteCoffeeSegue" unwindAction="deleteCoffeeSegue:" id="zmf-7H-7dz"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -735,11 +733,12 @@
                         <outlet property="roastDateTextField" destination="VvN-nr-z0u" id="d7i-1L-pag"/>
                         <outlet property="roasterTextField" destination="Vqs-Hb-TDG" id="8an-5a-ro6"/>
                         <outlet property="saveBarButton" destination="OGs-g2-tFN" id="d9Q-eO-WHX"/>
+                        <segue destination="ySp-l1-clf" kind="unwind" identifier="DeleteCoffeeSegue" unwindAction="deleteCoffeeSegue:" id="J8m-f5-GDP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SHB-57-mgv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1117" y="-2236"/>
+            <point key="canvasLocation" x="1393" y="-2508"/>
         </scene>
         <!--Cupping Detail View Controller-->
         <scene sceneID="wz4-RM-VkM">
@@ -1369,7 +1368,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BK0-Bd-4ll" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="K6o-eO-7HI" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1695" y="-785"/>
+            <point key="canvasLocation" x="1687" y="-1277"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7LW-Mx-Qzo">

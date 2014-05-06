@@ -170,7 +170,8 @@
                                                                delegate:self
                                                       cancelButtonTitle:@"Cancel"
                                                       otherButtonTitles:@"Delete", nil];
-            [alertView show];
+            
+                [alertView show];
         }
     }
 
@@ -247,7 +248,10 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    
+    
     if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Delete"]) {
+        
         [self.dataController.coffees removeObject:self.editableCoffee];
         [self performSegueWithIdentifier:@"DeleteCoffeeSegue" sender:self];
     }
