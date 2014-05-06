@@ -13,4 +13,6 @@
 
 @property (weak, nonatomic) DataController *dataController;
 
+@property (weak, nonatomic) Coffee *editableCoffee;
+
 @end

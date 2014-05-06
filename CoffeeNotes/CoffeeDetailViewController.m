@@ -10,6 +10,7 @@
 #import "DataController.h"
 #import "CuppingCell.h"
 #import "CuppingDetailViewController.h"
+#import "AddOrEditCoffeeViewController.h"
 #import "AddOrEditCuppingViewController.h"
 
 @interface CoffeeDetailViewController () <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource>
@@ -73,20 +74,29 @@
         destination.currentCoffee = self.coffeeDetailCoffee;
         destination.currentCupping = [self.coffeeDetailCoffee.cuppings objectAtIndex:[self.cuppingsTableView indexPathForSelectedRow].row];
         
-        
     } else if ([segue.identifier isEqualToString:@"AddCuppingSegue"]) {
         
         AddOrEditCuppingViewController *destination = segue.destinationViewController;
         destination.addOrEditCuppingDataController = self.coffeeDetailDataController;
         destination.currentCoffee = self.coffeeDetailCoffee;
+        
+    } else if ([segue.identifier isEqualToString:@"EditCoffeeSegue"]) {
+        
+        AddOrEditCoffeeViewController *destination = segue.destinationViewController;
+        destination.dataController = self.coffeeDetailDataController;
+        destination.editableCoffee = self.coffeeDetailCoffee;
     }
 }
 
 -(IBAction)addCuppingExitSegue:(UIStoryboardSegue *)sender
 {
-    // Does this method mean anything?
+    // Empty method for Exit Segue functionality.
 }
 
+- (IBAction)deleteCuppingSegue:(UIStoryboardSegue *)sender
+{
+    // Empty method for Exit Segue functionality.
+}
 
 #pragma mark - UITableViewDelegate Methods
 

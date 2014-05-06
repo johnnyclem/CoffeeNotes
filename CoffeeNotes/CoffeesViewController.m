@@ -57,7 +57,12 @@
 
 -(IBAction)addCoffeeExitSegue:(UIStoryboardSegue *)sender
 {
-    // Does this method even mean anything?
+    // Empty method for Exit Segue functionality.
+}
+
+- (IBAction)deleteCoffeeSegue:(UIStoryboardSegue *)sender
+{
+    // Empty method for Exit Segue functionality.
 }
 
 #pragma mark - UITableViewDelegate Methods

@@ -14,15 +14,13 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 
 
-@interface AddOrEditCoffeeViewController () <UIImagePickerControllerDelegate, UIActionSheetDelegate, UITextFieldDelegate, UITextViewDelegate, UINavigationControllerDelegate>
+@interface AddOrEditCoffeeViewController () <UIImagePickerControllerDelegate, UIActionSheetDelegate, UITextFieldDelegate, UITextViewDelegate, UIAlertViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelBarButton;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *saveBarButton;
 
 // ScrollView
 @property (weak, nonatomic) IBOutlet UIScrollView *addOrEditCoffeeScrollView;
-//@property (weak, nonatomic) IBOutlet UIView *mainView;
-
 
 // MainView
 @property (weak, nonatomic) IBOutlet UITextField *nameOrOriginTextField;
@@ -34,6 +32,7 @@
 @property (weak, nonatomic) IBOutlet UIView *ratingView;
 @property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
 @property (weak, nonatomic) IBOutlet UIImageView *tastingWheelImageView;
+@property (weak, nonatomic) IBOutlet UIButton *deleteCoffeeButton;
 @property (weak, nonatomic) IBOutlet UITextView *notesTextView;
 @property (weak, nonatomic) IBOutlet UIButton *mainViewSaveButton;
 
@@ -54,28 +53,33 @@
     self.roastDateTextField.delegate = self;
     self.brewingMethodTextField.delegate = self;
     self.notesTextView.delegate = self;
+    
+    if (self.editableCoffee){
+        self.nameOrOriginTextField.text = self.editableCoffee.nameOrOrigin;
+        self.roasterTextField.text = self.editableCoffee.roaster;
+        self.locationTextField.enabled = NO;
+        self.cuppingDateTextField.enabled = NO;
+        self.roastDateTextField.enabled = NO;
+        self.brewingMethodTextField.enabled = NO;
+        self.notesTextView.editable = NO;
+        self.deleteCoffeeButton.enabled = YES;
+    }
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
 }
+
+- (void)textFieldDidChange:(NSNotification *)note
+{
+    self.saveBarButton.enabled = (self.nameOrOriginTextField.text.length > 0) && (self.cuppingDateTextField.text.length > 0);
+    self.mainViewSaveButton.enabled = (self.nameOrOriginTextField.text.length > 0) && (self.cuppingDateTextField.text.length > 0);
+}
+
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
--(void)viewDidDisappear:(BOOL)animated {
-    
-}
-
-//- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
-//{
-//    NSString *newNameOrOriginText = [self.nameOrOriginTextField.text
-//                         stringByReplacingCharactersInRange:range withString:string];
-//    NSString *newCuppingDateText = [self.cuppingDateTextField.text stringByReplacingCharactersInRange:range withString:string];
-//
-//    self.saveBarButton.enabled = ([newNameOrOriginText length] > 0 && [newCuppingDateText length] > 1);
-//
-//    return YES;
-//}
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -152,6 +156,18 @@
     [self.addOrChangePhotoActionSheet showInView:self.view];
 }
 
+- (IBAction)deleteCoffeeButtonPressed:(id)sender
+    {
+        if ([self.deleteCoffeeButton isEnabled]) {
+            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                                message:@"Are you sure you want to delete this coffee and all its cuppings?"
+                                                               delegate:self
+                                                      cancelButtonTitle:@"Cancel"
+                                                      otherButtonTitles:@"Delete", nil];
+            [alertView show];
+        }
+    }
+
 #pragma mark - UIActionSheet Delegate Methods
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -218,5 +234,16 @@
         }
     }];
 }
+
+#pragma mark - UIAlertView Delegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Delete"]) {
+        [self.dataController.coffees removeObject:self.editableCoffee];
+        [self performSegueWithIdentifier:@"DeleteCoffeeSegue" sender:self];
+    }
+}
+
 
 @end

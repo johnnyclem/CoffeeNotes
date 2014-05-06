@@ -9,6 +9,7 @@
 #import "AddOrEditCuppingViewController.h"
 #import "Cupping.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import <AXRatingView/AXRatingView.h>
 
 
 @interface AddOrEditCuppingViewController () <UIImagePickerControllerDelegate, UIActionSheetDelegate, UITextFieldDelegate, UITextViewDelegate, UINavigationControllerDelegate>
@@ -17,12 +18,15 @@
 @property (weak, nonatomic) IBOutlet UILabel *roasterLabel;
 
 @property (weak, nonatomic) IBOutlet UIScrollView *addOrEditCuppingScrollView;
+@property (weak, nonatomic) IBOutlet UIButton *mainViewSaveButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *navigationBarSaveButton;
 
 @property (weak, nonatomic) IBOutlet UITextField *locationTextField;
 @property (weak, nonatomic) IBOutlet UITextField *cuppingDateTextField;
 @property (weak, nonatomic) IBOutlet UITextField *roastDateTextField;
 @property (weak, nonatomic) IBOutlet UITextField *brewingMethodTextField;
 @property (weak, nonatomic) IBOutlet UITextView *notesTextView;
+@property (weak, nonatomic) IBOutlet AXRatingView *cuppingRatingView;
 
 @property (strong, nonatomic) UIActionSheet *addOrChangePhotoActionSheet;
 @property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
@@ -52,8 +56,18 @@
         self.brewingMethodTextField.text = self.editableCupping.brewingMethod;
         self.notesTextView.text = self.editableCupping.cuppingNotes;
         self.deleteCuppingButton.enabled = YES;
-}
+        
+    }
     
+    [self.cuppingRatingView sizeToFit];
+    [self.cuppingRatingView setStepInterval:1.0];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -62,31 +76,46 @@
     // Dispose of any resources that can be recreated.
 }
 
--(BOOL)textFieldShouldReturn:(UITextField *)textField
+- (void)textFieldDidChange:(NSNotification *)note
 {
-    [textField resignFirstResponder];
-    return NO;
+    self.navigationBarSaveButton.enabled = self.cuppingDateTextField.text.length > 0;
+    self.mainViewSaveButton.enabled = self.cuppingDateTextField.text.length > 0;
 }
 
--(void)textFieldDidBeginEditing:(UITextField *)textField
+
+#pragma mark - IBActions
+
+- (IBAction)ratingChanged:(AXRatingView *)sender
 {
-    if (textField == self.locationTextField) {
-        [self.addOrEditCuppingScrollView setContentOffset:CGPointMake(0, self.locationTextField.frame.origin.y - 100) animated:YES];
-    } else if (textField == self.cuppingDateTextField) {
-        [self.addOrEditCuppingScrollView setContentOffset:CGPointMake(0, self.cuppingDateTextField.frame.origin.y - 100) animated:YES];
-    } else if (textField == self.roastDateTextField) {
-        [self.addOrEditCuppingScrollView setContentOffset:CGPointMake(0, self.roastDateTextField.frame.origin.y - 100) animated:YES];
-    } else if (textField == self.brewingMethodTextField) {
-        [self.addOrEditCuppingScrollView setContentOffset:CGPointMake(0, self.brewingMethodTextField.frame.origin.y - 100) animated:YES];
+    NSLog(@"Changed Rating to %.0f", sender.value);
+}
+
+-(IBAction)addOrChangePhotoButtonPressed:(id)sender
+{
+    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
+    {
+        self.addOrChangePhotoActionSheet = [[UIActionSheet alloc] initWithTitle:@"Photos" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete Photo" otherButtonTitles:@"Take Photo",@"Choose Photo", nil];
+        
+    } else {
+        
+        self.addOrChangePhotoActionSheet  = [[UIActionSheet alloc] initWithTitle:@"Photos" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete Photo" otherButtonTitles:@"Choose Photo", nil];
+    }
+    [self.addOrChangePhotoActionSheet showInView:self.view];
+}
+
+- (IBAction)deleteCuppingButtonPressed:(id)sender
+{
+    if ([self.deleteCuppingButton isEnabled]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                           message:@"Are you sure you want to delete this cupping?"
+                                                          delegate:self
+                                                 cancelButtonTitle:@"Cancel"
+                                                 otherButtonTitles:@"Delete", nil];
+        [alertView show];
     }
 }
 
--(void)textViewDidBeginEditing:(UITextView *)textView
-{
-    if (textView == self.notesTextView) {
-        [self.addOrEditCuppingScrollView setContentOffset:CGPointMake(0, self.notesTextView.frame.origin.y - 100) animated:YES];
-    }
-}
+#pragma mark - Segues
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -120,26 +149,33 @@
     }
 }
 
--(IBAction)addOrChangePhotoButtonPressed:(id)sender
+#pragma mark - UITextField Delegate and UITextView Delegate Methods
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
-    {
-        self.addOrChangePhotoActionSheet = [[UIActionSheet alloc] initWithTitle:@"Photos" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete Photo" otherButtonTitles:@"Take Photo",@"Choose Photo", nil];
-        
-    } else {
-        
-        self.addOrChangePhotoActionSheet  = [[UIActionSheet alloc] initWithTitle:@"Photos" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete Photo" otherButtonTitles:@"Choose Photo", nil];
-    }
-    [self.addOrChangePhotoActionSheet showInView:self.view];
+    [textField resignFirstResponder];
+    return NO;
 }
 
-- (IBAction)deleteCuppingButtonPressed:(id)sender
+-(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if ([self.deleteCuppingButton isEnabled]) {
-        [self.currentCoffee.cuppings removeObject:self.editableCupping];
+    if (textField == self.locationTextField) {
+        [self.addOrEditCuppingScrollView setContentOffset:CGPointMake(0, self.locationTextField.frame.origin.y - 100) animated:YES];
+    } else if (textField == self.cuppingDateTextField) {
+        [self.addOrEditCuppingScrollView setContentOffset:CGPointMake(0, self.cuppingDateTextField.frame.origin.y - 100) animated:YES];
+    } else if (textField == self.roastDateTextField) {
+        [self.addOrEditCuppingScrollView setContentOffset:CGPointMake(0, self.roastDateTextField.frame.origin.y - 100) animated:YES];
+    } else if (textField == self.brewingMethodTextField) {
+        [self.addOrEditCuppingScrollView setContentOffset:CGPointMake(0, self.brewingMethodTextField.frame.origin.y - 100) animated:YES];
     }
 }
 
+-(void)textViewDidBeginEditing:(UITextView *)textView
+{
+    if (textView == self.notesTextView) {
+        [self.addOrEditCuppingScrollView setContentOffset:CGPointMake(0, self.notesTextView.frame.origin.y - 100) animated:YES];
+    }
+}
 
 #pragma mark - UIActionSheet Delegate Methods
 
@@ -206,6 +242,16 @@
             NSLog(@"Authorization Not Determined");
         }
     }];
+}
+
+#pragma mark - UIAlertView Delegate
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Delete"]) {
+        [self.currentCoffee.cuppings removeObject:self.editableCupping];
+        [self performSegueWithIdentifier:@"deleteCupping" sender:self];
+    }
 }
 
 @end
