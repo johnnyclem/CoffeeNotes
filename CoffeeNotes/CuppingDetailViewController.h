@@ -15,8 +15,10 @@
 
 @interface CuppingDetailViewController : UIViewController
 
+// controllers
 @property (weak, nonatomic) DataController *dataController;
 
+// models
 @property (weak, nonatomic) Coffee *currentCoffee;
 @property (weak, nonatomic) Cupping *currentCupping;
 

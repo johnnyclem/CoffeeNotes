@@ -14,11 +14,14 @@
 
 @interface AddOrEditCuppingViewController : UIViewController
 
+// public controllers
 @property DataController *addOrEditCuppingDataController;
 
+// public models
 @property Coffee *currentCoffee;
 @property Cupping *editableCupping;
 
+// public outlets
 @property (weak, nonatomic) IBOutlet UIButton *deleteCuppingButton;
 
 @end

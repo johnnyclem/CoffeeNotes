@@ -12,9 +12,11 @@
 
 @interface CoffeesViewController () <UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) IBOutlet UITableView *coffeesTableView;
-
+// models
 @property (weak, nonatomic) Coffee *coffee;
+
+// views
+@property (weak, nonatomic) IBOutlet UITableView *coffeesTableView;
 
 @end
 
@@ -43,6 +45,8 @@
     [_dataController sortByCoffeeNameOrOrigin];
     [self.coffeesTableView reloadData];
 }
+
+#pragma mark - Segues
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {

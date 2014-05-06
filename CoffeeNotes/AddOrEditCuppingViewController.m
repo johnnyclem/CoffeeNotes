@@ -14,24 +14,31 @@
 
 @interface AddOrEditCuppingViewController () <UIImagePickerControllerDelegate, UIActionSheetDelegate, UITextFieldDelegate, UITextViewDelegate, UINavigationControllerDelegate>
 
+// labels
 @property (weak, nonatomic) IBOutlet UILabel *coffeeNameOrOriginLabel;
 @property (weak, nonatomic) IBOutlet UILabel *roasterLabel;
 
-@property (weak, nonatomic) IBOutlet UIScrollView *addOrEditCuppingScrollView;
-@property (weak, nonatomic) IBOutlet UIButton *mainViewSaveButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *navigationBarSaveButton;
-
+// text fields
 @property (weak, nonatomic) IBOutlet UITextField *locationTextField;
 @property (weak, nonatomic) IBOutlet UITextField *cuppingDateTextField;
 @property (weak, nonatomic) IBOutlet UITextField *roastDateTextField;
 @property (weak, nonatomic) IBOutlet UITextField *brewingMethodTextField;
 @property (weak, nonatomic) IBOutlet UITextView *notesTextView;
-@property (weak, nonatomic) IBOutlet AXRatingView *cuppingRatingView;
 
-@property (strong, nonatomic) UIActionSheet *addOrChangePhotoActionSheet;
+// buttons
+@property (weak, nonatomic) IBOutlet UIButton *mainViewSaveButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *navigationBarSaveButton;
+
+// views and image views
+@property (weak, nonatomic) IBOutlet UIScrollView *addOrEditCuppingScrollView;
+@property (weak, nonatomic) IBOutlet AXRatingView *cuppingRatingView;
 @property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
 
+// other
+@property (strong, nonatomic) UIActionSheet *addOrChangePhotoActionSheet;
+
 @end
+
 
 @implementation AddOrEditCuppingViewController
 
@@ -74,12 +81,6 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)textFieldDidChange:(NSNotification *)note
-{
-    self.navigationBarSaveButton.enabled = self.cuppingDateTextField.text.length > 0;
-    self.mainViewSaveButton.enabled = self.cuppingDateTextField.text.length > 0;
 }
 
 
@@ -149,7 +150,7 @@
     }
 }
 
-#pragma mark - UITextField Delegate and UITextView Delegate Methods
+#pragma mark - UITextField and UITextView Methods (Delegate and non-delegate)
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -175,6 +176,12 @@
     if (textView == self.notesTextView) {
         [self.addOrEditCuppingScrollView setContentOffset:CGPointMake(0, self.notesTextView.frame.origin.y - 100) animated:YES];
     }
+}
+
+- (void)textFieldDidChange:(NSNotification *)note
+{
+    self.navigationBarSaveButton.enabled = self.cuppingDateTextField.text.length > 0;
+    self.mainViewSaveButton.enabled = self.cuppingDateTextField.text.length > 0;
 }
 
 #pragma mark - UIActionSheet Delegate Methods

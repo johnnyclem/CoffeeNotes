@@ -16,26 +16,28 @@
 
 @interface AddOrEditCoffeeViewController () <UIImagePickerControllerDelegate, UIActionSheetDelegate, UITextFieldDelegate, UITextViewDelegate, UIAlertViewDelegate>
 
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelBarButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *saveBarButton;
-
-// ScrollView
-@property (weak, nonatomic) IBOutlet UIScrollView *addOrEditCoffeeScrollView;
-
-// MainView
+// textFields and textViews
 @property (weak, nonatomic) IBOutlet UITextField *nameOrOriginTextField;
 @property (weak, nonatomic) IBOutlet UITextField *roasterTextField;
 @property (weak, nonatomic) IBOutlet UITextField *locationTextField;
 @property (weak, nonatomic) IBOutlet UITextField *cuppingDateTextField;
 @property (weak, nonatomic) IBOutlet UITextField *roastDateTextField;
 @property (weak, nonatomic) IBOutlet UITextField *brewingMethodTextField;
-@property (weak, nonatomic) IBOutlet UIView *ratingView;
-@property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
-@property (weak, nonatomic) IBOutlet UIImageView *tastingWheelImageView;
-@property (weak, nonatomic) IBOutlet UIButton *deleteCoffeeButton;
 @property (weak, nonatomic) IBOutlet UITextView *notesTextView;
+
+// buttons
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelBarButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *saveBarButton;
+@property (weak, nonatomic) IBOutlet UIButton *deleteCoffeeButton;
 @property (weak, nonatomic) IBOutlet UIButton *mainViewSaveButton;
 
+// views and imageViews
+@property (weak, nonatomic) IBOutlet UIScrollView *addOrEditCoffeeScrollView;
+@property (weak, nonatomic) IBOutlet UIView *ratingView;
+@property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
+//@property (weak, nonatomic) IBOutlet UIImageView *tastingWheelImageView;
+
+// other
 @property (strong, nonatomic) UIActionSheet *addOrChangePhotoActionSheet;
 
 @end
@@ -68,18 +70,13 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
 }
 
-- (void)textFieldDidChange:(NSNotification *)note
-{
-    self.saveBarButton.enabled = (self.nameOrOriginTextField.text.length > 0) && (self.cuppingDateTextField.text.length > 0);
-    self.mainViewSaveButton.enabled = (self.nameOrOriginTextField.text.length > 0) && (self.cuppingDateTextField.text.length > 0);
-}
-
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - UITextField and UITextView Methods
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField
 {
@@ -110,6 +107,14 @@
         [self.addOrEditCoffeeScrollView setContentOffset:CGPointMake(0, self.notesTextView.frame.origin.y - 100) animated:YES];
     }
 }
+
+- (void)textFieldDidChange:(NSNotification *)note
+{
+    self.saveBarButton.enabled = (self.nameOrOriginTextField.text.length > 0) && (self.cuppingDateTextField.text.length > 0);
+    self.mainViewSaveButton.enabled = (self.nameOrOriginTextField.text.length > 0) && (self.cuppingDateTextField.text.length > 0);
+}
+
+#pragma mark - Segues
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -142,6 +147,7 @@
     }
 }
 
+#pragma mark - IBActions
 
 -(IBAction)addOrChangePhoto:(id)sender
 {
@@ -190,6 +196,9 @@
     [self showPickerWithSourceType:sourceType];
 }
 
+
+#pragma mark - UIImagePicker Delegate Methods
+
 - (void)showPickerWithSourceType:(UIImagePickerControllerSourceType)sourceType
 {
     UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
@@ -201,7 +210,6 @@
     [self presentViewController:imagePicker animated:YES completion:nil];
 }
 
-#pragma mark - UIImagePicker Delegate Methods
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {

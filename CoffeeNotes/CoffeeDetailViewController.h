@@ -14,7 +14,10 @@
 
 @interface CoffeeDetailViewController : UIViewController 
 
+// controllers
 @property (nonatomic, weak) DataController *coffeeDetailDataController;
+
+// models
 @property (nonatomic, weak) Coffee *coffeeDetailCoffee;
 
 @end

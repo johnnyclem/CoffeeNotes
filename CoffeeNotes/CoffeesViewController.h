@@ -12,6 +12,7 @@
 
 @interface CoffeesViewController : UIViewController
 
+// controllers
 @property (strong, nonatomic) DataController *dataController;
 
 @end

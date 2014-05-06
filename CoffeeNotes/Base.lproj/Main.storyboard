@@ -735,7 +735,6 @@
                         <outlet property="roastDateTextField" destination="VvN-nr-z0u" id="d7i-1L-pag"/>
                         <outlet property="roasterTextField" destination="Vqs-Hb-TDG" id="8an-5a-ro6"/>
                         <outlet property="saveBarButton" destination="OGs-g2-tFN" id="d9Q-eO-WHX"/>
-                        <outlet property="tastingWheelImageView" destination="rxj-tW-nyR" id="pFc-2G-5nv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SHB-57-mgv" userLabel="First Responder" sceneMemberID="firstResponder"/>

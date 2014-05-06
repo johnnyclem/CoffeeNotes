@@ -15,23 +15,26 @@
 
 @interface CoffeeDetailViewController () <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource>
 
-// Navigation Bar
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
+// models
+@property (weak, nonatomic) Cupping *cupping;
 
-// Outlets
-@property (weak, nonatomic) IBOutlet UIView *mainView;
+// labels
 @property (weak, nonatomic) IBOutlet UILabel *nameOrOriginLabel;
 @property (weak, nonatomic) IBOutlet UILabel *roasterLabel;
+
+// buttons
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
+@property (weak, nonatomic) IBOutlet UIButton *addNewCuppingButton;
+
+
+// views and imageViews
 @property (weak, nonatomic) IBOutlet UIView *ratingView;
 @property (weak, nonatomic) IBOutlet UICollectionView *photosCollectionView;
 @property (weak, nonatomic) IBOutlet UIView *tastingWheelView;
 @property (weak, nonatomic) IBOutlet UITableView *cuppingsTableView;
-@property (weak, nonatomic) IBOutlet UIButton *addNewCuppingButton;
-
-// Objects
-@property (weak, nonatomic) Cupping *cupping;
 
 @end
+
 
 @implementation CoffeeDetailViewController
 
@@ -45,11 +48,6 @@
     
     self.cuppingsTableView.delegate = self;
     self.cuppingsTableView.dataSource = self;
-    
-//    self.coffeeratingview = self.coffee.averageRating;
-//    self.coffeePhotosCollectionView
-//    self.coffeeTastingWheelView
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -64,6 +62,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Segues
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -123,7 +123,5 @@
     
     return cell;
 }
-
-
 
 @end

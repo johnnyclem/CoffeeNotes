@@ -30,15 +30,20 @@
 {
     [super viewDidLoad];
     
+    // labels
     self.coffeeNameOrOriginLabel.text       = self.currentCoffee.nameOrOrigin;
     self.coffeeRoasterLabel.text            = self.currentCoffee.roaster;
 
+    // text fields
     self.locationDisplayLabel.text          = self.currentCupping.location;
     self.cuppingDateDisplayLabel.text       = self.currentCupping.cuppingDate;
     self.roastDateDisplayLabel.text         = self.currentCupping.roastDate;
     self.brewingMethodDisplayLabel.text     = self.currentCupping.brewingMethod;
-    self.photoImageView.image               = self.currentCupping.image;
     self.notesTextField.text                = self.currentCupping.cuppingNotes;
+    
+    // views and imageViews
+    self.photoImageView.image               = self.currentCupping.image;
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,6 +51,8 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Segues
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
