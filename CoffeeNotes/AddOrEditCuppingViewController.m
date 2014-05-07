@@ -138,6 +138,10 @@
         newCupping.cuppingNotes = self.notesTextView.text;
         newCupping.image = self.photoImageView.image;
         
+        NSNumber *numberFromFloatValue = [[NSNumber alloc]initWithFloat:self.cuppingRatingView.value];
+        newCupping.cuppingRating = numberFromFloatValue;
+        
+        
         if (!self.currentCoffee.cuppings) {
             self.currentCoffee.cuppings = [NSMutableArray new];
         }

@@ -50,11 +50,11 @@
    
    for (Cupping *cupping in cuppings)
    {
-       NSInteger rating = cupping.cuppingRating.intValue;
+       NSInteger rating = cupping.cuppingRating.floatValue;
        sumOfRatingsInCuppings +=rating;
    }
     
-    NSNumber *avgRating = [[NSNumber alloc] initWithInt:(sumOfRatingsInCuppings / numberOfCuppingsInCoffee)];
+    NSNumber *avgRating = [[NSNumber alloc] initWithFloat:(sumOfRatingsInCuppings / numberOfCuppingsInCoffee)];
     
     return avgRating;
 }
