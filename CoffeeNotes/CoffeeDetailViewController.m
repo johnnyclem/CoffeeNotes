@@ -12,6 +12,7 @@
 #import "CuppingDetailViewController.h"
 #import "AddOrEditCoffeeViewController.h"
 #import "AddOrEditCuppingViewController.h"
+#import <AXRatingView/AXRatingView.h>
 
 @interface CoffeeDetailViewController () <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource>
 
@@ -28,7 +29,8 @@
 
 
 // views and imageViews
-@property (weak, nonatomic) IBOutlet UIView *ratingView;
+
+@property (weak, nonatomic) IBOutlet AXRatingView *averageStarRatingView;
 @property (weak, nonatomic) IBOutlet UICollectionView *photosCollectionView;
 @property (weak, nonatomic) IBOutlet UIView *tastingWheelView;
 @property (weak, nonatomic) IBOutlet UITableView *cuppingsTableView;
@@ -48,6 +50,14 @@
     
     self.cuppingsTableView.delegate = self;
     self.cuppingsTableView.dataSource = self;
+    
+    [self.averageStarRatingView sizeToFit];
+    [self.averageStarRatingView setStepInterval:0.5];
+    [self.averageStarRatingView setUserInteractionEnabled:NO];
+    
+    self.averageStarRatingView.value = [[[DataController sharedController] averageRatingFromCuppingRatingInCoffee:self.coffeeDetailCoffee] floatValue];
+    
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -55,6 +65,8 @@
     [super viewWillAppear:animated];
     
     [self.cuppingsTableView reloadData];
+    
+    self.averageStarRatingView.value = [[[DataController sharedController] averageRatingFromCuppingRatingInCoffee:self.coffeeDetailCoffee] floatValue];
 }
 
 - (void)didReceiveMemoryWarning

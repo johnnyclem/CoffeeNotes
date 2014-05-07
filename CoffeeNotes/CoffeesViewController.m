@@ -27,7 +27,7 @@
 {
     [super viewDidLoad];
     
-    _dataController = [[DataController alloc] initWithCoffees];
+    _dataController = [DataController sharedController];
 
     self.coffeesTableView.delegate = self;
     self.coffeesTableView.dataSource = self;
@@ -54,7 +54,7 @@
     
     if ([segue.identifier isEqualToString:@"CoffeeDetailSegue"]) {
         CoffeeDetailViewController *destination = segue.destinationViewController;
-        destination.coffeeDetailDataController = self.dataController;
+        destination.coffeeDetailDataController = [DataController sharedController];
         destination.coffeeDetailCoffee = [self.dataController.coffees objectAtIndex:[self.coffeesTableView indexPathForSelectedRow].row];
     }
 }

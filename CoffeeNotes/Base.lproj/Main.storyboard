@@ -130,7 +130,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UT0-DL-LMh">
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UT0-DL-LMh" customClass="AXRatingView">
                                                 <rect key="frame" x="20" y="143" width="280" height="54"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -343,10 +343,10 @@
                     <size key="freeformSize" width="320" height="1114"/>
                     <connections>
                         <outlet property="addNewCuppingButton" destination="n1e-5g-Kxs" id="5Za-LM-Cie"/>
+                        <outlet property="averageStarRatingView" destination="UT0-DL-LMh" id="Wvl-rN-dNf"/>
                         <outlet property="cuppingsTableView" destination="hfy-si-OBH" id="0JI-58-hDw"/>
                         <outlet property="nameOrOriginLabel" destination="YKT-5p-Qwi" id="0sF-0h-Amb"/>
                         <outlet property="photosCollectionView" destination="Ben-Hu-lMm" id="aIF-Ak-OeF"/>
-                        <outlet property="ratingView" destination="UT0-DL-LMh" id="D3T-dF-Yfb"/>
                         <outlet property="roasterLabel" destination="K7T-9e-3kp" id="rXT-nh-U7o"/>
                         <outlet property="tastingWheelView" destination="vP2-cU-KNn" id="QCz-30-Nbc"/>
                     </connections>
@@ -738,7 +738,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SHB-57-mgv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1393" y="-2508"/>
+            <point key="canvasLocation" x="1229" y="-2514"/>
         </scene>
         <!--Cupping Detail View Controller-->
         <scene sceneID="wz4-RM-VkM">

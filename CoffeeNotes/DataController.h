@@ -13,7 +13,10 @@
 
 @property (strong, nonatomic) NSMutableArray *coffees;
 
++(DataController *)sharedController;
+
 // Init
+
 +(NSString *)applicationDocumentsDirectory;
 -(instancetype)initWithCoffees;
 //-(instancetype)initwithCuppingsFromCoffee:(Coffee *)coffee;

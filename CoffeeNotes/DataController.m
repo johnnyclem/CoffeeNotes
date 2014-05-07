@@ -17,6 +17,17 @@
 
 @implementation DataController
 
++(DataController *)sharedController
+{
+    static dispatch_once_t pred;
+    static DataController *shared = nil;
+    
+    dispatch_once(&pred, ^{
+        shared = [[DataController alloc] initWithCoffees];
+    });
+    return shared;
+}
+
 +(NSString *)applicationDocumentsDirectory
 {
     return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
@@ -44,19 +55,15 @@
 
 - (NSNumber *)averageRatingFromCuppingRatingInCoffee:(Coffee *)coffee
 {
-    NSMutableArray *cuppings = coffee.cuppings;
-    NSInteger numberOfCuppingsInCoffee = cuppings.count;
-    NSInteger sumOfRatingsInCuppings = 0;
+    CGFloat sumOfRatingsInCuppings;
    
-   for (Cupping *cupping in cuppings)
+   for (Cupping *cupping in coffee.cuppings)
    {
-       NSInteger rating = cupping.cuppingRating.floatValue;
-       sumOfRatingsInCuppings +=rating;
+       CGFloat rating = cupping.cuppingRating.floatValue;
+       sumOfRatingsInCuppings += rating;
    }
     
-    NSNumber *avgRating = [[NSNumber alloc] initWithFloat:(sumOfRatingsInCuppings / numberOfCuppingsInCoffee)];
-    
-    return avgRating;
+    return [NSNumber numberWithFloat:sumOfRatingsInCuppings/(CGFloat)coffee.cuppings.count];
 }
 
 -(void)sortByCoffeeNameOrOrigin

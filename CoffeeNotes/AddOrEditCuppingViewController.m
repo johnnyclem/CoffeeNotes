@@ -62,12 +62,17 @@
         self.roastDateTextField.text = self.editableCupping.roastDate;
         self.brewingMethodTextField.text = self.editableCupping.brewingMethod;
         self.notesTextView.text = self.editableCupping.cuppingNotes;
+        self.cuppingRatingView.value = self.editableCupping.cuppingRating.floatValue;
         self.deleteCuppingButton.enabled = YES;
         
     }
     
+    self.navigationBarSaveButton.enabled = self.cuppingDateTextField.text.length > 0;
+    self.mainViewSaveButton.enabled = self.cuppingDateTextField.text.length > 0;
+
+    
     [self.cuppingRatingView sizeToFit];
-    [self.cuppingRatingView setStepInterval:1.0];
+    [self.cuppingRatingView setStepInterval:0.5];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
 }
