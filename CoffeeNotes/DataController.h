@@ -20,13 +20,13 @@
 
 
 // Edit
--(void)addCoffee:(Coffee *)newCoffee;
--(void)addCupping:(Cupping *)newCupping ToCoffee:(Coffee *)coffee;
--(void)deleteCoffee:(Coffee *)coffeeToDelete;
--(void)deleteCupping:(Cupping *)cuppingToDelete FromCoffee:(Coffee *)coffee;
+//-(void)addCoffee:(Coffee *)newCoffee;
+//-(void)addCupping:(Cupping *)newCupping ToCoffee:(Coffee *)coffee;
+//-(void)deleteCoffee:(Coffee *)coffeeToDelete;
+//-(void)deleteCupping:(Cupping *)cuppingToDelete FromCoffee:(Coffee *)coffee;
 
 // Management
--(NSInteger)averageRatingFromCuppingRatingInCoffee:(Coffee *)coffee;
+-(NSNumber *)averageRatingFromCuppingRatingInCoffee:(Coffee *)coffee;
 -(void)sortByCoffeeNameOrOrigin;
 -(void)sortByCuppingDateInCoffee:(Coffee *)coffee;
 

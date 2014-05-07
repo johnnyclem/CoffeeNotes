@@ -21,7 +21,7 @@
         self.cuppingDate            = [aDecoder decodeObjectForKey:@"cuppingDate"];
         self.roastDate              = [aDecoder decodeObjectForKey:@"roastDate"];
         self.brewingMethod          = [aDecoder decodeObjectForKey:@"brewingMethod"];
-        self.cuppingRating          = [[aDecoder decodeObjectForKey:@"cuppingRating"]intValue];
+        self.cuppingRating          = [aDecoder decodeObjectForKey:@"cuppingRating"];
         self.image = [UIImage imageWithData:[aDecoder decodeObjectForKey:@"image"]];
         self.cuppingNotes           = [aDecoder decodeObjectForKey:@"cuppingNotes"];
 
@@ -39,7 +39,7 @@
     [aCoder encodeObject:self.cuppingDate           forKey:@"cuppingDate"];
     [aCoder encodeObject:self.roastDate             forKey:@"roastDate"];
     [aCoder encodeObject:self.brewingMethod         forKey:@"brewingMethod"];
-//    [aCoder encodeObject:self.cuppingRating forKey:@"cuppingRating"]; Change this back to number?
+    [aCoder encodeObject:self.cuppingRating         forKey:@"cuppingRating"];
     [aCoder encodeObject:UIImagePNGRepresentation(self.image) forKey:@"image"];
     [aCoder encodeObject:self.cuppingNotes          forKey:@"cuppingNotes"];
 }

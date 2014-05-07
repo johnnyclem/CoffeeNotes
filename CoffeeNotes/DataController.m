@@ -22,27 +22,27 @@
     return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
 }
 
--(void)addCoffee:(Coffee *)newCoffee
-{
-    [self.coffees addObject:newCoffee];
-}
+//-(void)addCoffee:(Coffee *)newCoffee
+//{
+//    [self.coffees addObject:newCoffee];
+//}
+//
+//-(void)addCupping:(Cupping *)newCupping ToCoffee:(Coffee *)coffee
+//{
+//    [coffee.cuppings addObject:newCupping];
+//}
+//
+//-(void)deleteCoffee:(Coffee *)coffeeToDelete
+//{
+//    [self.coffees removeObject:coffeeToDelete];
+//}
+//
+//-(void)deleteCupping:(Cupping *)cuppingToDelete FromCoffee:(Coffee *)coffee
+//{
+//    [coffee.cuppings removeObject:cuppingToDelete];
+//}
 
--(void)addCupping:(Cupping *)newCupping ToCoffee:(Coffee *)coffee
-{
-    [coffee.cuppings addObject:newCupping];
-}
-
--(void)deleteCoffee:(Coffee *)coffeeToDelete
-{
-    [self.coffees removeObject:coffeeToDelete];
-}
-
--(void)deleteCupping:(Cupping *)cuppingToDelete FromCoffee:(Coffee *)coffee
-{
-    [coffee.cuppings removeObject:cuppingToDelete];
-}
-
-- (NSInteger)averageRatingFromCuppingRatingInCoffee:(Coffee *)coffee
+- (NSNumber *)averageRatingFromCuppingRatingInCoffee:(Coffee *)coffee
 {
     NSMutableArray *cuppings = coffee.cuppings;
     NSInteger numberOfCuppingsInCoffee = cuppings.count;
@@ -50,11 +50,11 @@
    
    for (Cupping *cupping in cuppings)
    {
-       NSInteger rating = cupping.cuppingRating;
+       NSInteger rating = cupping.cuppingRating.intValue;
        sumOfRatingsInCuppings +=rating;
    }
     
-    NSInteger avgRating = (sumOfRatingsInCuppings / numberOfCuppingsInCoffee);
+    NSNumber *avgRating = [[NSNumber alloc] initWithInt:(sumOfRatingsInCuppings / numberOfCuppingsInCoffee)];
     
     return avgRating;
 }
@@ -109,7 +109,7 @@
                 newCupping.location             = [cuppingDictionary objectForKey:@"location"];
                 newCupping.roastDate            = [cuppingDictionary objectForKey:@"roastDate"];
                 newCupping.brewingMethod        = [cuppingDictionary objectForKey:@"brewingMethod"];
-                newCupping.cuppingRating        = [[cuppingDictionary objectForKey:@"cuppingRating"] intValue];
+                newCupping.cuppingRating        = [cuppingDictionary objectForKey:@"cuppingRating"];
                 
                 [newCoffee.cuppings addObject:newCupping];
             }

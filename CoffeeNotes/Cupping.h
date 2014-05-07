@@ -17,7 +17,7 @@
 @property (nonatomic, strong) NSString *location;
 @property (nonatomic, strong) NSString *roastDate;
 @property (nonatomic, strong) NSString *brewingMethod;
-@property (nonatomic) NSInteger cuppingRating;
+@property (nonatomic, strong) NSNumber *cuppingRating;
 @property (nonatomic, strong) UIImage *image;
 //@property (nonatomic, strong) TastingWheel *cuppingTastingWheel;
 @property (nonatomic, strong) NSString *cuppingNotes;
