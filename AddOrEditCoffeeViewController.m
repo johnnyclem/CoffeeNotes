@@ -137,13 +137,11 @@
         newCupping.cuppingNotes = self.notesTextView.text;
         [newCoffee.cuppings addObject:newCupping];
         
-        [self.dataController.coffees addObject:newCoffee];
+        [[DataController sharedController].coffees addObject:newCoffee];
         
-        [self.dataController save];
+        [[DataController sharedController] save];
         
-        CoffeesViewController *coffeesViewController = segue.destinationViewController;
-        
-        [coffeesViewController.dataController.coffees addObject:newCoffee];
+        [[DataController sharedController].coffees addObject:newCoffee];
     }
 }
 
@@ -252,7 +250,7 @@
     
     if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Delete"]) {
         
-        [self.dataController.coffees removeObject:self.editableCoffee];
+        [[DataController sharedController].coffees removeObject:self.editableCoffee];
         [self performSegueWithIdentifier:@"DeleteCoffeeSegue" sender:self];
     }
 }

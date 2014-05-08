@@ -27,7 +27,7 @@
 {
     [super viewDidLoad];
     
-    _dataController = [DataController sharedController];
+    [DataController sharedController];
 
     self.coffeesTableView.delegate = self;
     self.coffeesTableView.dataSource = self;
@@ -42,7 +42,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [_dataController sortByCoffeeNameOrOrigin];
+    [[DataController sharedController] sortByCoffeeNameOrOrigin];
     [self.coffeesTableView reloadData];
 }
 
@@ -54,8 +54,7 @@
     
     if ([segue.identifier isEqualToString:@"CoffeeDetailSegue"]) {
         CoffeeDetailViewController *destination = segue.destinationViewController;
-        destination.coffeeDetailDataController = [DataController sharedController];
-        destination.coffeeDetailCoffee = [self.dataController.coffees objectAtIndex:[self.coffeesTableView indexPathForSelectedRow].row];
+        destination.coffeeDetailCoffee = [[DataController sharedController].coffees objectAtIndex:[self.coffeesTableView indexPathForSelectedRow].row];
     }
 }
 
@@ -78,13 +77,13 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.dataController.coffees.count;
+    return [DataController sharedController].coffees.count;
 }
 
 -(CoffeeCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CoffeeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CoffeeCell" forIndexPath:indexPath];
-    Coffee *coffee = [self.dataController.coffees objectAtIndex:indexPath.row];
+    Coffee *coffee = [[DataController sharedController].coffees objectAtIndex:indexPath.row];
     cell.coffeeCellNameOrOriginLabel.text = [NSString stringWithFormat:@"%@", coffee.nameOrOrigin];
     cell.coffeeCellRoasterLabel.text = [NSString stringWithFormat:@"%@", coffee.roaster];
     

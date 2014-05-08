@@ -155,7 +155,7 @@
             [self.currentCoffee.cuppings addObject:newCupping];
         }
         
-        [self.addOrEditCuppingDataController save];
+        [[DataController sharedController] save];
     }
 }
 

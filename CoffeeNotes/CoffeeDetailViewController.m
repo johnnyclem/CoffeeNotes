@@ -82,20 +82,17 @@
     if ([segue.identifier isEqualToString:@"CuppingDetailSegue"]) {
         
         CuppingDetailViewController *destination = segue.destinationViewController;
-        destination.dataController = self.coffeeDetailDataController;
         destination.currentCoffee = self.coffeeDetailCoffee;
         destination.currentCupping = [self.coffeeDetailCoffee.cuppings objectAtIndex:[self.cuppingsTableView indexPathForSelectedRow].row];
         
     } else if ([segue.identifier isEqualToString:@"AddCuppingSegue"]) {
         
         AddOrEditCuppingViewController *destination = segue.destinationViewController;
-        destination.addOrEditCuppingDataController = self.coffeeDetailDataController;
         destination.currentCoffee = self.coffeeDetailCoffee;
         
     } else if ([segue.identifier isEqualToString:@"EditCoffeeSegue"]) {
         
         AddOrEditCoffeeViewController *destination = segue.destinationViewController;
-        destination.dataController = self.coffeeDetailDataController;
         destination.editableCoffee = self.coffeeDetailCoffee;
     }
 }

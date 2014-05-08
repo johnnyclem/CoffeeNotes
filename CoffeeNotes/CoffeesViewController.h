@@ -7,12 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@class DataController;
+#import "DataController.h"
 
 @interface CoffeesViewController : UIViewController
-
-// controllers
-@property (strong, nonatomic) DataController *dataController;
 
 @end

@@ -11,9 +11,6 @@
 
 @interface AddOrEditCoffeeViewController : UIViewController
 
-// controllers
-@property (weak, nonatomic) DataController *dataController;
-
 // models
 @property (weak, nonatomic) Coffee *editableCoffee;
 

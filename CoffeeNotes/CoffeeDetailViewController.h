@@ -12,10 +12,7 @@
 #import "Cupping.h"
 
 
-@interface CoffeeDetailViewController : UIViewController 
-
-// controllers
-@property (nonatomic, weak) DataController *coffeeDetailDataController;
+@interface CoffeeDetailViewController : UIViewController
 
 // models
 @property (nonatomic, weak) Coffee *coffeeDetailCoffee;
