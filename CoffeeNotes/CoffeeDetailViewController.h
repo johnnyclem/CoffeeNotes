@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DataController.h"
-#import "Coffee.h"
-#import "Cupping.h"
 
+@class DataController;
+@class Coffee;
+@class Cupping;
 
 @interface CoffeeDetailViewController : UIViewController
 
