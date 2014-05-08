@@ -7,16 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Coffee.h"
+#import "Cupping.h"
 
 @class DataController;
-@class Coffee;
-@class Cupping;
-
 
 @interface CuppingDetailViewController : UIViewController
 
 // models
-@property (weak, nonatomic) Coffee *currentCoffee;
-@property (weak, nonatomic) Cupping *currentCupping;
+@property (weak, nonatomic) Coffee *selectedCoffee;
+@property (weak, nonatomic) Cupping *selectedCupping;
 
 @end

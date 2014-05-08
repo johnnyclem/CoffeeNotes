@@ -31,18 +31,18 @@
     [super viewDidLoad];
     
     // labels
-    self.coffeeNameOrOriginLabel.text       = self.currentCoffee.nameOrOrigin;
-    self.coffeeRoasterLabel.text            = self.currentCoffee.roaster;
+    self.coffeeNameOrOriginLabel.text       = self.selectedCoffee.nameOrOrigin;
+    self.coffeeRoasterLabel.text            = self.selectedCoffee.roaster;
 
     // text fields
-    self.locationDisplayLabel.text          = self.currentCupping.location;
-    self.cuppingDateDisplayLabel.text       = self.currentCupping.cuppingDate;
-    self.roastDateDisplayLabel.text         = self.currentCupping.roastDate;
-    self.brewingMethodDisplayLabel.text     = self.currentCupping.brewingMethod;
-    self.notesTextField.text                = self.currentCupping.cuppingNotes;
+    self.locationDisplayLabel.text          = self.selectedCupping.location;
+    self.cuppingDateDisplayLabel.text       = self.selectedCupping.cuppingDate;
+    self.roastDateDisplayLabel.text         = self.selectedCupping.roastDate;
+    self.brewingMethodDisplayLabel.text     = self.selectedCupping.brewingMethod;
+    self.notesTextField.text                = self.selectedCupping.cuppingNotes;
     
     // views and imageViews
-    self.photoImageView.image               = self.currentCupping.image;
+    self.photoImageView.image               = self.selectedCupping.photo;
 
 }
 
@@ -58,8 +58,8 @@
 {
     if ([segue.identifier isEqualToString:@"EditCuppingSegue"]) {
         AddOrEditCuppingViewController *destination = segue.destinationViewController;
-        destination.editableCupping = self.currentCupping;
-        destination.currentCoffee = self.currentCoffee;
+        destination.editableCupping = self.selectedCupping;
+        destination.selectedCoffee = self.selectedCoffee;
     }
 }
 

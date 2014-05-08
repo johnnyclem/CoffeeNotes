@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Cole Bratcher. All rights reserved.
 //
 
-#import "Coffee.h"
+#import "CoffeeModel.h"
 
-@implementation Coffee
+@implementation CoffeeModel
 
 -(instancetype)initWithCoder:(NSCoder *)aDecoder
 {

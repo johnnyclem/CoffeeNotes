@@ -7,9 +7,10 @@
 //
 
 #import "AddOrEditCuppingViewController.h"
-#import "Cupping.h"
+#import "CuppingModel.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <AXRatingView/AXRatingView.h>
+#import "AppDelegate.h"
 
 
 @interface AddOrEditCuppingViewController () <UIImagePickerControllerDelegate, UIActionSheetDelegate, UITextFieldDelegate, UITextViewDelegate, UINavigationControllerDelegate>
@@ -37,6 +38,8 @@
 // other
 @property (strong, nonatomic) UIActionSheet *addOrChangePhotoActionSheet;
 
+@property (weak, nonatomic) NSManagedObjectContext *managedObjectContext;
+
 @end
 
 
@@ -45,9 +48,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    self.managedObjectContext = appDelegate.objectContext;
 
-    self.coffeeNameOrOriginLabel.text = self.currentCoffee.nameOrOrigin;
-    self.roasterLabel.text = self.currentCoffee.roaster;
+    self.coffeeNameOrOriginLabel.text = self.selectedCoffee.nameOrOrigin;
+    self.roasterLabel.text = self.selectedCoffee.roaster;
     
     self.locationTextField.delegate = self;
     self.cuppingDateTextField.delegate = self;
@@ -62,7 +68,7 @@
         self.roastDateTextField.text = self.editableCupping.roastDate;
         self.brewingMethodTextField.text = self.editableCupping.brewingMethod;
         self.notesTextView.text = self.editableCupping.cuppingNotes;
-        self.cuppingRatingView.value = self.editableCupping.cuppingRating.floatValue;
+        self.cuppingRatingView.value = self.editableCupping.rating.floatValue;
         self.deleteCuppingButton.enabled = YES;
         
     }
@@ -134,28 +140,20 @@
             newCupping = self.editableCupping;
         }
         else{
-            newCupping = [Cupping new];
+            newCupping = [NSEntityDescription insertNewObjectForEntityForName:@"Cupping" inManagedObjectContext:self.selectedCoffee.managedObjectContext];;
         }
         newCupping.location = self.locationTextField.text;
         newCupping.cuppingDate = self.cuppingDateTextField.text;
         newCupping.roastDate = self.roastDateTextField.text;
         newCupping.brewingMethod = self.brewingMethodTextField.text;
         newCupping.cuppingNotes = self.notesTextView.text;
-        newCupping.image = self.photoImageView.image;
+        newCupping.photo = self.photoImageView.image;
         
         NSNumber *numberFromFloatValue = [[NSNumber alloc]initWithFloat:self.cuppingRatingView.value];
-        newCupping.cuppingRating = numberFromFloatValue;
+        newCupping.rating = numberFromFloatValue;
         
-        
-        if (!self.currentCoffee.cuppings) {
-            self.currentCoffee.cuppings = [NSMutableArray new];
-        }
-        
-        if (!self.editableCupping) {
-            [self.currentCoffee.cuppings addObject:newCupping];
-        }
-        
-        [[DataController sharedController] save];
+        NSError *error;
+        [self.selectedCoffee.managedObjectContext save:&error];
     }
 }
 
@@ -265,7 +263,7 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Delete"]) {
-        [self.currentCoffee.cuppings removeObject:self.editableCupping];
+        [self.managedObjectContext deleteObject:self.editableCupping];
         [self performSegueWithIdentifier:@"deleteCupping" sender:self];
     }
 }

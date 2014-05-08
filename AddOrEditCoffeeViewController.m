@@ -12,6 +12,7 @@
 #import "DataController.h"
 #import "CoffeesViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
+#import "AppDelegate.h"
 
 
 @interface AddOrEditCoffeeViewController () <UIImagePickerControllerDelegate, UIActionSheetDelegate, UITextFieldDelegate, UITextViewDelegate, UIAlertViewDelegate>
@@ -40,6 +41,8 @@
 // other
 @property (strong, nonatomic) UIActionSheet *addOrChangePhotoActionSheet;
 
+@property (weak, nonatomic) NSManagedObjectContext *managedObjectContext;
+
 @end
 
 @implementation AddOrEditCoffeeViewController
@@ -47,7 +50,10 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    self.managedObjectContext = appDelegate.objectContext;
+    
     self.nameOrOriginTextField.delegate = self;
     self.roasterTextField.delegate = self;
     self.locationTextField.delegate = self;
@@ -121,27 +127,26 @@
     if ([segue.identifier isEqualToString:@"addCoffeeExitSegue"])
     {
         // New Coffee Stuff
-        Coffee *newCoffee = [Coffee new];
+        Coffee *newCoffee;
+                
         newCoffee.nameOrOrigin = self.nameOrOriginTextField.text;
         newCoffee.roaster = self.roasterTextField.text;
-        newCoffee.cuppings = [NSMutableArray new];
         
         // New Cupping Stuff
-        Cupping *newCupping = [Cupping new];
+        Cupping *newCupping;
         newCupping.location = self.locationTextField.text;
         newCupping.cuppingDate = self.cuppingDateTextField.text;
         newCupping.roastDate = self.roastDateTextField.text;
         newCupping.brewingMethod = self.brewingMethodTextField.text;
         //        newCupping.cuppingRating = self.addCoffeeRatingView;
-        newCupping.image = self.photoImageView.image;
+        newCupping.photo = self.photoImageView.image;
         newCupping.cuppingNotes = self.notesTextView.text;
-        [newCoffee.cuppings addObject:newCupping];
         
         [[DataController sharedController].coffees addObject:newCoffee];
         
-        [[DataController sharedController] save];
-        
-        [[DataController sharedController].coffees addObject:newCoffee];
+        // Add Save Command!!
+        NSError *error;
+        [self.editableCoffee.managedObjectContext save:&error];
     }
 }
 

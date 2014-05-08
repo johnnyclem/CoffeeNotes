@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		06D1C1C3F7894517B818AAC5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6076AB8A7E4D45AF8CB9B92E /* libPods.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		3D0518AD191025540020029B /* CuppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0518AC191025540020029B /* CuppingCell.m */; };
+		3D230BC7191C004D00A710FE /* Cupping.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D230BC6191C004D00A710FE /* Cupping.m */; };
+		3D25946C191BF44600AD0326 /* Coffee.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D25946B191BF44600AD0326 /* Coffee.m */; };
+		3D259472191BF47A00AD0326 /* ImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D259471191BF47A00AD0326 /* ImageTransformer.m */; };
+		3D518169191BF0C40007D85C /* AppDelegate+CoreDataContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D518168191BF0C40007D85C /* AppDelegate+CoreDataContext.m */; };
+		3D51816C191BF10F0007D85C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3D51816A191BF10F0007D85C /* Model.xcdatamodeld */; };
 		3DD88732190B1180002521AD /* CoffeeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD88731190B1180002521AD /* CoffeeDetailViewController.m */; };
 		3DD88735190B1196002521AD /* CuppingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD88734190B1196002521AD /* CuppingDetailViewController.m */; };
 		3DD8873B190B11D5002521AD /* AddOrEditCuppingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD8873A190B11D5002521AD /* AddOrEditCuppingViewController.m */; };
@@ -22,8 +27,8 @@
 		3DE4601C190984D8002AF3C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DE4601A190984D8002AF3C0 /* Main.storyboard */; };
 		3DE4601F190984D8002AF3C0 /* CoffeesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE4601E190984D8002AF3C0 /* CoffeesViewController.m */; };
 		3DE46021190984D8002AF3C0 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3DE46020190984D8002AF3C0 /* Images.xcassets */; };
-		3DE4603F190984FE002AF3C0 /* Coffee.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE4603E190984FE002AF3C0 /* Coffee.m */; };
-		3DE4604219098514002AF3C0 /* Cupping.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE4604119098514002AF3C0 /* Cupping.m */; };
+		3DE4603F190984FE002AF3C0 /* CoffeeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE4603E190984FE002AF3C0 /* CoffeeModel.m */; };
+		3DE4604219098514002AF3C0 /* CuppingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE4604119098514002AF3C0 /* CuppingModel.m */; };
 		3DE460451909852F002AF3C0 /* TastingWheel.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DE460441909852F002AF3C0 /* TastingWheel.m */; };
 		3DFC9A20190EE3F500970C84 /* DataSourcePropertyList.plist in Resources */ = {isa = PBXBuildFile; fileRef = 3DFC9A1F190EE3F500970C84 /* DataSourcePropertyList.plist */; };
 		3DFC9A23190EEEFB00970C84 /* DataController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DFC9A22190EEEFB00970C84 /* DataController.m */; };
@@ -34,6 +39,15 @@
 /* Begin PBXFileReference section */
 		3D0518AB191025540020029B /* CuppingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CuppingCell.h; sourceTree = "<group>"; };
 		3D0518AC191025540020029B /* CuppingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CuppingCell.m; sourceTree = "<group>"; };
+		3D230BC5191C004D00A710FE /* Cupping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cupping.h; sourceTree = "<group>"; };
+		3D230BC6191C004D00A710FE /* Cupping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cupping.m; sourceTree = "<group>"; };
+		3D25946A191BF44600AD0326 /* Coffee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Coffee.h; sourceTree = "<group>"; };
+		3D25946B191BF44600AD0326 /* Coffee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coffee.m; sourceTree = "<group>"; };
+		3D259470191BF47A00AD0326 /* ImageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTransformer.h; sourceTree = "<group>"; };
+		3D259471191BF47A00AD0326 /* ImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTransformer.m; sourceTree = "<group>"; };
+		3D518167191BF0C40007D85C /* AppDelegate+CoreDataContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+CoreDataContext.h"; sourceTree = SOURCE_ROOT; };
+		3D518168191BF0C40007D85C /* AppDelegate+CoreDataContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+CoreDataContext.m"; sourceTree = SOURCE_ROOT; };
+		3D51816B191BF10F0007D85C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		3DD88730190B1180002521AD /* CoffeeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoffeeDetailViewController.h; sourceTree = "<group>"; };
 		3DD88731190B1180002521AD /* CoffeeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoffeeDetailViewController.m; sourceTree = "<group>"; };
 		3DD88733190B1196002521AD /* CuppingDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CuppingDetailViewController.h; sourceTree = "<group>"; };
@@ -57,10 +71,10 @@
 		3DE4601E190984D8002AF3C0 /* CoffeesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoffeesViewController.m; sourceTree = "<group>"; };
 		3DE46020190984D8002AF3C0 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		3DE46027190984D8002AF3C0 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		3DE4603D190984FE002AF3C0 /* Coffee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Coffee.h; path = ../Coffee.h; sourceTree = "<group>"; };
-		3DE4603E190984FE002AF3C0 /* Coffee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Coffee.m; path = ../Coffee.m; sourceTree = "<group>"; };
-		3DE4604019098514002AF3C0 /* Cupping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Cupping.h; sourceTree = "<group>"; };
-		3DE4604119098514002AF3C0 /* Cupping.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Cupping.m; sourceTree = "<group>"; };
+		3DE4603D190984FE002AF3C0 /* CoffeeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CoffeeModel.h; path = ../CoffeeModel.h; sourceTree = "<group>"; };
+		3DE4603E190984FE002AF3C0 /* CoffeeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CoffeeModel.m; path = ../CoffeeModel.m; sourceTree = "<group>"; };
+		3DE4604019098514002AF3C0 /* CuppingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CuppingModel.h; sourceTree = "<group>"; };
+		3DE4604119098514002AF3C0 /* CuppingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CuppingModel.m; sourceTree = "<group>"; };
 		3DE460431909852F002AF3C0 /* TastingWheel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TastingWheel.h; sourceTree = "<group>"; };
 		3DE460441909852F002AF3C0 /* TastingWheel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TastingWheel.m; sourceTree = "<group>"; };
 		3DFC9A1F190EE3F500970C84 /* DataSourcePropertyList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DataSourcePropertyList.plist; sourceTree = "<group>"; };
@@ -89,6 +103,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D230BC8191C034000A710FE /* OldStuff */ = {
+			isa = PBXGroup;
+			children = (
+				3DE4603D190984FE002AF3C0 /* CoffeeModel.h */,
+				3DE4603E190984FE002AF3C0 /* CoffeeModel.m */,
+				3DE4604019098514002AF3C0 /* CuppingModel.h */,
+				3DE4604119098514002AF3C0 /* CuppingModel.m */,
+			);
+			name = OldStuff;
+			path = CoffeeNotes;
+			sourceTree = "<group>";
+		};
 		3D79B3F01911EF3800753DD1 /* CoffeesViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -124,10 +150,11 @@
 		3DD8873C190B11E7002521AD /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				3DE4603D190984FE002AF3C0 /* Coffee.h */,
-				3DE4603E190984FE002AF3C0 /* Coffee.m */,
-				3DE4604019098514002AF3C0 /* Cupping.h */,
-				3DE4604119098514002AF3C0 /* Cupping.m */,
+				3D230BC5191C004D00A710FE /* Cupping.h */,
+				3D230BC6191C004D00A710FE /* Cupping.m */,
+				3D51816A191BF10F0007D85C /* Model.xcdatamodeld */,
+				3D25946A191BF44600AD0326 /* Coffee.h */,
+				3D25946B191BF44600AD0326 /* Coffee.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -152,6 +179,7 @@
 			children = (
 				3DE4600E190984D8002AF3C0 /* CoffeeNotes */,
 				3D79B3F21911F10400753DD1 /* Future */,
+				3D230BC8191C034000A710FE /* OldStuff */,
 				3DE46007190984D8002AF3C0 /* Frameworks */,
 				3DE46006190984D8002AF3C0 /* Products */,
 				7E3F88B562F34D5499F894A3 /* Pods.xcconfig */,
@@ -208,8 +236,12 @@
 		3DFF2FB7190C60F600D465F4 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				3D518167191BF0C40007D85C /* AppDelegate+CoreDataContext.h */,
+				3D518168191BF0C40007D85C /* AppDelegate+CoreDataContext.m */,
 				3DFF2FB4190C60F100D465F4 /* UIColor+ColorScheme.h */,
 				3DFF2FB5190C60F100D465F4 /* UIColor+ColorScheme.m */,
+				3D259470191BF47A00AD0326 /* ImageTransformer.h */,
+				3D259471191BF47A00AD0326 /* ImageTransformer.m */,
 				3DFC9A21190EEEFB00970C84 /* DataController.h */,
 				3DFC9A22190EEEFB00970C84 /* DataController.m */,
 			);
@@ -319,18 +351,23 @@
 			files = (
 				3DE4601F190984D8002AF3C0 /* CoffeesViewController.m in Sources */,
 				3DD88732190B1180002521AD /* CoffeeDetailViewController.m in Sources */,
+				3D259472191BF47A00AD0326 /* ImageTransformer.m in Sources */,
 				3DFF2FB6190C60F100D465F4 /* UIColor+ColorScheme.m in Sources */,
 				3DE46019190984D8002AF3C0 /* AppDelegate.m in Sources */,
 				3DE460451909852F002AF3C0 /* TastingWheel.m in Sources */,
+				3D518169191BF0C40007D85C /* AppDelegate+CoreDataContext.m in Sources */,
+				3D25946C191BF44600AD0326 /* Coffee.m in Sources */,
 				3DE46015190984D8002AF3C0 /* main.m in Sources */,
-				3DE4603F190984FE002AF3C0 /* Coffee.m in Sources */,
+				3DE4603F190984FE002AF3C0 /* CoffeeModel.m in Sources */,
 				3DD8873B190B11D5002521AD /* AddOrEditCuppingViewController.m in Sources */,
-				3DE4604219098514002AF3C0 /* Cupping.m in Sources */,
+				3DE4604219098514002AF3C0 /* CuppingModel.m in Sources */,
 				3DD88735190B1196002521AD /* CuppingDetailViewController.m in Sources */,
+				3D51816C191BF10F0007D85C /* Model.xcdatamodeld in Sources */,
 				3DFC9A23190EEEFB00970C84 /* DataController.m in Sources */,
 				3DFF2FBA190C789B00D465F4 /* AddOrEditCoffeeViewController.m in Sources */,
 				3D0518AD191025540020029B /* CuppingCell.m in Sources */,
 				3DD88740190B166A002521AD /* CoffeeCell.m in Sources */,
+				3D230BC7191C004D00A710FE /* Cupping.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -478,6 +515,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3D51816A191BF10F0007D85C /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3D51816B191BF10F0007D85C /* Model.xcdatamodel */,
+			);
+			currentVersion = 3D51816B191BF10F0007D85C /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3DE45FFD190984D8002AF3C0 /* Project object */;
 }

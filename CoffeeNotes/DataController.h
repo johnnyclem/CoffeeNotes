@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Coffee.h"
+#import "Cupping.h"
 
 @interface DataController : NSObject
 
@@ -18,7 +19,7 @@
 // Init
 
 +(NSString *)applicationDocumentsDirectory;
--(instancetype)initWithCoffees;
+//-(instancetype)initWithCoffees;
 //-(instancetype)initwithCuppingsFromCoffee:(Coffee *)coffee;
 
 
@@ -33,6 +34,6 @@
 -(void)sortByCoffeeNameOrOrigin;
 -(void)sortByCuppingDateInCoffee:(Coffee *)coffee;
 
--(void)save;
+//-(void)save;
 
 @end

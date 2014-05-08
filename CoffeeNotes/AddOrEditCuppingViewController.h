@@ -15,7 +15,7 @@
 @interface AddOrEditCuppingViewController : UIViewController
 
 // public models
-@property Coffee *currentCoffee;
+@property Coffee *selectedCoffee;
 @property Cupping *editableCupping;
 
 // public outlets

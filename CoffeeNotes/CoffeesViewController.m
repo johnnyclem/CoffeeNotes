@@ -9,6 +9,8 @@
 #import "CoffeesViewController.h"
 #import "CoffeeDetailViewController.h"
 #import "CoffeeCell.h"
+#import "Coffee.h"
+#import "AppDelegate+CoreDataContext.h"
 
 @interface CoffeesViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -17,6 +19,11 @@
 
 // views
 @property (weak, nonatomic) IBOutlet UITableView *coffeesTableView;
+
+// arrays
+@property (strong, nonatomic) NSArray *coffees;
+
+@property (weak, nonatomic) NSManagedObjectContext *objectContext;
 
 @end
 
@@ -27,11 +34,23 @@
 {
     [super viewDidLoad];
     
-    [DataController sharedController];
-
-    self.coffeesTableView.delegate = self;
-    self.coffeesTableView.dataSource = self;
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     
+    [appDelegate createManagedObjectContext:^(NSManagedObjectContext *context) {
+        self.objectContext = context;
+        
+        self.coffeesTableView.delegate = self;
+        self.coffeesTableView.dataSource = self;
+        
+        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Coffee"];
+        NSError *error;
+        
+        self.coffees = [self.objectContext executeFetchRequest:fetchRequest error:&error];
+        
+        [self.coffeesTableView reloadData];
+    }];
+    
+    [DataController sharedController];
 }
 
 - (void)didReceiveMemoryWarning
@@ -50,11 +69,11 @@
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-//    NSIndexPath *indexPath = [self.coffeesTableView indexPathForSelectedRow];
     
     if ([segue.identifier isEqualToString:@"CoffeeDetailSegue"]) {
         CoffeeDetailViewController *destination = segue.destinationViewController;
-        destination.coffeeDetailCoffee = [[DataController sharedController].coffees objectAtIndex:[self.coffeesTableView indexPathForSelectedRow].row];
+        NSIndexPath *indexPath = [self.coffeesTableView indexPathForSelectedRow];
+        destination.selectedCoffee = self.coffees[indexPath.row];
     }
 }
 
@@ -89,7 +108,7 @@
     
     cell.coffeeCellImage.layer.cornerRadius = 22;
     cell.coffeeCellImage.layer.masksToBounds = YES;
-    cell.coffeeCellImage.image = coffee.mostRecentCoffeeImage;
+    cell.coffeeCellImage.image = coffee.mostRecentPhoto;
     
     return cell;
 }

@@ -7,14 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Coffee.h"
+#import "Cupping.h"
 
 @class DataController;
-@class Coffee;
-@class Cupping;
+@class CoffeeModel;
+@class CuppingModel;
+
 
 @interface CoffeeDetailViewController : UIViewController
 
 // models
-@property (nonatomic, weak) Coffee *coffeeDetailCoffee;
+@property (nonatomic, weak) Coffee *selectedCoffee;
 
 @end

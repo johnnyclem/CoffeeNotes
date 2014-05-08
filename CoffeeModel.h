@@ -7,11 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Cupping.h"
+#import "CuppingModel.h"
 #import "TastingWheel.h"
 
 
-@interface Coffee : NSObject
+@interface CoffeeModel : NSObject
 
 @property (nonatomic, strong) NSString *nameOrOrigin;
 @property (nonatomic, strong) NSString *roaster;

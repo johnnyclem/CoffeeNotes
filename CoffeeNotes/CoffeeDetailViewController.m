@@ -35,6 +35,8 @@
 @property (weak, nonatomic) IBOutlet UIView *tastingWheelView;
 @property (weak, nonatomic) IBOutlet UITableView *cuppingsTableView;
 
+@property (strong, nonatomic) NSArray *cuppings;
+
 @end
 
 
@@ -45,8 +47,8 @@
 {
     [super viewDidLoad];
     
-    self.nameOrOriginLabel.text = self.coffeeDetailCoffee.nameOrOrigin;
-    self.roasterLabel.text = self.coffeeDetailCoffee.roaster;
+    self.nameOrOriginLabel.text = self.selectedCoffee.nameOrOrigin;
+    self.roasterLabel.text = self.selectedCoffee.roaster;
     
     self.cuppingsTableView.delegate = self;
     self.cuppingsTableView.dataSource = self;
@@ -55,9 +57,10 @@
     [self.averageStarRatingView setStepInterval:0.5];
     [self.averageStarRatingView setUserInteractionEnabled:NO];
     
-    self.averageStarRatingView.value = [[[DataController sharedController] averageRatingFromCuppingRatingInCoffee:self.coffeeDetailCoffee] floatValue];
+//    self.averageStarRatingView.value = [[[DataController sharedController] averageRatingFromCuppingRatingInCoffee:self.selectedCoffee] floatValue];
     
-    
+    self.cuppings = [self.selectedCoffee.cuppings allObjects];
+    [self.cuppingsTableView reloadData];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -66,7 +69,7 @@
     
     [self.cuppingsTableView reloadData];
     
-    self.averageStarRatingView.value = [[[DataController sharedController] averageRatingFromCuppingRatingInCoffee:self.coffeeDetailCoffee] floatValue];
+    self.averageStarRatingView.value = [[[DataController sharedController] averageRatingFromCuppingRatingInCoffee:self.selectedCoffee] floatValue];
 }
 
 - (void)didReceiveMemoryWarning
@@ -82,18 +85,19 @@
     if ([segue.identifier isEqualToString:@"CuppingDetailSegue"]) {
         
         CuppingDetailViewController *destination = segue.destinationViewController;
-        destination.currentCoffee = self.coffeeDetailCoffee;
-        destination.currentCupping = [self.coffeeDetailCoffee.cuppings objectAtIndex:[self.cuppingsTableView indexPathForSelectedRow].row];
+        destination.selectedCoffee = self.selectedCoffee;
+        NSIndexPath *indexPath = [self.cuppingsTableView indexPathForSelectedRow];
+        destination.selectedCupping = self.cuppings[indexPath.row];
         
     } else if ([segue.identifier isEqualToString:@"AddCuppingSegue"]) {
         
         AddOrEditCuppingViewController *destination = segue.destinationViewController;
-        destination.currentCoffee = self.coffeeDetailCoffee;
+        destination.selectedCoffee = self.selectedCoffee;
         
     } else if ([segue.identifier isEqualToString:@"EditCoffeeSegue"]) {
         
         AddOrEditCoffeeViewController *destination = segue.destinationViewController;
-        destination.editableCoffee = self.coffeeDetailCoffee;
+        destination.editableCoffee = self.selectedCoffee;
     }
 }
 
@@ -116,19 +120,20 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.coffeeDetailCoffee.cuppings.count;
+    return self.selectedCoffee.cuppings.count;
 }
 
 -(CuppingCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CuppingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CuppingCell" forIndexPath:indexPath];
-    Cupping *cupping = [self.coffeeDetailCoffee.cuppings objectAtIndex:indexPath.row];
+    
+    Cupping *cupping = self.cuppings[indexPath.row];
     cell.cuppingCellDateLabel.text = [NSString stringWithFormat:@"%@", cupping.cuppingDate];
     cell.cuppingCellLocationLabel.text = [NSString stringWithFormat:@"%@", cupping.location];
     
     cell.cuppingCellImageView.layer.cornerRadius = 22;
     cell.cuppingCellImageView.layer.masksToBounds = YES;
-    cell.cuppingCellImageView.image = cupping.image;
+    cell.cuppingCellImageView.image = cupping.photo;
     
     return cell;
 }
