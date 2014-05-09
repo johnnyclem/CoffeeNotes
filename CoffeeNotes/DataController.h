@@ -22,6 +22,7 @@
 //-(instancetype)initWithCoffees;
 //-(instancetype)initwithCuppingsFromCoffee:(Coffee *)coffee;
 
+- (instancetype)initWithSampleCoreData;
 
 // Edit
 //-(void)addCoffee:(Coffee *)newCoffee;

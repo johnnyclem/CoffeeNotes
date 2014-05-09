@@ -86,6 +86,29 @@
 //    [NSKeyedArchiver archiveRootObject:self.coffees toFile:dataSourcePListPath];
 //}
 
+//- (instancetype)initWithSampleCoreData
+//{
+//    self = [super init];
+//    
+//    Coffee *gangstaCoffee = [NSEntityDescription insertNewObjectForEntityForName:@"Coffee" inManagedObjectContext:self.objectContext];
+//    rapLabel.name = @"Gangsta P";
+//    Label *countryLabel = [NSEntityDescription insertNewObjectForEntityForName:@"Label" inManagedObjectContext:self.objectContext];
+//    countryLabel.name = @"Cowboy Hats";
+//    
+//    Label *popLabel = [NSEntityDescription insertNewObjectForEntityForName:@"Label" inManagedObjectContext:self.objectContext];
+//    popLabel.name = @"Lolipopcorn";
+//    NSError *error;
+//    
+//    [self.objectContext save:&error];
+//    
+//    if (error)
+//    {
+//        NSLog(@"error: %@", error.localizedDescription);
+//    }
+//
+//
+//}
+
 //-(instancetype)initWithCoffees
 //{
 //    self = [super init];
