@@ -12,6 +12,8 @@
 		3D230BC7191C004D00A710FE /* Cupping.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D230BC6191C004D00A710FE /* Cupping.m */; };
 		3D25946C191BF44600AD0326 /* Coffee.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D25946B191BF44600AD0326 /* Coffee.m */; };
 		3D259472191BF47A00AD0326 /* ImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D259471191BF47A00AD0326 /* ImageTransformer.m */; };
+		3D2EE5EC1921772F00C413D2 /* SimpleDatePicker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2EE5EB1921772F00C413D2 /* SimpleDatePicker.m */; };
+		3D2EE5EF1921819200C413D2 /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2EE5EE1921819200C413D2 /* DatePickerViewController.m */; };
 		3D518169191BF0C40007D85C /* AppDelegate+CoreDataContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D518168191BF0C40007D85C /* AppDelegate+CoreDataContext.m */; };
 		3D51816C191BF10F0007D85C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3D51816A191BF10F0007D85C /* Model.xcdatamodeld */; };
 		3DD88732190B1180002521AD /* CoffeeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD88731190B1180002521AD /* CoffeeDetailViewController.m */; };
@@ -45,6 +47,10 @@
 		3D25946B191BF44600AD0326 /* Coffee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coffee.m; sourceTree = "<group>"; };
 		3D259470191BF47A00AD0326 /* ImageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTransformer.h; sourceTree = "<group>"; };
 		3D259471191BF47A00AD0326 /* ImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTransformer.m; sourceTree = "<group>"; };
+		3D2EE5EA1921772F00C413D2 /* SimpleDatePicker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleDatePicker.h; sourceTree = "<group>"; };
+		3D2EE5EB1921772F00C413D2 /* SimpleDatePicker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleDatePicker.m; sourceTree = "<group>"; };
+		3D2EE5ED1921819200C413D2 /* DatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerViewController.h; sourceTree = "<group>"; };
+		3D2EE5EE1921819200C413D2 /* DatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController.m; sourceTree = "<group>"; };
 		3D518167191BF0C40007D85C /* AppDelegate+CoreDataContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+CoreDataContext.h"; sourceTree = SOURCE_ROOT; };
 		3D518168191BF0C40007D85C /* AppDelegate+CoreDataContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+CoreDataContext.m"; sourceTree = SOURCE_ROOT; };
 		3D51816B191BF10F0007D85C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
@@ -170,6 +176,10 @@
 				3DFF2FB9190C789B00D465F4 /* AddOrEditCoffeeViewController.m */,
 				3DD88739190B11D5002521AD /* AddOrEditCuppingViewController.h */,
 				3DD8873A190B11D5002521AD /* AddOrEditCuppingViewController.m */,
+				3D2EE5EA1921772F00C413D2 /* SimpleDatePicker.h */,
+				3D2EE5EB1921772F00C413D2 /* SimpleDatePicker.m */,
+				3D2EE5ED1921819200C413D2 /* DatePickerViewController.h */,
+				3D2EE5EE1921819200C413D2 /* DatePickerViewController.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -350,6 +360,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DE4601F190984D8002AF3C0 /* CoffeesViewController.m in Sources */,
+				3D2EE5EF1921819200C413D2 /* DatePickerViewController.m in Sources */,
 				3DD88732190B1180002521AD /* CoffeeDetailViewController.m in Sources */,
 				3D259472191BF47A00AD0326 /* ImageTransformer.m in Sources */,
 				3DFF2FB6190C60F100D465F4 /* UIColor+ColorScheme.m in Sources */,
@@ -360,6 +371,7 @@
 				3DE46015190984D8002AF3C0 /* main.m in Sources */,
 				3DE4603F190984FE002AF3C0 /* CoffeeModel.m in Sources */,
 				3DD8873B190B11D5002521AD /* AddOrEditCuppingViewController.m in Sources */,
+				3D2EE5EC1921772F00C413D2 /* SimpleDatePicker.m in Sources */,
 				3DE4604219098514002AF3C0 /* CuppingModel.m in Sources */,
 				3DD88735190B1196002521AD /* CuppingDetailViewController.m in Sources */,
 				3D51816C191BF10F0007D85C /* Model.xcdatamodeld in Sources */,

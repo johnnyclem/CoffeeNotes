@@ -13,6 +13,7 @@
 #import "CoffeesViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "AppDelegate.h"
+#import "DatePickerViewController.h"
 
 
 
@@ -176,8 +177,46 @@
                                                       otherButtonTitles:@"Delete", nil];
             
                 [alertView show];
-        }
     }
+}
+
+-(IBAction)pickDateForCoffee:(id)sender
+{
+    DatePickerViewController *datePickerViewController = [[DatePickerViewController alloc]init];
+    [self presentViewController:(DatePickerViewController *)datePickerViewController animated:YES completion:^{
+        code
+    }];
+    
+//    UIView *datePickerContainer = [[UIView alloc] initWithFrame:CGRectMake(0, -568, 320, 260)];
+//    UIDatePicker *datePicker = [[UIDatePicker alloc]initWithFrame:CGRectMake(0, 0, 320, 162)];
+//    [datePickerContainer addSubview:datePicker];
+//    [datePickerContainer setBackgroundColor:[UIColor lightGrayColor]];
+//    
+//    UIButton *doneButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 200, 320, 60)];
+//    [doneButton setTitle:@"Done" forState:UIControlStateApplication];
+//    [doneButton addTarget:self action:@selector(datePickerDidSelectDate:) forControlEvents:UIControlEventTouchUpInside];
+//    [datePickerContainer addSubview:doneButton];
+//    
+//    [self.view addSubview:datePickerContainer];
+//    [UIView animateWithDuration:.4 animations:^{
+//        datePickerContainer.center = self.view.center;
+//    }];
+    
+}
+
+-(void)datePickerDidSelectDate:(UIView *)datePickerContainer
+{
+    UIDatePicker *datePicker = [datePickerContainer.subviews firstObject];
+    
+    NSLog(@"Date Selected %@", datePicker.date);
+
+    [UIView animateWithDuration:0.4
+                     animations:^{
+                         [datePickerContainer setFrame:CGRectMake(0, -400, 320, 162)];
+                     } completion:^(BOOL finished) {
+                         [datePickerContainer removeFromSuperview];
+                     }];
+}
 
 #pragma mark - UIActionSheet Delegate Methods
 

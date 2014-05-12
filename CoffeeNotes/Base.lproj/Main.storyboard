@@ -450,7 +450,7 @@
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Roast Date:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nGo-gs-Iqa">
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Roast Date:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nGo-gs-Iqa">
                                                 <rect key="frame" x="20" y="336" width="280" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <constraints>
@@ -595,16 +595,30 @@
                                                     <action selector="deleteCoffeeButtonPressed:" destination="5Ll-dC-t14" eventType="touchUpInside" id="5f1-qf-BlT"/>
                                                 </connections>
                                             </button>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x1t-qa-kHn" customClass="PMEDatePicker">
-                                                <rect key="frame" x="20" y="286" width="280" height="42"/>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g6J-q7-Jlj">
+                                                <rect key="frame" x="20" y="286" width="280" height="36"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                            </view>
-                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kcT-uC-sif" customClass="PMEDatePicker">
-                                                <rect key="frame" x="20" y="365" width="280" height="42"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <state key="normal" title="Choose Cupping Date">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="pickDateForCoffee:" destination="5Ll-dC-t14" eventType="touchUpInside" id="JnM-pl-v28"/>
+                                                    <segue destination="oaU-LC-M1r" kind="modal" identifier="ChooseCuppingDateFromAddCoffeeControllerSegue" id="0ri-hj-WQc"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1E8-DX-r6U">
+                                                <rect key="frame" x="20" y="365" width="280" height="36"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                                            </view>
+                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <state key="normal" title="Choose Roast Date">
+                                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="pickDateForCoffee:" destination="5Ll-dC-t14" eventType="touchUpInside" id="02R-0k-q28"/>
+                                                    <segue destination="oaU-LC-M1r" kind="modal" identifier="ChooseRoastingDateFromAddCoffeeControllerSegue" id="TEq-X3-bCf"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                         <constraints>
@@ -615,6 +629,7 @@
                                             <constraint firstItem="HVc-4i-Fmx" firstAttribute="leading" secondItem="Q6f-CQ-V1Q" secondAttribute="leading" constant="20" id="8Y8-CR-Vf2"/>
                                             <constraint firstAttribute="trailing" secondItem="huQ-72-ZxP" secondAttribute="trailing" constant="20" id="8rt-wF-H99"/>
                                             <constraint firstItem="HVc-4i-Fmx" firstAttribute="top" secondItem="FPH-Bl-eba" secondAttribute="bottom" constant="20" id="8uj-iO-ov3"/>
+                                            <constraint firstItem="nGo-gs-Iqa" firstAttribute="top" secondItem="Q6f-CQ-V1Q" secondAttribute="top" constant="336" id="9c9-d0-4CV"/>
                                             <constraint firstAttribute="trailing" secondItem="CTV-Hz-twO" secondAttribute="trailing" constant="20" id="9gJ-Sx-6tZ"/>
                                             <constraint firstItem="Bbi-37-2d7" firstAttribute="leading" secondItem="Q6f-CQ-V1Q" secondAttribute="leading" constant="20" id="AGh-xg-qdJ"/>
                                             <constraint firstItem="3hO-5f-xBy" firstAttribute="leading" secondItem="Q6f-CQ-V1Q" secondAttribute="leading" constant="20" id="AGp-wa-FdG"/>
@@ -719,6 +734,65 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SHB-57-mgv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1229" y="-2514"/>
+        </scene>
+        <!--Date Picker View Controller-->
+        <scene sceneID="0EQ-jK-Fzj">
+            <objects>
+                <viewController id="oaU-LC-M1r" customClass="DatePickerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="KKG-5K-1LX"/>
+                        <viewControllerLayoutGuide type="bottom" id="Heg-Ov-VmW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="af8-PS-oWm">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="206"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Pzi-d8-jb5">
+                                <rect key="frame" x="0.0" y="44" width="320" height="162"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <date key="date" timeIntervalSinceReferenceDate="421626118.70504099">
+                                    <!--2014-05-12 22:21:58 +0000-->
+                                </date>
+                                <timeZone key="timeZone" name="America/Los_Angeles">
+                                    <mutableData key="data">
+VFppZgAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAC5AAAABAAAABCepkign7sVkKCGKqChmveQ
+y4kaoNIj9HDSYSYQ1v50INiArZDa/tGg28CQENzes6DdqayQ3r6VoN+JjpDgnneg4WlwkOJ+WaDjSVKQ
+5F47oOUpNJDmR1gg5xJREOgnOiDo8jMQ6gccIOrSFRDr5v4g7LH3EO3G4CDukdkQ76/8oPBxuxDxj96g
+8n/BkPNvwKD0X6OQ9U+ioPY/hZD3L4Sg+CiiEPkPZqD6CIQQ+viDIPvoZhD82GUg/chIEP64RyD/qCoQ
+AJgpIAGIDBACeAsgA3EokARhJ6AFUQqQBkEJoAcw7JAHjUOgCRDOkAmtvyAK8LCQC+CvoAzZzRANwJGg
+DrmvEA+priAQmZEQEYmQIBJ5cxATaXIgFFlVEBVJVCAWOTcQFyk2IBgiU5AZCRggGgI1kBryNKAb4heQ
+HNIWoB3B+ZAesfigH6HbkCB2KyAhgb2QIlYNICNq2hAkNe8gJUq8ECYV0SAnKp4QJ/7toCkKgBAp3s+g
+KupiECu+saAs036QLZ6ToC6zYJAvfnWgMJNCkDFnkiAycySQM0d0IDRTBpA1J1YgNjLokDcHOCA4HAUQ
+OOcaIDn75xA6xvwgO9vJEDywGKA9u6sQPo/6oD+bjRBAb9ygQYSpkEJPvqBDZIuQRC+goEVEbZBF89Mg
+Ry2KEEfTtSBJDWwQSbOXIErtThBLnLOgTNZqkE18laBOtkyQT1x3oFCWLpBRPFmgUnYQkFMcO6BUVfKQ
+VPwdoFY11JBW5TogWB7xEFjFHCBZ/tMQWqT+IFvetRBchOAgXb6XEF5kwiBfnnkQYE3eoGGHlZBiLcCg
+Y2d3kGQNoqBlR1mQZe2EoGcnO5BnzWagaQcdkGmtSKBq5v+Qa5ZlIGzQHBBtdkcgbq/+EG9WKSBwj+AQ
+cTYLIHJvwhBzFe0gdE+kEHT/CaB2OMCQdt7roHgYopB4vs2gefiEkHqer6B72GaQfH6RoH24SJB+XnOg
+f5gqkAABAAECAwEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
+AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
+AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
+AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
+</mutableData>
+                                </timeZone>
+                            </datePicker>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0tY-b1-NmP">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem systemItem="cancel" id="Sel-WW-P0p"/>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="QJg-br-9nt"/>
+                                    <barButtonItem systemItem="done" id="9vS-7p-1ML"/>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="0.5" colorSpace="calibratedWhite"/>
+                    </view>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="320" height="206"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sAe-wa-Xkz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1810" y="-2338"/>
         </scene>
         <!--Cupping Detail View Controller-->
         <scene sceneID="wz4-RM-VkM">
@@ -1404,7 +1478,8 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="YEJ-8o-byp"/>
         <segue reference="7RQ-9d-aF7"/>
+        <segue reference="YEJ-8o-byp"/>
+        <segue reference="TEq-X3-bCf"/>
     </inferredMetricsTieBreakers>
 </document>
