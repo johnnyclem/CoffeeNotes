@@ -9,11 +9,21 @@
 #import "DataController.h"
 #import "CoffeeCell.h"
 #import "CuppingCell.h"
+#import "AppDelegate+CoreDataContext.h"
 
 #define dataSourcePListPath [[DataController applicationDocumentsDirectory] stringByAppendingPathComponent:@"DataSourcePropertyList.plist" ]
 
+@interface DataController ()
+
+@property (weak, nonatomic) NSManagedObjectContext *objectContext;
+
+@end
+
 
 @implementation DataController
+
+
+#pragma mark - Init Methods
 
 +(DataController *)sharedController
 {
@@ -31,25 +41,24 @@
     return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
 }
 
-//-(void)addCoffee:(Coffee *)newCoffee
+
+#pragma mark - Management Methods
+
+-(NSArray *)fetchAllCoffees
+{
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Coffee"];
+    NSError *error;
+    
+    return [self.objectContext executeFetchRequest:fetchRequest error:nil];
+}
+
+//-(NSArray *)fetchAllCuppingsForCoffee:(Coffee *)coffee
 //{
-//    [self.coffees addObject:newCoffee];
+//    
 //}
-//
-//-(void)addCupping:(Cupping *)newCupping ToCoffee:(Coffee *)coffee
-//{
-//    [coffee.cuppings addObject:newCupping];
-//}
-//
-//-(void)deleteCoffee:(Coffee *)coffeeToDelete
-//{
-//    [self.coffees removeObject:coffeeToDelete];
-//}
-//
-//-(void)deleteCupping:(Cupping *)cuppingToDelete FromCoffee:(Coffee *)coffee
-//{
-//    [coffee.cuppings removeObject:cuppingToDelete];
-//}
+
+
+#pragma mark - Calculation Methods
 
 - (NSNumber *)averageRatingFromCuppingRatingInCoffee:(Coffee *)coffee
 {
@@ -64,6 +73,9 @@
     return [NSNumber numberWithFloat:sumOfRatingsInCuppings/(CGFloat)coffee.cuppings.count];
 }
 
+
+#pragma mark - Sorting Methods
+
 -(void)sortByCoffeeNameOrOrigin
 {
     NSSortDescriptor *nameOrOriginSortDescriptor = [[NSSortDescriptor alloc]
@@ -72,83 +84,48 @@
     self.coffees = [[self.coffees sortedArrayUsingDescriptors:@[nameOrOriginSortDescriptor]]mutableCopy];
 }
 
--(void)sortByCuppingDateInCoffee:(Coffee *)coffee;
+//-(void)sortByCuppingDateInCoffee:(Coffee *)coffee;
+//{
+//    NSSortDescriptor *cuppingDateSortDescriptor = [[NSSortDescriptor alloc]
+//                                                    initWithKey:@"cuppingDate" ascending:YES selector:@selector(localizedStandardCompare:)];
+//    
+//    coffee.cuppings = [[coffee.cuppings sortedArrayUsingDescriptors:@[cuppingDateSortDescriptor]]mutableCopy];
+//}
+
+
+#pragma mark - Temporary/Test Methods
+
+- (void)seedInitialDataWithCompletion:(void (^)())block
 {
-    NSSortDescriptor *cuppingDateSortDescriptor = [[NSSortDescriptor alloc]
-                                                    initWithKey:@"cuppingDate" ascending:YES selector:@selector(localizedStandardCompare:)];
-    
-    coffee.cuppings = [[coffee.cuppings sortedArrayUsingDescriptors:@[cuppingDateSortDescriptor]]mutableCopy];
-}
-
-//- (void)save
-//{
-//    // change to telling the context to save
-//    [NSKeyedArchiver archiveRootObject:self.coffees toFile:dataSourcePListPath];
-//}
-
-//- (instancetype)initWithSampleCoreData
-//{
-//    self = [super init];
-//    
-//    Coffee *gangstaCoffee = [NSEntityDescription insertNewObjectForEntityForName:@"Coffee" inManagedObjectContext:self.objectContext];
-//    rapLabel.name = @"Gangsta P";
-//    Label *countryLabel = [NSEntityDescription insertNewObjectForEntityForName:@"Label" inManagedObjectContext:self.objectContext];
-//    countryLabel.name = @"Cowboy Hats";
-//    
-//    Label *popLabel = [NSEntityDescription insertNewObjectForEntityForName:@"Label" inManagedObjectContext:self.objectContext];
-//    popLabel.name = @"Lolipopcorn";
-//    NSError *error;
-//    
-//    [self.objectContext save:&error];
-//    
-//    if (error)
-//    {
-//        NSLog(@"error: %@", error.localizedDescription);
-//    }
-//
-//
-//}
-
-//-(instancetype)initWithCoffees
-//{
-//    self = [super init];
-//    
-//    self.coffees = [[NSMutableArray alloc] init];
-//    
-//    if ([[NSFileManager defaultManager] fileExistsAtPath:dataSourcePListPath]){
-//        self.coffees = [[NSKeyedUnarchiver unarchiveObjectWithFile:dataSourcePListPath] mutableCopy];
-//    } else {
-//        NSString *pListBundlePath = [[NSBundle mainBundle] pathForResource:@"DataSourcePropertyList" ofType:@"plist"];
-//        NSDictionary *rootDictionary = [[NSDictionary alloc] initWithContentsOfFile:pListBundlePath];
+    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    [appDelegate createManagedObjectContext:^(NSManagedObjectContext *context) {
+        
+        self.objectContext = context;
+        
+//        Coffee *seattleCoffee = [NSEntityDescription insertNewObjectForEntityForName:@"Coffee" inManagedObjectContext:self.objectContext];
+//        seattleCoffee.nameOrOrigin = @"Ethiopian Yergecheffe";
+//        seattleCoffee.roaster = @"Conduit Coffee";
 //        
-//        NSMutableArray *tempCoffeesArray = [rootDictionary objectForKey:@"Coffees"];
+//        Coffee *kentuckeyCoffee = [NSEntityDescription insertNewObjectForEntityForName:@"Coffee" inManagedObjectContext:self.objectContext];
+//        kentuckeyCoffee.nameOrOrigin = @"House Blend";
+//        kentuckeyCoffee.roaster = @"Moonshine Coffee Roasters";
 //        
-//        for (NSDictionary *coffeeDictionary in tempCoffeesArray) {
-//            CoffeeModel *newCoffee = [CoffeeModel new];
-//            newCoffee.nameOrOrigin  = [coffeeDictionary objectForKey:@"nameOrOrigin"];
-//            newCoffee.roaster       = [coffeeDictionary objectForKey:@"roaster"];
-//            newCoffee.averageRating = [coffeeDictionary objectForKey:@"averageRating"];
-//            newCoffee.cuppings      = [[coffeeDictionary objectForKey:@"Cuppings"] mutableCopy];
-//            
-//            for (NSDictionary *cuppingDictionary in newCoffee.cuppings) {
-//                CuppingModel *newCupping = [CuppingModel new];
-//                newCupping.cuppingNameOrOrigin  = [cuppingDictionary objectForKey:@"cuppingNameOrOrigin"];
-//                newCupping.cuppingRoaster       = [cuppingDictionary objectForKey:@"cuppingRoaster"];
-//                newCupping.cuppingDate          = [cuppingDictionary objectForKey:@"cuppingDate"];
-//                newCupping.location             = [cuppingDictionary objectForKey:@"location"];
-//                newCupping.roastDate            = [cuppingDictionary objectForKey:@"roastDate"];
-//                newCupping.brewingMethod        = [cuppingDictionary objectForKey:@"brewingMethod"];
-//                newCupping.cuppingRating        = [cuppingDictionary objectForKey:@"cuppingRating"];
-//                
-//                [newCoffee.cuppings addObject:newCupping];
-//            }
-//            [self.coffees addObject:newCoffee];
+//        Coffee *frenchCoffee = [NSEntityDescription insertNewObjectForEntityForName:@"Coffee" inManagedObjectContext:self.objectContext];
+//        frenchCoffee.nameOrOrigin = @"French Roast (Obviously)";
+//        frenchCoffee.roaster = @"Le Caffee du Chat";
+//        
+//        NSError *error;
+//        
+//        [self.objectContext save:&error];
+//        
+//        if (error) {
+//            NSLog(@"error: %@", error.localizedDescription);
 //        }
-//        [self save];
-//    }
-//    NSLog(@"%@", self.coffees);
-//    
-//    return self;
-//}
+        
+        block();
+        
+    }];
+
+}
 
 @end

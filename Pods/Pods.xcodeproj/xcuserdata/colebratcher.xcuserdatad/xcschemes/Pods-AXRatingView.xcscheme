@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "3320BCBD9B784C52B710FAD1"
+               BlueprintIdentifier = "C8BF08858869447899FCBE2E"
                BuildableName = "libPods-AXRatingView.a"
                BlueprintName = "Pods-AXRatingView"
                ReferencedContainer = "container:Pods.xcodeproj">

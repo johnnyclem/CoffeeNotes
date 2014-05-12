@@ -34,23 +34,18 @@
 {
     [super viewDidLoad];
     
-    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
+    self.coffeesTableView.delegate = self;
+    self.coffeesTableView.dataSource = self;
     
-    [appDelegate createManagedObjectContext:^(NSManagedObjectContext *context) {
-        self.objectContext = context;
+    [[DataController sharedController] seedInitialDataWithCompletion:^{
         
-        self.coffeesTableView.delegate = self;
-        self.coffeesTableView.dataSource = self;
+       
         
-        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Coffee"];
-        NSError *error;
-        
-        self.coffees = [self.objectContext executeFetchRequest:fetchRequest error:&error];
+        self.coffees = [[DataController sharedController] fetchAllCoffees];
         
         [self.coffeesTableView reloadData];
     }];
-    
-    [DataController sharedController];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -61,6 +56,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
     [[DataController sharedController] sortByCoffeeNameOrOrigin];
     [self.coffeesTableView reloadData];
 }
@@ -96,13 +92,13 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [DataController sharedController].coffees.count;
+    return self.coffees.count;
 }
 
 -(CoffeeCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CoffeeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CoffeeCell" forIndexPath:indexPath];
-    Coffee *coffee = [[DataController sharedController].coffees objectAtIndex:indexPath.row];
+    Coffee *coffee = [self.coffees objectAtIndex:indexPath.row];
     cell.coffeeCellNameOrOriginLabel.text = [NSString stringWithFormat:@"%@", coffee.nameOrOrigin];
     cell.coffeeCellRoasterLabel.text = [NSString stringWithFormat:@"%@", coffee.roaster];
     

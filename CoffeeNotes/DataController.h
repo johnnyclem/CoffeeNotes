@@ -14,27 +14,24 @@
 
 @property (strong, nonatomic) NSMutableArray *coffees;
 
+// Init Methods
 +(DataController *)sharedController;
++ (NSString *)applicationDocumentsDirectory;
 
-// Init
+// Management Methods
+-(NSArray *)fetchAllCoffees;
+-(NSArray *)fetchAllCuppingsForCoffee:(Coffee *)coffee;
 
-+(NSString *)applicationDocumentsDirectory;
-//-(instancetype)initWithCoffees;
-//-(instancetype)initwithCuppingsFromCoffee:(Coffee *)coffee;
+// Calculation Methods
+- (NSNumber *)averageRatingFromCuppingRatingInCoffee:(Coffee *)coffee;
 
-- (instancetype)initWithSampleCoreData;
+// Sorting Methods
+- (void)sortByCoffeeNameOrOrigin;
+//- (void)sortByCuppingDateInCoffee:(Coffee *)coffee;
 
-// Edit
-//-(void)addCoffee:(Coffee *)newCoffee;
-//-(void)addCupping:(Cupping *)newCupping ToCoffee:(Coffee *)coffee;
-//-(void)deleteCoffee:(Coffee *)coffeeToDelete;
-//-(void)deleteCupping:(Cupping *)cuppingToDelete FromCoffee:(Coffee *)coffee;
+// Temporary/Test Methods
+- (void)seedInitialDataWithCompletion:(void (^)())block;
 
-// Management
--(NSNumber *)averageRatingFromCuppingRatingInCoffee:(Coffee *)coffee;
--(void)sortByCoffeeNameOrOrigin;
--(void)sortByCuppingDateInCoffee:(Coffee *)coffee;
 
-//-(void)save;
 
 @end
