@@ -603,8 +603,7 @@
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="pickDateForCoffee:" destination="5Ll-dC-t14" eventType="touchUpInside" id="JnM-pl-v28"/>
-                                                    <segue destination="oaU-LC-M1r" kind="modal" identifier="ChooseCuppingDateFromAddCoffeeControllerSegue" id="0ri-hj-WQc"/>
+                                                    <segue destination="oaU-LC-M1r" kind="modal" identifier="PickCuppingDateFromCoffee" modalTransitionStyle="coverVertical" id="Zf5-Qt-1AL"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1E8-DX-r6U">
@@ -615,8 +614,7 @@
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="pickDateForCoffee:" destination="5Ll-dC-t14" eventType="touchUpInside" id="02R-0k-q28"/>
-                                                    <segue destination="oaU-LC-M1r" kind="modal" identifier="ChooseRoastingDateFromAddCoffeeControllerSegue" id="TEq-X3-bCf"/>
+                                                    <segue destination="oaU-LC-M1r" kind="modal" identifier="PickRoastDateFromCoffee" modalTransitionStyle="coverVertical" id="O3U-oe-1nf"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -719,6 +717,8 @@
                         <outlet property="addOrEditCoffeeScrollView" destination="OAE-4i-Dcf" id="Cc5-UO-oUL"/>
                         <outlet property="brewingMethodTextField" destination="3hO-5f-xBy" id="BT5-WH-nnt"/>
                         <outlet property="cancelBarButton" destination="G4d-Bd-wEQ" id="aVw-bh-erK"/>
+                        <outlet property="chooseCuppingDateButton" destination="g6J-q7-Jlj" id="QNl-3x-3Ma"/>
+                        <outlet property="chooseRoastingDateButton" destination="1E8-DX-r6U" id="WwY-Nu-ygM"/>
                         <outlet property="deleteCoffeeButton" destination="pz0-7t-Rfe" id="auk-Y0-edL"/>
                         <outlet property="locationTextField" destination="Bbi-37-2d7" id="tXE-RZ-T9N"/>
                         <outlet property="mainViewSaveButton" destination="bDZ-6o-aWX" id="brQ-GU-KVH"/>
@@ -732,6 +732,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SHB-57-mgv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="jtf-pF-MII" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1229" y="-2514"/>
         </scene>
@@ -747,14 +748,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="206"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Pzi-d8-jb5">
+                            <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Pzi-d8-jb5">
                                 <rect key="frame" x="0.0" y="44" width="320" height="162"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <date key="date" timeIntervalSinceReferenceDate="421626118.70504099">
                                     <!--2014-05-12 22:21:58 +0000-->
                                 </date>
                                 <timeZone key="timeZone" name="America/Los_Angeles">
-                                    <mutableData key="data">
+                                    <data key="data">
 VFppZgAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAC5AAAABAAAABCepkign7sVkKCGKqChmveQ
 y4kaoNIj9HDSYSYQ1v50INiArZDa/tGg28CQENzes6DdqayQ3r6VoN+JjpDgnneg4WlwkOJ+WaDjSVKQ
 5F47oOUpNJDmR1gg5xJREOgnOiDo8jMQ6gccIOrSFRDr5v4g7LH3EO3G4CDukdkQ76/8oPBxuxDxj96g
@@ -772,20 +774,28 @@ f5gqkAABAAECAwEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
 AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
 AQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEAAQABAAEA
 AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
-</mutableData>
+</data>
                                 </timeZone>
                             </datePicker>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0tY-b1-NmP">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem systemItem="cancel" id="Sel-WW-P0p"/>
+                                    <barButtonItem systemItem="cancel" id="Sel-WW-P0p">
+                                        <connections>
+                                            <segue destination="jtf-pF-MII" kind="unwind" identifier="CoffeeDatePickerCancelExitSegue" unwindAction="CoffeeDatePickerExitSegue:" id="BSl-lZ-3Xg"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="QJg-br-9nt"/>
-                                    <barButtonItem systemItem="done" id="9vS-7p-1ML"/>
+                                    <barButtonItem systemItem="done" id="9vS-7p-1ML">
+                                        <connections>
+                                            <segue destination="jtf-pF-MII" kind="unwind" identifier="CoffeeDatePickerDoneExitSegue" unwindAction="CoffeeDatePickerExitSegue:" id="fiH-le-3sW"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="0.5" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="0.52000000000000002" colorSpace="calibratedWhite"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="206"/>
@@ -1478,8 +1488,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="7RQ-9d-aF7"/>
         <segue reference="YEJ-8o-byp"/>
-        <segue reference="TEq-X3-bCf"/>
+        <segue reference="7RQ-9d-aF7"/>
+        <segue reference="Zf5-Qt-1AL"/>
     </inferredMetricsTieBreakers>
 </document>

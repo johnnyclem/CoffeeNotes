@@ -128,7 +128,7 @@
     CuppingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CuppingCell" forIndexPath:indexPath];
     
     Cupping *cupping = self.cuppings[indexPath.row];
-    cell.cuppingCellDateLabel.text = [NSString stringWithFormat:@"%@", cupping.cuppingDate];
+    cell.cuppingCellDateLabel.text = [[DataController sharedController] createStringFromDate:self.cupping.cuppingDate];
     cell.cuppingCellLocationLabel.text = [NSString stringWithFormat:@"%@", cupping.location];
     
     cell.cuppingCellImageView.layer.cornerRadius = 22;

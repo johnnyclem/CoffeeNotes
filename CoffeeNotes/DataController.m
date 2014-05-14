@@ -128,4 +128,13 @@
 
 }
 
+-(NSString *)createStringFromDate:(NSDate *)date
+{
+    NSDateFormatter *dateFormatter = [NSDateFormatter new];
+    [dateFormatter setDateFormat:@"dd/mm/yyyy"];
+    NSString *dateString = [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:date]];
+    return dateString;
+}
+
+
 @end

@@ -13,5 +13,7 @@
 
 // models
 @property (weak, nonatomic) Coffee *editableCoffee;
+@property (weak, nonatomic) NSDate *cuppingDateHolder;
+@property (weak, nonatomic) NSDate *roastDateHolder;
 
 @end

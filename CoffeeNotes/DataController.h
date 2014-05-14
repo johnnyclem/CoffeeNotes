@@ -32,6 +32,6 @@
 // Temporary/Test Methods
 - (void)seedInitialDataWithCompletion:(void (^)())block;
 
-
+-(NSString *)createStringFromDate:(NSDate *)date;
 
 @end

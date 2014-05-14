@@ -9,8 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Coffee.h"
 #import "Cupping.h"
-
-@class DataController;
+#import "DataController.h"
 
 @interface CuppingDetailViewController : UIViewController
 

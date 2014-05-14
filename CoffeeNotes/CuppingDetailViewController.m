@@ -36,8 +36,8 @@
 
     // text fields
     self.locationDisplayLabel.text          = self.selectedCupping.location;
-    self.cuppingDateDisplayLabel.text       = self.selectedCupping.cuppingDate;
-    self.roastDateDisplayLabel.text         = self.selectedCupping.roastDate;
+    self.cuppingDateDisplayLabel.text       = [[DataController sharedController] createStringFromDate:self.selectedCupping.cuppingDate];
+    self.roastDateDisplayLabel.text         = [[DataController sharedController] createStringFromDate:self.selectedCupping.roastDate];
     self.brewingMethodDisplayLabel.text     = self.selectedCupping.brewingMethod;
     self.notesTextField.text                = self.selectedCupping.cuppingNotes;
     
