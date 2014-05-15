@@ -11,9 +11,20 @@
 
 @interface AddOrEditCoffeeViewController : UIViewController
 
+
+
 // models
 @property (weak, nonatomic) Coffee *editableCoffee;
 @property (weak, nonatomic) NSDate *cuppingDateHolder;
 @property (weak, nonatomic) NSDate *roastDateHolder;
+
+// buttons
+@property (weak, nonatomic) IBOutlet UIButton *chooseCuppingDateButton;
+@property (weak, nonatomic) IBOutlet UIButton *chooseRoastDateButton;
+@property (weak, nonatomic) IBOutlet UIButton *mainViewSaveButton;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *saveBarButton;
+
+@property (weak, nonatomic) IBOutlet UITextField *nameOrOriginTextField;
+
 
 @end

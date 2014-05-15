@@ -493,7 +493,7 @@
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="huQ-72-ZxP">
+                                            <view contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="huQ-72-ZxP" customClass="AXRatingView">
                                                 <rect key="frame" x="20" y="523" width="280" height="54"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -718,14 +718,14 @@
                         <outlet property="brewingMethodTextField" destination="3hO-5f-xBy" id="BT5-WH-nnt"/>
                         <outlet property="cancelBarButton" destination="G4d-Bd-wEQ" id="aVw-bh-erK"/>
                         <outlet property="chooseCuppingDateButton" destination="g6J-q7-Jlj" id="QNl-3x-3Ma"/>
-                        <outlet property="chooseRoastingDateButton" destination="1E8-DX-r6U" id="WwY-Nu-ygM"/>
+                        <outlet property="chooseRoastDateButton" destination="1E8-DX-r6U" id="nt8-as-XSR"/>
+                        <outlet property="coffeeCuppingRatingView" destination="huQ-72-ZxP" id="11G-EF-xGN"/>
                         <outlet property="deleteCoffeeButton" destination="pz0-7t-Rfe" id="auk-Y0-edL"/>
                         <outlet property="locationTextField" destination="Bbi-37-2d7" id="tXE-RZ-T9N"/>
                         <outlet property="mainViewSaveButton" destination="bDZ-6o-aWX" id="brQ-GU-KVH"/>
                         <outlet property="nameOrOriginTextField" destination="F0w-Zp-0xZ" id="Rno-rl-SQg"/>
                         <outlet property="notesTextView" destination="FPH-Bl-eba" id="67a-g7-lyg"/>
                         <outlet property="photoImageView" destination="MPo-A6-Gdf" id="OhA-wq-4Ah"/>
-                        <outlet property="ratingView" destination="huQ-72-ZxP" id="efa-zP-1H1"/>
                         <outlet property="roasterTextField" destination="Vqs-Hb-TDG" id="8an-5a-ro6"/>
                         <outlet property="saveBarButton" destination="OGs-g2-tFN" id="d9Q-eO-WHX"/>
                         <segue destination="ySp-l1-clf" kind="unwind" identifier="DeleteCoffeeSegue" unwindAction="deleteCoffeeSegue:" id="J8m-f5-GDP"/>
@@ -745,13 +745,12 @@
                         <viewControllerLayoutGuide type="bottom" id="Heg-Ov-VmW"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="af8-PS-oWm">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="206"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="201"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Pzi-d8-jb5">
                                 <rect key="frame" x="0.0" y="44" width="320" height="162"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <date key="date" timeIntervalSinceReferenceDate="421626118.70504099">
                                     <!--2014-05-12 22:21:58 +0000-->
                                 </date>
@@ -795,14 +794,17 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 </items>
                             </toolbar>
                         </subviews>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="0.52000000000000002" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-                    <size key="freeformSize" width="320" height="206"/>
+                    <size key="freeformSize" width="320" height="201"/>
+                    <connections>
+                        <outlet property="datePicker" destination="Pzi-d8-jb5" id="B5P-Cn-nVd"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sAe-wa-Xkz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1810" y="-2338"/>
+            <point key="canvasLocation" x="1821" y="-2133"/>
         </scene>
         <!--Cupping Detail View Controller-->
         <scene sceneID="wz4-RM-VkM">

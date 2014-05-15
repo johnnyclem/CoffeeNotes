@@ -14,13 +14,13 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "AppDelegate.h"
 #import "DatePickerViewController.h"
+#import <AXRatingView/AXRatingView.h>
 
 
 
 @interface AddOrEditCoffeeViewController () <UIImagePickerControllerDelegate, UIActionSheetDelegate, UITextFieldDelegate, UITextViewDelegate, UIAlertViewDelegate>
 
 // textFields and textViews
-@property (weak, nonatomic) IBOutlet UITextField *nameOrOriginTextField;
 @property (weak, nonatomic) IBOutlet UITextField *roasterTextField;
 @property (weak, nonatomic) IBOutlet UITextField *locationTextField;
 
@@ -29,13 +29,11 @@
 
 // buttons
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cancelBarButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *saveBarButton;
 @property (weak, nonatomic) IBOutlet UIButton *deleteCoffeeButton;
-@property (weak, nonatomic) IBOutlet UIButton *mainViewSaveButton;
+
 
 // views and imageViews
 @property (weak, nonatomic) IBOutlet UIScrollView *addOrEditCoffeeScrollView;
-@property (weak, nonatomic) IBOutlet UIView *ratingView;
 @property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
 //@property (weak, nonatomic) IBOutlet UIImageView *tastingWheelImageView;
 
@@ -43,8 +41,10 @@
 @property (strong, nonatomic) UIActionSheet *addOrChangePhotoActionSheet;
 
 @property (weak, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (weak, nonatomic) IBOutlet UIButton *chooseCuppingDateButton;
-@property (weak, nonatomic) IBOutlet UIButton *chooseRoastingDateButton;
+
+@property (weak, nonatomic) IBOutlet AXRatingView *coffeeCuppingRatingView;
+
+
 
 @end
 
@@ -68,7 +68,7 @@
         self.roasterTextField.text = self.editableCoffee.roaster;
         self.locationTextField.enabled = NO;
         self.chooseCuppingDateButton.enabled = NO;
-        self.chooseRoastingDateButton.enabled = NO;
+        self.chooseRoastDateButton.enabled = NO;
         self.brewingMethodTextField.enabled = NO;
         self.notesTextView.editable = NO;
         self.deleteCoffeeButton.enabled = YES;
@@ -117,6 +117,8 @@
     self.mainViewSaveButton.enabled = (self.nameOrOriginTextField.text.length > 0) && (![self.chooseCuppingDateButton.titleLabel.text isEqualToString:@"Choose Cupping Date"]);
 }
 
+// Button title did change method.
+
 #pragma mark - Segues
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -124,32 +126,38 @@
     if ([segue.identifier isEqualToString:@"addCoffeeExitSegue"])
     {
         // New Coffee Stuff
-        Coffee *newCoffee;
-                
+        Coffee *newCoffee = [NSEntityDescription insertNewObjectForEntityForName:@"Coffee" inManagedObjectContext:self.managedObjectContext];
         newCoffee.nameOrOrigin = self.nameOrOriginTextField.text;
         newCoffee.roaster = self.roasterTextField.text;
         
+        NSError *error;
+        
+        [newCoffee.managedObjectContext save:&error];
+        
         // New Cupping Stuff
-        Cupping *newCupping;
-        newCupping.location = self.locationTextField.text;
-//        newCupping.cuppingDate =
-//        newCupping.roastDate =
-        newCupping.brewingMethod = self.brewingMethodTextField.text;
-        //        newCupping.cuppingRating = self.addCoffeeRatingView;
+        Cupping *newCupping         = [NSEntityDescription insertNewObjectForEntityForName:@"Cupping" inManagedObjectContext:self.managedObjectContext];
+        newCupping.location         = self.locationTextField.text;
+        newCupping.cuppingDate      = self.cuppingDateHolder;
+        newCupping.roastDate        = self.roastDateHolder;
+        newCupping.brewingMethod    = self.brewingMethodTextField.text;
+        
+        NSNumber *numberFromFloatValue = [[NSNumber alloc]initWithFloat:self.coffeeCuppingRatingView.value];
+        newCupping.rating = numberFromFloatValue;
         newCupping.photo = self.photoImageView.image;
         newCupping.cuppingNotes = self.notesTextView.text;
+       
+        newCupping.coffee = newCoffee;
         
-        [[DataController sharedController].coffees addObject:newCoffee];
+        // Add Save Command!
         
-        // Add Save Command!!
-        NSError *error;
-        [self.editableCoffee.managedObjectContext save:&error];
+        [newCupping.managedObjectContext save:&error];
+        
     } else if ([segue.identifier isEqualToString:@"PickCuppingDateFromCoffee"]) {
         DatePickerViewController *destination = segue.destinationViewController;
-        destination.datePickerDate = self.cuppingDateHolder;
+        destination.segueKey = @"PickCuppingDateFromCoffee";
     } else if ([segue.identifier isEqualToString:@"PickRoastDateFromCoffee"]) {
         DatePickerViewController *destination = segue.destinationViewController;
-        destination.datePickerDate = self.roastDateHolder;
+        destination.segueKey = @"PickRoastDateFromCoffee";
     }
 }
 
@@ -165,11 +173,17 @@
 {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
-        self.addOrChangePhotoActionSheet = [[UIActionSheet alloc] initWithTitle:@"Photos" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete Photo" otherButtonTitles:@"Take Photo",@"Choose Photo", nil];
+        self.addOrChangePhotoActionSheet = [[UIActionSheet alloc] initWithTitle:@"Photos"
+                                                                       delegate:self
+                                                              cancelButtonTitle:@"Cancel"
+                                                         destructiveButtonTitle:@"Delete Photo"
+                                                              otherButtonTitles:@"Take Photo",@"Choose Photo", nil];
         
     } else {
         
-        self.addOrChangePhotoActionSheet  = [[UIActionSheet alloc] initWithTitle:@"Photos" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete Photo" otherButtonTitles:@"Choose Photo", nil];
+        self.addOrChangePhotoActionSheet  = [[UIActionSheet alloc] initWithTitle:@"Photos"
+                                                                        delegate:self
+                                                               cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete Photo" otherButtonTitles:@"Choose Photo", nil];
     }
     [self.addOrChangePhotoActionSheet showInView:self.view];
 }
@@ -262,7 +276,7 @@
 {
     if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Delete"]) {
         
-        [[DataController sharedController].coffees removeObject:self.editableCoffee];
+        [self.editableCoffee.managedObjectContext deleteObject:self.editableCoffee];
         [self performSegueWithIdentifier:@"DeleteCoffeeSegue" sender:self];
     }
 }

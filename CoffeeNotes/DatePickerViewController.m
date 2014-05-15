@@ -12,6 +12,10 @@
 
 @interface DatePickerViewController ()
 
+@property (nonatomic, strong) NSDate *datePickerDate;
+@property (weak, nonatomic) IBOutlet UIDatePicker *datePicker;
+
+
 @end
 
 @implementation DatePickerViewController
@@ -19,7 +23,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+//    if (self.datePickerCuppingDateFromCupping) {
+//        
+//    } else if (self.datePickerRoastDateFromCupping) {
+//        
+//    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -32,7 +41,15 @@
 {
     if ([segue.identifier isEqualToString:@"CoffeeDatePickerDoneExitSegue"]) {
         AddOrEditCoffeeViewController *destination = segue.destinationViewController;
-        destination.cuppingDateHolder = self.datePickerDate;
+        if ([self.segueKey isEqualToString:@"PickCuppingDateFromCoffee"]) {
+            destination.cuppingDateHolder = self.datePicker.date;
+            destination.chooseCuppingDateButton.titleLabel.text = [[DataController sharedController]createStringFromDate:self.datePicker.date];
+            destination.saveBarButton.enabled = (destination.nameOrOriginTextField.text.length > 0) && (![destination.chooseCuppingDateButton.titleLabel.text isEqualToString:@"Choose Cupping Date"]);
+            destination.mainViewSaveButton.enabled = (destination.nameOrOriginTextField.text.length > 0) && (![destination.chooseCuppingDateButton.titleLabel.text isEqualToString:@"Choose Cupping Date"]);
+        } else if ([self.segueKey isEqualToString:@"PickRoastDateFromCoffee"]) {
+            destination.roastDateHolder = self.datePicker.date;
+            destination.chooseRoastDateButton.titleLabel.text = [[DataController sharedController]createStringFromDate:self.datePicker.date];
+        }
     }
 }
 

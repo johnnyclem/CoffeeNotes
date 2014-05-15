@@ -49,27 +49,27 @@
 {
     [super viewDidLoad];
     
-    AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-    self.managedObjectContext = appDelegate.objectContext;
+    AppDelegate *appDelegate                = [UIApplication sharedApplication].delegate;
+    self.managedObjectContext               = appDelegate.objectContext;
 
-    self.coffeeNameOrOriginLabel.text = self.selectedCoffee.nameOrOrigin;
-    self.roasterLabel.text = self.selectedCoffee.roaster;
+    self.coffeeNameOrOriginLabel.text       = self.selectedCoffee.nameOrOrigin;
+    self.roasterLabel.text                  = self.selectedCoffee.roaster;
     
-    self.locationTextField.delegate = self;
-    self.cuppingDateTextField.delegate = self;
-    self.roastDateTextField.delegate = self;
-    self.brewingMethodTextField.delegate = self;
-    self.notesTextView.delegate = self;
+    self.locationTextField.delegate         = self;
+    self.cuppingDateTextField.delegate      = self;
+    self.roastDateTextField.delegate        = self;
+    self.brewingMethodTextField.delegate    = self;
+    self.notesTextView.delegate             = self;
     
     if (self.editableCupping) {
         
-        self.locationTextField.text = self.editableCupping.location;
-        self.cuppingDateTextField.text = self.editableCupping.cuppingDate;
-        self.roastDateTextField.text = self.editableCupping.roastDate;
-        self.brewingMethodTextField.text = self.editableCupping.brewingMethod;
-        self.notesTextView.text = self.editableCupping.cuppingNotes;
-        self.cuppingRatingView.value = self.editableCupping.rating.floatValue;
-        self.deleteCuppingButton.enabled = YES;
+        self.locationTextField.text         = self.editableCupping.location;
+        self.cuppingDateTextField.text      = [[DataController sharedController]createStringFromDate:self.editableCupping.cuppingDate];
+        self.roastDateTextField.text        = [[DataController sharedController]createStringFromDate:self.editableCupping.roastDate];
+        self.brewingMethodTextField.text    = self.editableCupping.brewingMethod;
+        self.notesTextView.text             = self.editableCupping.cuppingNotes;
+        self.cuppingRatingView.value        = self.editableCupping.rating.floatValue;
+        self.deleteCuppingButton.enabled    = YES;
         
     }
     
@@ -97,20 +97,23 @@
 
 #pragma mark - IBActions
 
-- (IBAction)ratingChanged:(AXRatingView *)sender
-{
-    NSLog(@"Changed Rating to %.0f", sender.value);
-}
-
 -(IBAction)addOrChangePhotoButtonPressed:(id)sender
 {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
-        self.addOrChangePhotoActionSheet = [[UIActionSheet alloc] initWithTitle:@"Photos" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete Photo" otherButtonTitles:@"Take Photo",@"Choose Photo", nil];
+        self.addOrChangePhotoActionSheet = [[UIActionSheet alloc] initWithTitle:@"Photos"
+                                                                       delegate:self
+                                                              cancelButtonTitle:@"Cancel"
+                                                         destructiveButtonTitle:@"Delete Photo"
+                                                              otherButtonTitles:@"Take Photo",@"Choose Photo", nil];
         
     } else {
         
-        self.addOrChangePhotoActionSheet  = [[UIActionSheet alloc] initWithTitle:@"Photos" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete Photo" otherButtonTitles:@"Choose Photo", nil];
+        self.addOrChangePhotoActionSheet  = [[UIActionSheet alloc] initWithTitle:@"Photos"
+                                                                        delegate:self
+                                                               cancelButtonTitle:@"Cancel"
+                                                          destructiveButtonTitle:@"Delete Photo"
+                                                               otherButtonTitles:@"Choose Photo", nil];
     }
     [self.addOrChangePhotoActionSheet showInView:self.view];
 }
@@ -119,10 +122,10 @@
 {
     if ([self.deleteCuppingButton isEnabled]) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                           message:@"Are you sure you want to delete this cupping?"
-                                                          delegate:self
-                                                 cancelButtonTitle:@"Cancel"
-                                                 otherButtonTitles:@"Delete", nil];
+                                                            message:@"Are you sure you want to delete this cupping?"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:@"Delete", nil];
         [alertView show];
     }
 }
@@ -135,16 +138,15 @@
     {
         Cupping *newCupping;
         
-        if (self.editableCupping)
-        {
+        if (self.editableCupping) {
             newCupping = self.editableCupping;
-        }
-        else{
+        } else {
             newCupping = [NSEntityDescription insertNewObjectForEntityForName:@"Cupping" inManagedObjectContext:self.selectedCoffee.managedObjectContext];;
         }
+        
         newCupping.location = self.locationTextField.text;
-        newCupping.cuppingDate = self.cuppingDateTextField.text;
-        newCupping.roastDate = self.roastDateTextField.text;
+//        newCupping.cuppingDate = self.cuppingDateTextField.text;
+//        newCupping.roastDate = self.roastDateTextField.text;
         newCupping.brewingMethod = self.brewingMethodTextField.text;
         newCupping.cuppingNotes = self.notesTextView.text;
         newCupping.photo = self.photoImageView.image;

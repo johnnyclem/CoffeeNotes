@@ -47,9 +47,14 @@
 -(NSArray *)fetchAllCoffees
 {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"Coffee"];
+    
     NSError *error;
     
-    return [self.objectContext executeFetchRequest:fetchRequest error:nil];
+    NSArray *fetchedCoffees = [self.objectContext executeFetchRequest:fetchRequest error:&error];
+
+    NSLog(@"Coffee Count: %d", fetchedCoffees.count);
+    NSLog(@"All Coffees: %@", fetchedCoffees);
+    return fetchedCoffees;
 }
 
 //-(NSArray *)fetchAllCuppingsForCoffee:(Coffee *)coffee
@@ -131,7 +136,7 @@
 -(NSString *)createStringFromDate:(NSDate *)date
 {
     NSDateFormatter *dateFormatter = [NSDateFormatter new];
-    [dateFormatter setDateFormat:@"dd/mm/yyyy"];
+    [dateFormatter setDateStyle:NSDateFormatterLongStyle];
     NSString *dateString = [NSString stringWithFormat:@"%@", [dateFormatter stringFromDate:date]];
     return dateString;
 }

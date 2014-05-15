@@ -10,6 +10,11 @@
 
 @interface DatePickerViewController : UIViewController
 
-@property (strong, nonatomic) NSDate *datePickerDate;
+
+@property (nonatomic, strong) NSString *segueKey;
+
+@property (strong, nonatomic) NSDate *datePickerCuppingDateFromCupping;
+@property (strong, nonatomic) NSDate *datePickerRoastDateFromCupping;
+
 
 @end
