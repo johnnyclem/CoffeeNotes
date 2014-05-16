@@ -37,7 +37,7 @@
     self.coffeesTableView.dataSource = self;
 
     [[DataController sharedController] seedInitialDataWithCompletion:^{
-        
+    
         self.coffees = [[DataController sharedController] fetchAllCoffees];
         
         [self.coffeesTableView reloadData];
@@ -99,6 +99,11 @@
     Coffee *coffee = [self.coffees objectAtIndex:indexPath.row];
     cell.coffeeCellNameOrOriginLabel.text = [NSString stringWithFormat:@"%@", coffee.nameOrOrigin];
     cell.coffeeCellRoasterLabel.text = [NSString stringWithFormat:@"%@", coffee.roaster];
+    
+    cell.coffeeCellAverageRating.value = [[[DataController sharedController]averageRatingFromCuppingRatingInCoffee:coffee]floatValue];
+    [cell.coffeeCellAverageRating sizeToFit];
+    [cell.coffeeCellAverageRating setStepInterval:0.5];
+    [cell.coffeeCellAverageRating setUserInteractionEnabled:NO];
     
     cell.coffeeCellImage.layer.cornerRadius = 22;
     cell.coffeeCellImage.layer.masksToBounds = YES;

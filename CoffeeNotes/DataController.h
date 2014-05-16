@@ -20,7 +20,7 @@
 
 // Management Methods
 -(NSArray *)fetchAllCoffees;
--(NSArray *)fetchAllCuppingsForCoffee:(Coffee *)coffee;
+//-(NSArray *)fetchAllCuppingsForCoffee:(Coffee *)coffee;
 
 // Calculation Methods
 - (NSNumber *)averageRatingFromCuppingRatingInCoffee:(Coffee *)coffee;

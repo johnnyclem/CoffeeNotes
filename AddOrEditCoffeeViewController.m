@@ -13,7 +13,7 @@
 #import "CoffeesViewController.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import "AppDelegate.h"
-#import "DatePickerViewController.h"
+#import "CoffeeDatePickerViewController.h"
 #import <AXRatingView/AXRatingView.h>
 
 
@@ -67,8 +67,8 @@
         self.nameOrOriginTextField.text = self.editableCoffee.nameOrOrigin;
         self.roasterTextField.text = self.editableCoffee.roaster;
         self.locationTextField.enabled = NO;
-        self.chooseCuppingDateButton.enabled = NO;
-        self.chooseRoastDateButton.enabled = NO;
+        self.chooseCuppingDateButtonFromCoffee.enabled = NO;
+        self.chooseRoastDateButtonFromCoffee.enabled = NO;
         self.brewingMethodTextField.enabled = NO;
         self.notesTextView.editable = NO;
         self.deleteCoffeeButton.enabled = YES;
@@ -113,8 +113,8 @@
 
 - (void)textFieldDidChange:(NSNotification *)note
 {
-    self.saveBarButton.enabled = (self.nameOrOriginTextField.text.length > 0) && (![self.chooseCuppingDateButton.titleLabel.text isEqualToString:@"Choose Cupping Date"]);
-    self.mainViewSaveButton.enabled = (self.nameOrOriginTextField.text.length > 0) && (![self.chooseCuppingDateButton.titleLabel.text isEqualToString:@"Choose Cupping Date"]);
+    self.saveBarButton.enabled = (self.nameOrOriginTextField.text.length > 0) && (![self.chooseCuppingDateButtonFromCoffee.titleLabel.text isEqualToString:@"Choose Cupping Date"]);
+    self.mainViewSaveButton.enabled = (self.nameOrOriginTextField.text.length > 0) && (![self.chooseCuppingDateButtonFromCoffee.titleLabel.text isEqualToString:@"Choose Cupping Date"]);
 }
 
 // Button title did change method.
@@ -137,8 +137,8 @@
         // New Cupping Stuff
         Cupping *newCupping         = [NSEntityDescription insertNewObjectForEntityForName:@"Cupping" inManagedObjectContext:self.managedObjectContext];
         newCupping.location         = self.locationTextField.text;
-        newCupping.cuppingDate      = self.cuppingDateHolder;
-        newCupping.roastDate        = self.roastDateHolder;
+        newCupping.cuppingDate      = self.coffeeCuppingDateHolder;
+        newCupping.roastDate        = self.coffeeRoastDateHolder;
         newCupping.brewingMethod    = self.brewingMethodTextField.text;
         
         NSNumber *numberFromFloatValue = [[NSNumber alloc]initWithFloat:self.coffeeCuppingRatingView.value];
@@ -153,10 +153,10 @@
         [newCupping.managedObjectContext save:&error];
         
     } else if ([segue.identifier isEqualToString:@"PickCuppingDateFromCoffee"]) {
-        DatePickerViewController *destination = segue.destinationViewController;
+        CoffeeDatePickerViewController *destination = segue.destinationViewController;
         destination.segueKey = @"PickCuppingDateFromCoffee";
     } else if ([segue.identifier isEqualToString:@"PickRoastDateFromCoffee"]) {
-        DatePickerViewController *destination = segue.destinationViewController;
+        CoffeeDatePickerViewController *destination = segue.destinationViewController;
         destination.segueKey = @"PickRoastDateFromCoffee";
     }
 }

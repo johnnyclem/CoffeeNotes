@@ -7,12 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AXRatingView/AXRatingView.h>
 
 @interface CoffeeCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *coffeeCellNameOrOriginLabel;
 @property (weak, nonatomic) IBOutlet UILabel *coffeeCellRoasterLabel;
-@property (weak, nonatomic) IBOutlet UIView *coffeeCellAverageRating;
+@property (weak, nonatomic) IBOutlet AXRatingView *coffeeCellAverageRating;
 @property (weak, nonatomic) IBOutlet UIImageView *coffeeCellImage;
 
 @end

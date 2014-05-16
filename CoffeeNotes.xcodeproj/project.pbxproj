@@ -12,9 +12,10 @@
 		3D230BC7191C004D00A710FE /* Cupping.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D230BC6191C004D00A710FE /* Cupping.m */; };
 		3D25946C191BF44600AD0326 /* Coffee.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D25946B191BF44600AD0326 /* Coffee.m */; };
 		3D259472191BF47A00AD0326 /* ImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D259471191BF47A00AD0326 /* ImageTransformer.m */; };
-		3D2EE5EF1921819200C413D2 /* DatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2EE5EE1921819200C413D2 /* DatePickerViewController.m */; };
+		3D2EE5EF1921819200C413D2 /* CoffeeDatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2EE5EE1921819200C413D2 /* CoffeeDatePickerViewController.m */; };
 		3D518169191BF0C40007D85C /* AppDelegate+CoreDataContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D518168191BF0C40007D85C /* AppDelegate+CoreDataContext.m */; };
 		3D51816C191BF10F0007D85C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3D51816A191BF10F0007D85C /* Model.xcdatamodeld */; };
+		3DA550FA1925C3A400FC0BCF /* CuppingDatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DA550F91925C3A400FC0BCF /* CuppingDatePickerViewController.m */; };
 		3DD88732190B1180002521AD /* CoffeeDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD88731190B1180002521AD /* CoffeeDetailViewController.m */; };
 		3DD88735190B1196002521AD /* CuppingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD88734190B1196002521AD /* CuppingDetailViewController.m */; };
 		3DD8873B190B11D5002521AD /* AddOrEditCuppingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3DD8873A190B11D5002521AD /* AddOrEditCuppingViewController.m */; };
@@ -46,11 +47,13 @@
 		3D25946B191BF44600AD0326 /* Coffee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Coffee.m; sourceTree = "<group>"; };
 		3D259470191BF47A00AD0326 /* ImageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTransformer.h; sourceTree = "<group>"; };
 		3D259471191BF47A00AD0326 /* ImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTransformer.m; sourceTree = "<group>"; };
-		3D2EE5ED1921819200C413D2 /* DatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DatePickerViewController.h; sourceTree = "<group>"; };
-		3D2EE5EE1921819200C413D2 /* DatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DatePickerViewController.m; sourceTree = "<group>"; };
+		3D2EE5ED1921819200C413D2 /* CoffeeDatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoffeeDatePickerViewController.h; sourceTree = "<group>"; };
+		3D2EE5EE1921819200C413D2 /* CoffeeDatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoffeeDatePickerViewController.m; sourceTree = "<group>"; };
 		3D518167191BF0C40007D85C /* AppDelegate+CoreDataContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "AppDelegate+CoreDataContext.h"; sourceTree = SOURCE_ROOT; };
 		3D518168191BF0C40007D85C /* AppDelegate+CoreDataContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "AppDelegate+CoreDataContext.m"; sourceTree = SOURCE_ROOT; };
 		3D51816B191BF10F0007D85C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		3DA550F81925C3A400FC0BCF /* CuppingDatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CuppingDatePickerViewController.h; sourceTree = "<group>"; };
+		3DA550F91925C3A400FC0BCF /* CuppingDatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CuppingDatePickerViewController.m; sourceTree = "<group>"; };
 		3DD88730190B1180002521AD /* CoffeeDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoffeeDetailViewController.h; sourceTree = "<group>"; };
 		3DD88731190B1180002521AD /* CoffeeDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoffeeDetailViewController.m; sourceTree = "<group>"; };
 		3DD88733190B1196002521AD /* CuppingDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CuppingDetailViewController.h; sourceTree = "<group>"; };
@@ -118,7 +121,7 @@
 			path = CoffeeNotes;
 			sourceTree = "<group>";
 		};
-		3D79B3F01911EF3800753DD1 /* CoffeesViewController */ = {
+		3D79B3F01911EF3800753DD1 /* Coffees */ = {
 			isa = PBXGroup;
 			children = (
 				3DE4601D190984D8002AF3C0 /* CoffeesViewController.h */,
@@ -126,10 +129,10 @@
 				3DD8873E190B166A002521AD /* CoffeeCell.h */,
 				3DD8873F190B166A002521AD /* CoffeeCell.m */,
 			);
-			name = CoffeesViewController;
+			name = Coffees;
 			sourceTree = "<group>";
 		};
-		3D79B3F11911EF4F00753DD1 /* CoffeeDetailViewController */ = {
+		3D79B3F11911EF4F00753DD1 /* CoffeeDetail */ = {
 			isa = PBXGroup;
 			children = (
 				3DD88730190B1180002521AD /* CoffeeDetailViewController.h */,
@@ -137,7 +140,7 @@
 				3D0518AB191025540020029B /* CuppingCell.h */,
 				3D0518AC191025540020029B /* CuppingCell.m */,
 			);
-			name = CoffeeDetailViewController;
+			name = CoffeeDetail;
 			sourceTree = "<group>";
 		};
 		3D79B3F21911F10400753DD1 /* Future */ = {
@@ -148,6 +151,28 @@
 			);
 			name = Future;
 			path = CoffeeNotes;
+			sourceTree = "<group>";
+		};
+		3DA550FB1925C3BA00FC0BCF /* AddOrEditCupping */ = {
+			isa = PBXGroup;
+			children = (
+				3DD88739190B11D5002521AD /* AddOrEditCuppingViewController.h */,
+				3DD8873A190B11D5002521AD /* AddOrEditCuppingViewController.m */,
+				3DA550F81925C3A400FC0BCF /* CuppingDatePickerViewController.h */,
+				3DA550F91925C3A400FC0BCF /* CuppingDatePickerViewController.m */,
+			);
+			name = AddOrEditCupping;
+			sourceTree = "<group>";
+		};
+		3DA550FC1925C3E100FC0BCF /* AddOrEditCoffee */ = {
+			isa = PBXGroup;
+			children = (
+				3DFF2FB8190C789B00D465F4 /* AddOrEditCoffeeViewController.h */,
+				3DFF2FB9190C789B00D465F4 /* AddOrEditCoffeeViewController.m */,
+				3D2EE5ED1921819200C413D2 /* CoffeeDatePickerViewController.h */,
+				3D2EE5EE1921819200C413D2 /* CoffeeDatePickerViewController.m */,
+			);
+			name = AddOrEditCoffee;
 			sourceTree = "<group>";
 		};
 		3DD8873C190B11E7002521AD /* Model */ = {
@@ -165,16 +190,12 @@
 		3DD8873D190B11FA002521AD /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3D79B3F01911EF3800753DD1 /* CoffeesViewController */,
-				3D79B3F11911EF4F00753DD1 /* CoffeeDetailViewController */,
+				3D79B3F01911EF3800753DD1 /* Coffees */,
+				3D79B3F11911EF4F00753DD1 /* CoffeeDetail */,
 				3DD88733190B1196002521AD /* CuppingDetailViewController.h */,
 				3DD88734190B1196002521AD /* CuppingDetailViewController.m */,
-				3DFF2FB8190C789B00D465F4 /* AddOrEditCoffeeViewController.h */,
-				3DFF2FB9190C789B00D465F4 /* AddOrEditCoffeeViewController.m */,
-				3DD88739190B11D5002521AD /* AddOrEditCuppingViewController.h */,
-				3DD8873A190B11D5002521AD /* AddOrEditCuppingViewController.m */,
-				3D2EE5ED1921819200C413D2 /* DatePickerViewController.h */,
-				3D2EE5EE1921819200C413D2 /* DatePickerViewController.m */,
+				3DA550FC1925C3E100FC0BCF /* AddOrEditCoffee */,
+				3DA550FB1925C3BA00FC0BCF /* AddOrEditCupping */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -355,7 +376,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3DE4601F190984D8002AF3C0 /* CoffeesViewController.m in Sources */,
-				3D2EE5EF1921819200C413D2 /* DatePickerViewController.m in Sources */,
+				3D2EE5EF1921819200C413D2 /* CoffeeDatePickerViewController.m in Sources */,
 				3DD88732190B1180002521AD /* CoffeeDetailViewController.m in Sources */,
 				3D259472191BF47A00AD0326 /* ImageTransformer.m in Sources */,
 				3DFF2FB6190C60F100D465F4 /* UIColor+ColorScheme.m in Sources */,
@@ -368,6 +389,7 @@
 				3DD8873B190B11D5002521AD /* AddOrEditCuppingViewController.m in Sources */,
 				3DE4604219098514002AF3C0 /* CuppingModel.m in Sources */,
 				3DD88735190B1196002521AD /* CuppingDetailViewController.m in Sources */,
+				3DA550FA1925C3A400FC0BCF /* CuppingDatePickerViewController.m in Sources */,
 				3D51816C191BF10F0007D85C /* Model.xcdatamodeld in Sources */,
 				3DFC9A23190EEEFB00970C84 /* DataController.m in Sources */,
 				3DFF2FBA190C789B00D465F4 /* AddOrEditCoffeeViewController.m in Sources */,

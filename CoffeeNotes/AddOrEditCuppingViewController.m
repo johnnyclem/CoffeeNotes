@@ -11,6 +11,8 @@
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <AXRatingView/AXRatingView.h>
 #import "AppDelegate.h"
+#import "CoffeeDatePickerViewController.h"
+
 
 
 @interface AddOrEditCuppingViewController () <UIImagePickerControllerDelegate, UIActionSheetDelegate, UITextFieldDelegate, UITextViewDelegate, UINavigationControllerDelegate>
@@ -21,14 +23,11 @@
 
 // text fields
 @property (weak, nonatomic) IBOutlet UITextField *locationTextField;
-@property (weak, nonatomic) IBOutlet UITextField *cuppingDateTextField;
-@property (weak, nonatomic) IBOutlet UITextField *roastDateTextField;
+
 @property (weak, nonatomic) IBOutlet UITextField *brewingMethodTextField;
 @property (weak, nonatomic) IBOutlet UITextView *notesTextView;
 
-// buttons
-@property (weak, nonatomic) IBOutlet UIButton *mainViewSaveButton;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *navigationBarSaveButton;
+
 
 // views and image views
 @property (weak, nonatomic) IBOutlet UIScrollView *addOrEditCuppingScrollView;
@@ -56,31 +55,24 @@
     self.roasterLabel.text                  = self.selectedCoffee.roaster;
     
     self.locationTextField.delegate         = self;
-    self.cuppingDateTextField.delegate      = self;
-    self.roastDateTextField.delegate        = self;
     self.brewingMethodTextField.delegate    = self;
     self.notesTextView.delegate             = self;
     
     if (self.editableCupping) {
         
         self.locationTextField.text         = self.editableCupping.location;
-        self.cuppingDateTextField.text      = [[DataController sharedController]createStringFromDate:self.editableCupping.cuppingDate];
-        self.roastDateTextField.text        = [[DataController sharedController]createStringFromDate:self.editableCupping.roastDate];
         self.brewingMethodTextField.text    = self.editableCupping.brewingMethod;
         self.notesTextView.text             = self.editableCupping.cuppingNotes;
         self.cuppingRatingView.value        = self.editableCupping.rating.floatValue;
         self.deleteCuppingButton.enabled    = YES;
+        self.cuppingCuppingDateHolder       = self.editableCupping.cuppingDate;
+        self.cuppingRoastDateHolder         = self.editableCupping.roastDate;
         
     }
     
-    self.navigationBarSaveButton.enabled = self.cuppingDateTextField.text.length > 0;
-    self.mainViewSaveButton.enabled = self.cuppingDateTextField.text.length > 0;
-
-    
     [self.cuppingRatingView sizeToFit];
     [self.cuppingRatingView setStepInterval:0.5];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -145,8 +137,7 @@
         }
         
         newCupping.location = self.locationTextField.text;
-//        newCupping.cuppingDate = self.cuppingDateTextField.text;
-//        newCupping.roastDate = self.roastDateTextField.text;
+        newCupping.rating = [[NSNumber alloc] initWithFloat:self.cuppingRatingView.value];
         newCupping.brewingMethod = self.brewingMethodTextField.text;
         newCupping.cuppingNotes = self.notesTextView.text;
         newCupping.photo = self.photoImageView.image;
@@ -156,7 +147,20 @@
         
         NSError *error;
         [self.selectedCoffee.managedObjectContext save:&error];
+    } else if ([segue.identifier isEqualToString:@"PickCuppingDateFromCupping"]) {
+        CoffeeDatePickerViewController *destination = segue.destinationViewController;
+        destination.datePickerDate = self.cuppingCuppingDateHolder;
+        destination.segueKey = @"PickCuppingDateFromCupping";
+    } else if ([segue.identifier isEqualToString:@"PickRoastDateFromCupping"]) {
+        CoffeeDatePickerViewController *destination = segue.destinationViewController;
+        destination.datePickerDate = self.cuppingRoastDateHolder;
+        destination.segueKey = @"PickRoastDateFromCupping";
     }
+}
+
+-(IBAction)CuppingDatePickerExitSegue:(UIStoryboardSegue *)sender
+{
+    // Empty method for Exit Segue functionality.
 }
 
 #pragma mark - UITextField and UITextView Methods (Delegate and non-delegate)
@@ -171,10 +175,6 @@
 {
     if (textField == self.locationTextField) {
         [self.addOrEditCuppingScrollView setContentOffset:CGPointMake(0, self.locationTextField.frame.origin.y - 100) animated:YES];
-    } else if (textField == self.cuppingDateTextField) {
-        [self.addOrEditCuppingScrollView setContentOffset:CGPointMake(0, self.cuppingDateTextField.frame.origin.y - 100) animated:YES];
-    } else if (textField == self.roastDateTextField) {
-        [self.addOrEditCuppingScrollView setContentOffset:CGPointMake(0, self.roastDateTextField.frame.origin.y - 100) animated:YES];
     } else if (textField == self.brewingMethodTextField) {
         [self.addOrEditCuppingScrollView setContentOffset:CGPointMake(0, self.brewingMethodTextField.frame.origin.y - 100) animated:YES];
     }
@@ -185,12 +185,6 @@
     if (textView == self.notesTextView) {
         [self.addOrEditCuppingScrollView setContentOffset:CGPointMake(0, self.notesTextView.frame.origin.y - 100) animated:YES];
     }
-}
-
-- (void)textFieldDidChange:(NSNotification *)note
-{
-    self.navigationBarSaveButton.enabled = self.cuppingDateTextField.text.length > 0;
-    self.mainViewSaveButton.enabled = self.cuppingDateTextField.text.length > 0;
 }
 
 #pragma mark - UIActionSheet Delegate Methods

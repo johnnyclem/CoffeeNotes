@@ -8,13 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DatePickerViewController : UIViewController
-
+@interface CoffeeDatePickerViewController : UIViewController
 
 @property (nonatomic, strong) NSString *segueKey;
-
-@property (strong, nonatomic) NSDate *datePickerCuppingDateFromCupping;
-@property (strong, nonatomic) NSDate *datePickerRoastDateFromCupping;
-
+@property (nonatomic, strong) NSDate *datePickerDate;
 
 @end
