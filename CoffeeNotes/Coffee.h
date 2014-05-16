@@ -2,13 +2,14 @@
 //  Coffee.h
 //  CoffeeNotes
 //
-//  Created by Cole Bratcher on 5/8/14.
+//  Created by Cole Bratcher on 5/16/14.
 //  Copyright (c) 2014 Cole Bratcher. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class Cupping;
 
 @interface Coffee : NSManagedObject
 
@@ -21,8 +22,8 @@
 
 @interface Coffee (CoreDataGeneratedAccessors)
 
-- (void)addCuppingsObject:(NSManagedObject *)value;
-- (void)removeCuppingsObject:(NSManagedObject *)value;
+- (void)addCuppingsObject:(Cupping *)value;
+- (void)removeCuppingsObject:(Cupping *)value;
 - (void)addCuppings:(NSSet *)values;
 - (void)removeCuppings:(NSSet *)values;
 

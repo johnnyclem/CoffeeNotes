@@ -2,7 +2,7 @@
 //  Cupping.h
 //  CoffeeNotes
 //
-//  Created by Cole Bratcher on 5/8/14.
+//  Created by Cole Bratcher on 5/16/14.
 //  Copyright (c) 2014 Cole Bratcher. All rights reserved.
 //
 
@@ -16,12 +16,12 @@
 @property (nonatomic, retain) NSString * brewingMethod;
 @property (nonatomic, retain) NSDate * cuppingDate;
 @property (nonatomic, retain) NSString * cuppingNotes;
+@property (nonatomic, retain) NSString * location;
 @property (nonatomic, retain) NSString * nameOrOrigin;
 @property (nonatomic, retain) id photo;
 @property (nonatomic, retain) NSNumber * rating;
 @property (nonatomic, retain) NSDate * roastDate;
 @property (nonatomic, retain) NSString * roaster;
-@property (nonatomic, retain) NSString * location;
 @property (nonatomic, retain) Coffee *coffee;
 
 @end

@@ -15,8 +15,8 @@
 
 // models
 @property (weak, nonatomic) Coffee *editableCoffee;
-@property (weak, nonatomic) NSDate *coffeeCuppingDateHolder;
-@property (weak, nonatomic) NSDate *coffeeRoastDateHolder;
+@property (strong, nonatomic) NSDate *coffeeCuppingDateHolder;
+@property (strong, nonatomic) NSDate *coffeeRoastDateHolder;
 
 // buttons
 @property (weak, nonatomic) IBOutlet UIButton *chooseCuppingDateButtonFromCoffee;

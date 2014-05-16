@@ -38,14 +38,14 @@
         if ([self.segueKey isEqualToString:@"PickCuppingDateFromCupping"]) {
             
             destination.cuppingCuppingDateHolder = self.datePicker.date;
-            destination.chooseCuppingDateFromCuppingButton.titleLabel.text = [[DataController sharedController]createStringFromDate:self.datePicker.date];
+            [destination.chooseCuppingDateFromCuppingButton setTitle:[[DataController sharedController]createStringFromDate:self.datePicker.date] forState:UIControlStateNormal];
             destination.mainViewSaveButton.enabled = (![destination.chooseCuppingDateFromCuppingButton.titleLabel.text isEqualToString:@"Choose Cupping Date"]);
             destination.navigationBarSaveButton.enabled = (![destination.chooseCuppingDateFromCuppingButton.titleLabel.text isEqualToString:@"Choose Cupping Date"]);
             
         } else if ([self.segueKey isEqualToString:@"PickRoastDateFromCupping"]) {
             
             destination.cuppingRoastDateHolder = self.datePicker.date;
-            destination.chooseRoastDateFromCuppingButton.titleLabel.text = [[DataController sharedController]createStringFromDate:self.datePicker.date];
+            [destination.chooseRoastDateFromCuppingButton setTitle:[[DataController sharedController]createStringFromDate:self.datePicker.date] forState:UIControlStateNormal];
         }
     }
 }

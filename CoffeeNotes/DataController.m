@@ -11,14 +11,13 @@
 #import "CuppingCell.h"
 #import "AppDelegate+CoreDataContext.h"
 
-#define dataSourcePListPath [[DataController applicationDocumentsDirectory] stringByAppendingPathComponent:@"DataSourcePropertyList.plist" ]
+#define dataSourcePListPath [[DataController applicationDocumentsDirectory] stringByAppendingPathComponent:@"DataSourcePropertyList.plist"]
 
 @interface DataController ()
 
 @property (weak, nonatomic) NSManagedObjectContext *objectContext;
 
 @end
-
 
 @implementation DataController
 
@@ -73,6 +72,19 @@
     return [NSNumber numberWithFloat:sumOfRatingsInCuppings/(CGFloat)coffee.cuppings.count];
 }
 
+-(UIImage *)mostRecentImageInCoffee:(Coffee *)coffee
+{
+    UIImage *coffeeImage = [UIImage new];
+    for (Cupping *cupping in coffee.cuppings) {
+        if (cupping.photo){
+            coffeeImage = cupping.photo;
+            break;
+        }
+    }
+    return coffeeImage;
+}
+
+
 
 #pragma mark - Sorting Methods
 
@@ -102,25 +114,25 @@
         
         self.objectContext = context;
         
-        Coffee *seattleCoffee = [NSEntityDescription insertNewObjectForEntityForName:@"Coffee" inManagedObjectContext:self.objectContext];
-        seattleCoffee.nameOrOrigin = @"Ethiopian Yergecheffe";
-        seattleCoffee.roaster = @"Conduit Coffee";
-        
-        Coffee *kentuckeyCoffee = [NSEntityDescription insertNewObjectForEntityForName:@"Coffee" inManagedObjectContext:self.objectContext];
-        kentuckeyCoffee.nameOrOrigin = @"House Blend";
-        kentuckeyCoffee.roaster = @"Moonshine Coffee Roasters";
-        
-        Coffee *frenchCoffee = [NSEntityDescription insertNewObjectForEntityForName:@"Coffee" inManagedObjectContext:self.objectContext];
-        frenchCoffee.nameOrOrigin = @"French Roast (Obviously)";
-        frenchCoffee.roaster = @"Le Caffee du Chat";
-        
-        NSError *error;
-        
-        [self.objectContext save:&error];
-        
-        if (error) {
-            NSLog(@"error: %@", error.localizedDescription);
-        }
+//        Coffee *seattleCoffee = [NSEntityDescription insertNewObjectForEntityForName:@"Coffee" inManagedObjectContext:self.objectContext];
+//        seattleCoffee.nameOrOrigin = @"Ethiopian Yergecheffe";
+//        seattleCoffee.roaster = @"Conduit Coffee";
+//        
+//        Coffee *kentuckeyCoffee = [NSEntityDescription insertNewObjectForEntityForName:@"Coffee" inManagedObjectContext:self.objectContext];
+//        kentuckeyCoffee.nameOrOrigin = @"House Blend";
+//        kentuckeyCoffee.roaster = @"Moonshine Coffee Roasters";
+//        
+//        Coffee *frenchCoffee = [NSEntityDescription insertNewObjectForEntityForName:@"Coffee" inManagedObjectContext:self.objectContext];
+//        frenchCoffee.nameOrOrigin = @"French Roast (Obviously)";
+//        frenchCoffee.roaster = @"Le Caffee du Chat";
+//        
+//        NSError *error;
+//        
+//        [self.objectContext save:&error];
+//        
+//        if (error) {
+//            NSLog(@"error: %@", error.localizedDescription);
+//        }
         
         block();
         

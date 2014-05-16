@@ -57,19 +57,23 @@
     [self.averageStarRatingView setStepInterval:0.5];
     [self.averageStarRatingView setUserInteractionEnabled:NO];
     
-//    self.averageStarRatingView.value = [[[DataController sharedController] averageRatingFromCuppingRatingInCoffee:self.selectedCoffee] floatValue];
     
-    self.cuppings = [self.selectedCoffee.cuppings allObjects];
-    [self.cuppingsTableView reloadData];
+    
+    [_cuppingsTableView reloadData];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    [self.cuppingsTableView reloadData];
+    _cuppings = [_selectedCoffee.cuppings allObjects];
     
-    self.averageStarRatingView.value = [[[DataController sharedController] averageRatingFromCuppingRatingInCoffee:self.selectedCoffee] floatValue];
+    self.averageStarRatingView.value = [[[DataController sharedController] averageRatingFromCuppingRatingInCoffee:_selectedCoffee]floatValue];
+    if (![[[DataController sharedController]averageRatingFromCuppingRatingInCoffee:_selectedCoffee]floatValue]) {
+        _averageStarRatingView.value = 0.0;
+    }
+    
+    [_cuppingsTableView reloadData];
 }
 
 - (void)didReceiveMemoryWarning
@@ -125,13 +129,16 @@
 
 -(CuppingCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     CuppingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CuppingCell" forIndexPath:indexPath];
     
-    Cupping *cupping = self.cuppings[indexPath.row];
-    cell.cuppingCellDateLabel.text = [[DataController sharedController] createStringFromDate:self.cupping.cuppingDate];
+    NSLog(@"%ld",(long)indexPath.row);
+    
+    Cupping *cupping = [_cuppings objectAtIndex:indexPath.row];
+    cell.cuppingCellDateLabel.text = [[DataController sharedController] createStringFromDate:cupping.cuppingDate];
     cell.cuppingCellLocationLabel.text = [NSString stringWithFormat:@"%@", cupping.location];
     
-    cell.cuppingCellImageView.layer.cornerRadius = 22;
+    cell.cuppingCellImageView.layer.cornerRadius = 5;
     cell.cuppingCellImageView.layer.masksToBounds = YES;
     cell.cuppingCellImageView.image = cupping.photo;
     

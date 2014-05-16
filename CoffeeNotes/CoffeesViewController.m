@@ -37,10 +37,9 @@
     self.coffeesTableView.dataSource = self;
 
     [[DataController sharedController] seedInitialDataWithCompletion:^{
-    
-        self.coffees = [[DataController sharedController] fetchAllCoffees];
-        
-        [self.coffeesTableView reloadData];
+        _coffees = [[DataController sharedController] fetchAllCoffees];
+        [self viewDidAppear:YES];
+        [_coffeesTableView reloadData];
     }];
 }
 
@@ -52,10 +51,6 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-
-    self.coffees = [[DataController sharedController] fetchAllCoffees];
-    [[DataController sharedController] sortByCoffeeNameOrOrigin];
     [self.coffeesTableView reloadData];
 }
 
@@ -96,16 +91,25 @@
 -(CoffeeCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CoffeeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CoffeeCell" forIndexPath:indexPath];
-    Coffee *coffee = [self.coffees objectAtIndex:indexPath.row];
+    Coffee *coffee = [_coffees objectAtIndex:indexPath.row];
     cell.coffeeCellNameOrOriginLabel.text = [NSString stringWithFormat:@"%@", coffee.nameOrOrigin];
     cell.coffeeCellRoasterLabel.text = [NSString stringWithFormat:@"%@", coffee.roaster];
     
-    cell.coffeeCellAverageRating.value = [[[DataController sharedController]averageRatingFromCuppingRatingInCoffee:coffee]floatValue];
     [cell.coffeeCellAverageRating sizeToFit];
     [cell.coffeeCellAverageRating setStepInterval:0.5];
     [cell.coffeeCellAverageRating setUserInteractionEnabled:NO];
     
-    cell.coffeeCellImage.layer.cornerRadius = 22;
+    cell.coffeeCellAverageRating.value = [[[DataController sharedController]averageRatingFromCuppingRatingInCoffee:coffee]floatValue];
+    if (![[[DataController sharedController]averageRatingFromCuppingRatingInCoffee:coffee]floatValue]) {
+        cell.coffeeCellAverageRating.value = 0.0;
+    }
+    [cell.coffeeCellAverageRating sizeToFit];
+    [cell.coffeeCellAverageRating setStepInterval:0.5];
+    [cell.coffeeCellAverageRating setUserInteractionEnabled:NO];
+    
+    coffee.mostRecentPhoto = [[DataController sharedController]mostRecentImageInCoffee:coffee];
+    
+    cell.coffeeCellImage.layer.cornerRadius = 11;
     cell.coffeeCellImage.layer.masksToBounds = YES;
     cell.coffeeCellImage.image = coffee.mostRecentPhoto;
     

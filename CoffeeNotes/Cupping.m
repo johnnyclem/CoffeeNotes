@@ -2,7 +2,7 @@
 //  Cupping.m
 //  CoffeeNotes
 //
-//  Created by Cole Bratcher on 5/8/14.
+//  Created by Cole Bratcher on 5/16/14.
 //  Copyright (c) 2014 Cole Bratcher. All rights reserved.
 //
 
@@ -15,12 +15,12 @@
 @dynamic brewingMethod;
 @dynamic cuppingDate;
 @dynamic cuppingNotes;
+@dynamic location;
 @dynamic nameOrOrigin;
 @dynamic photo;
 @dynamic rating;
 @dynamic roastDate;
 @dynamic roaster;
-@dynamic location;
 @dynamic coffee;
 
 @end

@@ -13,7 +13,7 @@
 -(void)createManagedObjectContext:(void (^)(NSManagedObjectContext *context))completion
 {
     NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSLibraryDirectory inDomains:NSUserDomainMask] lastObject];
-    url = [url URLByAppendingPathComponent:@"LabelDocument"];
+    url = [url URLByAppendingPathComponent:@"CoffeeDocument"];
     self.managedDocument = [[UIManagedDocument alloc] initWithFileURL:url];
     
     if (![[NSFileManager defaultManager] fileExistsAtPath:[url path]])
@@ -22,7 +22,7 @@
             
             
             self.objectContext = self.managedDocument.managedObjectContext;
-
+            
             
             completion(self.objectContext);
         }];

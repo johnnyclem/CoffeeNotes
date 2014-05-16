@@ -44,6 +44,8 @@
 
 @property (weak, nonatomic) IBOutlet AXRatingView *coffeeCuppingRatingView;
 
+@property (nonatomic) BOOL usingCamera;
+
 
 
 @end
@@ -55,26 +57,38 @@
     [super viewDidLoad];
     
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
-    self.managedObjectContext = appDelegate.objectContext;
+    _managedObjectContext = appDelegate.objectContext;
     
-    self.nameOrOriginTextField.delegate = self;
-    self.roasterTextField.delegate = self;
-    self.locationTextField.delegate = self;
-    self.brewingMethodTextField.delegate = self;
-    self.notesTextView.delegate = self;
+    _nameOrOriginTextField.delegate     = self;
+    _roasterTextField.delegate          = self;
+    _locationTextField.delegate         = self;
+    _brewingMethodTextField.delegate    = self;
+    _notesTextView.delegate             = self;
     
-    if (self.editableCoffee) {
-        self.nameOrOriginTextField.text = self.editableCoffee.nameOrOrigin;
-        self.roasterTextField.text = self.editableCoffee.roaster;
-        self.locationTextField.enabled = NO;
-        self.chooseCuppingDateButtonFromCoffee.enabled = NO;
-        self.chooseRoastDateButtonFromCoffee.enabled = NO;
-        self.brewingMethodTextField.enabled = NO;
-        self.notesTextView.editable = NO;
-        self.deleteCoffeeButton.enabled = YES;
+    if (_editableCoffee) {
+        _nameOrOriginTextField.text                 = _editableCoffee.nameOrOrigin;
+        _roasterTextField.text                      = _editableCoffee.roaster;
+        _locationTextField.enabled                  = NO;
+        _chooseCuppingDateButtonFromCoffee.enabled  = NO;
+        _chooseCuppingDateButtonFromCoffee.titleLabel.text = @" ";
+        _chooseRoastDateButtonFromCoffee.enabled    = NO;
+        _chooseRoastDateButtonFromCoffee.titleLabel.text = @" ";
+        _brewingMethodTextField.enabled             = NO;
+        _notesTextView.editable                     = NO;
+        _deleteCoffeeButton.enabled                 = YES;
+        _coffeeCuppingRatingView.enabled            = NO;
+        
+        self.saveBarButton.enabled = (self.nameOrOriginTextField.text.length > 0) && (![self.chooseCuppingDateButtonFromCoffee.titleLabel.text isEqualToString:@"Choose Cupping Date"]);
+        self.mainViewSaveButton.enabled = (self.nameOrOriginTextField.text.length > 0) && (![self.chooseCuppingDateButtonFromCoffee.titleLabel.text isEqualToString:@"Choose Cupping Date"]);
     }
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(textFieldDidChange:) name:UITextFieldTextDidChangeNotification object:nil];
+    [_coffeeCuppingRatingView sizeToFit];
+    [_coffeeCuppingRatingView setStepInterval:0.5];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(textFieldDidChange:)
+                                                 name:UITextFieldTextDidChangeNotification
+                                               object:nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -132,12 +146,11 @@
         
         NSError *error;
         
-        [newCoffee.managedObjectContext save:&error];
-        
         // New Cupping Stuff
         Cupping *newCupping         = [NSEntityDescription insertNewObjectForEntityForName:@"Cupping" inManagedObjectContext:self.managedObjectContext];
         newCupping.location         = self.locationTextField.text;
         newCupping.cuppingDate      = self.coffeeCuppingDateHolder;
+        
         newCupping.roastDate        = self.coffeeRoastDateHolder;
         newCupping.brewingMethod    = self.brewingMethodTextField.text;
         
@@ -150,7 +163,7 @@
         
         // Add Save Command!
         
-        [newCupping.managedObjectContext save:&error];
+        [newCoffee.managedObjectContext save:&error];
         
     } else if ([segue.identifier isEqualToString:@"PickCuppingDateFromCoffee"]) {
         CoffeeDatePickerViewController *destination = segue.destinationViewController;
@@ -209,9 +222,13 @@
     
     if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Take Photo"]) {
         
+        self.usingCamera = YES;
+        
         sourceType = UIImagePickerControllerSourceTypeCamera;
         
     } else if ([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:@"Choose Photo" ]) {
+        
+        self.usingCamera = NO;
         
         sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
         
@@ -247,6 +264,9 @@
         
         self.photoImageView.image = originalImage;
         
+        if (self.usingCamera)
+        {
+        
         ALAssetsLibrary *assetsLibrary = [ALAssetsLibrary new];
         if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusAuthorized || [ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusNotDetermined) {
             [assetsLibrary writeImageToSavedPhotosAlbum:originalImage.CGImage
@@ -267,7 +287,7 @@
         } else {
             NSLog(@"Authorization Not Determined");
         }
-    }];
+        } }];
 }
 
 #pragma mark - UIAlertView Delegate

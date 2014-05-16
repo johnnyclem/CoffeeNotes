@@ -226,6 +226,10 @@
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oZA-lg-ixu">
                                                                     <rect key="frame" x="182" y="2" width="65" height="65"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="65" id="1l2-WB-CnN"/>
+                                                                        <constraint firstAttribute="width" constant="65" id="hhl-ap-pP4"/>
+                                                                    </constraints>
                                                                 </imageView>
                                                             </subviews>
                                                             <constraints>
@@ -1099,6 +1103,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="coffeeNameOrOriginLabel" destination="xyE-lr-F1V" id="v0V-fO-dDv"/>
                         <outlet property="coffeeRoasterLabel" destination="6Z8-CV-oK3" id="F1j-ld-9gV"/>
                         <outlet property="cuppingDateDisplayLabel" destination="qkS-MX-cct" id="LdI-oZ-pPj"/>
+                        <outlet property="detailRatingView" destination="QHU-Ai-2Jm" id="aSY-a1-HW0"/>
                         <outlet property="locationDisplayLabel" destination="Qn8-p8-Ebo" id="upq-wq-MzQ"/>
                         <outlet property="notesTextField" destination="ZXj-np-ebI" id="sg2-Lo-1QX"/>
                         <outlet property="photoImageView" destination="DA3-Jj-S8K" id="e0q-1i-HC8"/>
@@ -1272,7 +1277,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="K6o-eO-7HI" kind="unwind" unwindAction="addCuppingExitSegue:" id="38Q-0h-dSk"/>
+                                                    <segue destination="K6o-eO-7HI" kind="unwind" identifier="AddCuppingSaveExitSegue" unwindAction="addCuppingExitSegue:" id="38Q-0h-dSk"/>
                                                 </connections>
                                             </button>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" ambiguous="YES" misplaced="YES" text="Edit Tasting Wheel:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ylu-Fm-0if">
@@ -1345,7 +1350,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="ich-HD-ji0" kind="modal" identifier="PickRoastDateFromCoffee" modalTransitionStyle="coverVertical" id="bBV-Wx-ldD"/>
+                                                    <segue destination="ich-HD-ji0" kind="modal" identifier="PickRoastDateFromCupping" modalTransitionStyle="coverVertical" id="bBV-Wx-ldD"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -1431,7 +1436,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="save" id="r3L-zP-GFT">
                             <connections>
-                                <segue destination="K6o-eO-7HI" kind="unwind" identifier="addCuppingExitSegue" unwindAction="addCuppingExitSegue:" id="jMR-vk-4Ww"/>
+                                <segue destination="K6o-eO-7HI" kind="unwind" identifier="AddCuppingSaveExitSegue" unwindAction="addCuppingExitSegue:" id="jMR-vk-4Ww"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1554,9 +1559,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="7RQ-9d-aF7"/>
         <segue reference="YEJ-8o-byp"/>
-        <segue reference="Zf5-Qt-1AL"/>
+        <segue reference="7RQ-9d-aF7"/>
         <segue reference="3ku-aH-TSn"/>
+        <segue reference="Zf5-Qt-1AL"/>
     </inferredMetricsTieBreakers>
 </document>

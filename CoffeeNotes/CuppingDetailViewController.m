@@ -8,6 +8,7 @@
 
 #import "CuppingDetailViewController.h"
 #import "AddOrEditCuppingViewController.h"
+#import <AXRatingView/AXRatingView.h>
 
 @interface CuppingDetailViewController ()
 
@@ -20,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *brewingMethodDisplayLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
 @property (weak, nonatomic) IBOutlet UITextView *notesTextField;
+@property (weak, nonatomic) IBOutlet AXRatingView *detailRatingView;
 
 
 @end
@@ -38,11 +40,20 @@
     self.locationDisplayLabel.text          = self.selectedCupping.location;
     self.cuppingDateDisplayLabel.text       = [[DataController sharedController] createStringFromDate:self.selectedCupping.cuppingDate];
     self.roastDateDisplayLabel.text         = [[DataController sharedController] createStringFromDate:self.selectedCupping.roastDate];
+    if (!_selectedCupping.roastDate){
+        self.roastDateDisplayLabel.text = @" ";
+    }
     self.brewingMethodDisplayLabel.text     = self.selectedCupping.brewingMethod;
     self.notesTextField.text                = self.selectedCupping.cuppingNotes;
     
     // views and imageViews
     self.photoImageView.image               = self.selectedCupping.photo;
+    
+    [_detailRatingView sizeToFit];
+    [_detailRatingView setStepInterval:0.5];
+    [_detailRatingView setUserInteractionEnabled:NO];
+    
+    _detailRatingView.value = _selectedCupping.rating.floatValue;
 
 }
 

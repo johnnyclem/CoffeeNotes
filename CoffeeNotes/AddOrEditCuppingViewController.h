@@ -17,8 +17,8 @@
 // public models
 @property Coffee *selectedCoffee;
 @property Cupping *editableCupping;
-@property (weak, nonatomic) NSDate *cuppingCuppingDateHolder;
-@property (weak, nonatomic) NSDate *cuppingRoastDateHolder;
+@property (strong, nonatomic) NSDate *cuppingCuppingDateHolder;
+@property (strong, nonatomic) NSDate *cuppingRoastDateHolder;
 
 // public outlets
 @property (weak, nonatomic) IBOutlet UIButton *deleteCuppingButton;

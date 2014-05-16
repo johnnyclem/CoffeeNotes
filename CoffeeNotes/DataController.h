@@ -34,4 +34,6 @@
 
 -(NSString *)createStringFromDate:(NSDate *)date;
 
+-(UIImage *)mostRecentImageInCoffee:(Coffee *)coffee;
+
 @end

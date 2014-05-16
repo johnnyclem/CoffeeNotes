@@ -23,11 +23,8 @@
 
 // text fields
 @property (weak, nonatomic) IBOutlet UITextField *locationTextField;
-
 @property (weak, nonatomic) IBOutlet UITextField *brewingMethodTextField;
 @property (weak, nonatomic) IBOutlet UITextView *notesTextView;
-
-
 
 // views and image views
 @property (weak, nonatomic) IBOutlet UIScrollView *addOrEditCuppingScrollView;
@@ -49,29 +46,33 @@
     [super viewDidLoad];
     
     AppDelegate *appDelegate                = [UIApplication sharedApplication].delegate;
-    self.managedObjectContext               = appDelegate.objectContext;
+    _managedObjectContext               = appDelegate.objectContext;
 
-    self.coffeeNameOrOriginLabel.text       = self.selectedCoffee.nameOrOrigin;
-    self.roasterLabel.text                  = self.selectedCoffee.roaster;
+    _coffeeNameOrOriginLabel.text       = _selectedCoffee.nameOrOrigin;
+    _roasterLabel.text                  = _selectedCoffee.roaster;
     
-    self.locationTextField.delegate         = self;
-    self.brewingMethodTextField.delegate    = self;
-    self.notesTextView.delegate             = self;
+    _locationTextField.delegate         = self;
+    _brewingMethodTextField.delegate    = self;
+    _notesTextView.delegate             = self;
     
-    if (self.editableCupping) {
+    if (_editableCupping) {
         
-        self.locationTextField.text         = self.editableCupping.location;
-        self.brewingMethodTextField.text    = self.editableCupping.brewingMethod;
-        self.notesTextView.text             = self.editableCupping.cuppingNotes;
-        self.cuppingRatingView.value        = self.editableCupping.rating.floatValue;
-        self.deleteCuppingButton.enabled    = YES;
-        self.cuppingCuppingDateHolder       = self.editableCupping.cuppingDate;
-        self.cuppingRoastDateHolder         = self.editableCupping.roastDate;
-        
+        _locationTextField.text                                 = _editableCupping.location;
+        _brewingMethodTextField.text                            = _editableCupping.brewingMethod;
+        _notesTextView.text                                     = _editableCupping.cuppingNotes;
+        _cuppingRatingView.value                                = _editableCupping.rating.floatValue;
+        _deleteCuppingButton.enabled                            = YES;
+        _cuppingCuppingDateHolder                               = _editableCupping.cuppingDate;
+        _cuppingRoastDateHolder                                 = _editableCupping.roastDate;
+        _chooseCuppingDateFromCuppingButton.titleLabel.text     = [[DataController sharedController]createStringFromDate:_cuppingCuppingDateHolder];
+        _chooseRoastDateFromCuppingButton.titleLabel.text       = [[DataController sharedController]createStringFromDate:_cuppingRoastDateHolder];
+        _mainViewSaveButton.enabled                             = (![_chooseCuppingDateFromCuppingButton.titleLabel.text isEqualToString:@"Choose Cupping Date"]);
+        _navigationBarSaveButton.enabled                        = (![_chooseCuppingDateFromCuppingButton.titleLabel.text isEqualToString:@"Choose Cupping Date"]);
+        _photoImageView.image                                   = _editableCupping.photo;
     }
     
-    [self.cuppingRatingView sizeToFit];
-    [self.cuppingRatingView setStepInterval:0.5];
+    [_cuppingRatingView sizeToFit];
+    [_cuppingRatingView setStepInterval:0.5];
 
 }
 
@@ -126,7 +127,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"addCuppingExitSegue"])
+    if ([segue.identifier isEqualToString:@"AddCuppingSaveExitSegue"])
     {
         Cupping *newCupping;
         
@@ -141,20 +142,28 @@
         newCupping.brewingMethod = self.brewingMethodTextField.text;
         newCupping.cuppingNotes = self.notesTextView.text;
         newCupping.photo = self.photoImageView.image;
+        newCupping.cuppingDate = _cuppingCuppingDateHolder;
+        newCupping.roastDate   = _cuppingRoastDateHolder;
         
         NSNumber *numberFromFloatValue = [[NSNumber alloc]initWithFloat:self.cuppingRatingView.value];
         newCupping.rating = numberFromFloatValue;
         
+        newCupping.coffee = _selectedCoffee;
+        
         NSError *error;
         [self.selectedCoffee.managedObjectContext save:&error];
+        
     } else if ([segue.identifier isEqualToString:@"PickCuppingDateFromCupping"]) {
+        
         CoffeeDatePickerViewController *destination = segue.destinationViewController;
         destination.datePickerDate = self.cuppingCuppingDateHolder;
         destination.segueKey = @"PickCuppingDateFromCupping";
+        
     } else if ([segue.identifier isEqualToString:@"PickRoastDateFromCupping"]) {
         CoffeeDatePickerViewController *destination = segue.destinationViewController;
         destination.datePickerDate = self.cuppingRoastDateHolder;
         destination.segueKey = @"PickRoastDateFromCupping";
+        
     }
 }
 
