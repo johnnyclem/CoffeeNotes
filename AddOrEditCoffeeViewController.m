@@ -45,7 +45,7 @@
 @property (weak, nonatomic) IBOutlet AXRatingView *coffeeCuppingRatingView;
 
 @property (nonatomic) BOOL usingCamera;
-
+@property (nonatomic) BOOL dateNotNeeded;
 
 
 @end
@@ -64,22 +64,27 @@
     _locationTextField.delegate         = self;
     _brewingMethodTextField.delegate    = self;
     _notesTextView.delegate             = self;
+    _dateNotNeeded                      = NO;
     
-    if (_editableCoffee) {
-        _nameOrOriginTextField.text                 = _editableCoffee.nameOrOrigin;
-        _roasterTextField.text                      = _editableCoffee.roaster;
-        _locationTextField.enabled                  = NO;
-        _chooseCuppingDateButtonFromCoffee.enabled  = NO;
-        _chooseCuppingDateButtonFromCoffee.titleLabel.text = @" ";
-        _chooseRoastDateButtonFromCoffee.enabled    = NO;
-        _chooseRoastDateButtonFromCoffee.titleLabel.text = @" ";
-        _brewingMethodTextField.enabled             = NO;
-        _notesTextView.editable                     = NO;
-        _deleteCoffeeButton.enabled                 = YES;
-        _coffeeCuppingRatingView.enabled            = NO;
+    if (_editableCoffee != nil) {
+        _nameOrOriginTextField.text                         = _editableCoffee.nameOrOrigin;
+        _roasterTextField.text                              = _editableCoffee.roaster;
+        _locationTextField.enabled                          = NO;
+        _chooseCuppingDateButtonFromCoffee.enabled          = NO;
+        _chooseRoastDateButtonFromCoffee.enabled            = NO;
         
-        self.saveBarButton.enabled = (self.nameOrOriginTextField.text.length > 0) && (![self.chooseCuppingDateButtonFromCoffee.titleLabel.text isEqualToString:@"Choose Cupping Date"]);
-        self.mainViewSaveButton.enabled = (self.nameOrOriginTextField.text.length > 0) && (![self.chooseCuppingDateButtonFromCoffee.titleLabel.text isEqualToString:@"Choose Cupping Date"]);
+        _brewingMethodTextField.enabled                     = NO;
+        _notesTextView.editable                             = NO;
+        _deleteCoffeeButton.enabled                         = YES;
+        _coffeeCuppingRatingView.enabled                    = NO;
+        _dateNotNeeded                                      = YES;
+        
+
+        [_chooseRoastDateButtonFromCoffee setTitle:@" " forState:UIControlStateDisabled];
+        [_chooseCuppingDateButtonFromCoffee setTitle:@" " forState:UIControlStateDisabled];
+        
+        _saveBarButton.enabled          = (_nameOrOriginTextField.text.length > 0) && ((_coffeeCuppingDateHolder != nil) || (_dateNotNeeded == YES));
+        _mainViewSaveButton.enabled     = (_nameOrOriginTextField.text.length > 0) && ((_coffeeCuppingDateHolder != nil) || (_dateNotNeeded == YES));
     }
     
     [_coffeeCuppingRatingView sizeToFit];
@@ -96,6 +101,7 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 #pragma mark - UITextField and UITextView Methods
 
@@ -127,8 +133,8 @@
 
 - (void)textFieldDidChange:(NSNotification *)note
 {
-    self.saveBarButton.enabled = (self.nameOrOriginTextField.text.length > 0) && (![self.chooseCuppingDateButtonFromCoffee.titleLabel.text isEqualToString:@"Choose Cupping Date"]);
-    self.mainViewSaveButton.enabled = (self.nameOrOriginTextField.text.length > 0) && (![self.chooseCuppingDateButtonFromCoffee.titleLabel.text isEqualToString:@"Choose Cupping Date"]);
+    _saveBarButton.enabled = (_nameOrOriginTextField.text.length > 0) && ((_coffeeCuppingDateHolder != nil) || (_dateNotNeeded == YES));
+    _mainViewSaveButton.enabled = (_nameOrOriginTextField.text.length > 0) && ((_coffeeCuppingDateHolder != nil) || (_dateNotNeeded == YES));
 }
 
 // Button title did change method.
@@ -137,12 +143,17 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"addCoffeeExitSegue"])
+    if ([segue.identifier isEqualToString:@"AddCoffeeExitSegue"])
     {
         // New Coffee Stuff
-        Coffee *newCoffee = [NSEntityDescription insertNewObjectForEntityForName:@"Coffee" inManagedObjectContext:self.managedObjectContext];
-        newCoffee.nameOrOrigin = self.nameOrOriginTextField.text;
-        newCoffee.roaster = self.roasterTextField.text;
+        Coffee *newCoffee = [NSEntityDescription insertNewObjectForEntityForName:@"Coffee" inManagedObjectContext:_managedObjectContext];
+        
+        if (_editableCoffee) {
+            newCoffee = _editableCoffee;
+        }
+        
+        newCoffee.nameOrOrigin  = _nameOrOriginTextField.text;
+        newCoffee.roaster       = _roasterTextField.text;
         
         NSError *error;
         
@@ -154,21 +165,25 @@
         newCupping.roastDate        = self.coffeeRoastDateHolder;
         newCupping.brewingMethod    = self.brewingMethodTextField.text;
         
-        NSNumber *numberFromFloatValue = [[NSNumber alloc]initWithFloat:self.coffeeCuppingRatingView.value];
-        newCupping.rating = numberFromFloatValue;
-        newCupping.photo = self.photoImageView.image;
-        newCupping.cuppingNotes = self.notesTextView.text;
+        NSNumber *numberFromFloatValue  = [[NSNumber alloc]initWithFloat:self.coffeeCuppingRatingView.value];
+        newCupping.rating               = numberFromFloatValue;
+        newCupping.photo                = self.photoImageView.image;
+        newCupping.cuppingNotes         = self.notesTextView.text;
        
         newCupping.coffee = newCoffee;
         
-        // Add Save Command!
-        
         [newCoffee.managedObjectContext save:&error];
         
+        CoffeesViewController *destination = segue.destinationViewController;
+        [destination.coffeesTableView reloadData];
+        
     } else if ([segue.identifier isEqualToString:@"PickCuppingDateFromCoffee"]) {
+        
         CoffeeDatePickerViewController *destination = segue.destinationViewController;
         destination.segueKey = @"PickCuppingDateFromCoffee";
+        
     } else if ([segue.identifier isEqualToString:@"PickRoastDateFromCoffee"]) {
+        
         CoffeeDatePickerViewController *destination = segue.destinationViewController;
         destination.segueKey = @"PickRoastDateFromCoffee";
     }

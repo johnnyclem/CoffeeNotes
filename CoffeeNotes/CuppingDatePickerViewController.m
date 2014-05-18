@@ -39,8 +39,8 @@
             
             destination.cuppingCuppingDateHolder = self.datePicker.date;
             [destination.chooseCuppingDateFromCuppingButton setTitle:[[DataController sharedController]createStringFromDate:self.datePicker.date] forState:UIControlStateNormal];
-            destination.mainViewSaveButton.enabled = (![destination.chooseCuppingDateFromCuppingButton.titleLabel.text isEqualToString:@"Choose Cupping Date"]);
-            destination.navigationBarSaveButton.enabled = (![destination.chooseCuppingDateFromCuppingButton.titleLabel.text isEqualToString:@"Choose Cupping Date"]);
+            destination.mainViewSaveButton.enabled = (destination.cuppingCuppingDateHolder != nil);
+            destination.navigationBarSaveButton.enabled = (destination.cuppingCuppingDateHolder != nil);
             
         } else if ([self.segueKey isEqualToString:@"PickRoastDateFromCupping"]) {
             

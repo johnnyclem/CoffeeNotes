@@ -39,8 +39,8 @@
             
             destination.coffeeCuppingDateHolder = self.datePicker.date;
             [destination.chooseCuppingDateButtonFromCoffee setTitle:[[DataController sharedController]createStringFromDate:self.datePicker.date] forState:UIControlStateNormal];
-            destination.saveBarButton.enabled = (destination.nameOrOriginTextField.text.length > 0) && (![destination.chooseCuppingDateButtonFromCoffee.titleLabel.text isEqualToString:@"Choose Cupping Date"]);
-            destination.mainViewSaveButton.enabled = (destination.nameOrOriginTextField.text.length > 0) && (![destination.chooseCuppingDateButtonFromCoffee.titleLabel.text isEqualToString:@"Choose Cupping Date"]);
+            destination.saveBarButton.enabled = (destination.nameOrOriginTextField.text.length > 0) && (destination.coffeeCuppingDateHolder != nil);
+            destination.mainViewSaveButton.enabled = (destination.nameOrOriginTextField.text.length > 0) && (destination.coffeeCuppingDateHolder != nil);
             
         } else if ([self.segueKey isEqualToString:@"PickRoastDateFromCoffee"]) {
             

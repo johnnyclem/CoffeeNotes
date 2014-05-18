@@ -16,8 +16,7 @@
     url = [url URLByAppendingPathComponent:@"CoffeeDocument"];
     self.managedDocument = [[UIManagedDocument alloc] initWithFileURL:url];
     
-    if (![[NSFileManager defaultManager] fileExistsAtPath:[url path]])
-    {
+    if (![[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
         [self.managedDocument saveToURL:url forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
             
             
@@ -28,8 +27,7 @@
         }];
     }
     
-    else if (self.managedDocument.documentState == UIDocumentStateClosed )
-    {
+    else if (self.managedDocument.documentState == UIDocumentStateClosed ) {
         [self.managedDocument openWithCompletionHandler:^(BOOL success) {
             self.objectContext = self.managedDocument.managedObjectContext;
             
@@ -37,8 +35,7 @@
         }];
     }
     
-    else
-    {
+    else {
         self.objectContext = self.managedDocument.managedObjectContext;
         
         completion(self.objectContext);

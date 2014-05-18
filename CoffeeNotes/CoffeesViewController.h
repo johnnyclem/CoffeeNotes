@@ -11,4 +11,6 @@
 
 @interface CoffeesViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UITableView *coffeesTableView;
+
 @end

@@ -66,8 +66,8 @@
         _cuppingRoastDateHolder                                 = _editableCupping.roastDate;
         _chooseCuppingDateFromCuppingButton.titleLabel.text     = [[DataController sharedController]createStringFromDate:_cuppingCuppingDateHolder];
         _chooseRoastDateFromCuppingButton.titleLabel.text       = [[DataController sharedController]createStringFromDate:_cuppingRoastDateHolder];
-        _mainViewSaveButton.enabled                             = (![_chooseCuppingDateFromCuppingButton.titleLabel.text isEqualToString:@"Choose Cupping Date"]);
-        _navigationBarSaveButton.enabled                        = (![_chooseCuppingDateFromCuppingButton.titleLabel.text isEqualToString:@"Choose Cupping Date"]);
+        _mainViewSaveButton.enabled                             = (_cuppingCuppingDateHolder != nil);
+        _navigationBarSaveButton.enabled                        = (_cuppingCuppingDateHolder != nil);
         _photoImageView.image                                   = _editableCupping.photo;
     }
     

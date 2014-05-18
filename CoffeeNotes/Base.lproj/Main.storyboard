@@ -566,7 +566,7 @@
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>
                                                 <connections>
-                                                    <segue destination="ySp-l1-clf" kind="unwind" identifier="addCoffeeExitSegue" unwindAction="addCoffeeExitSegue:" id="j4h-LR-u3E"/>
+                                                    <segue destination="ySp-l1-clf" kind="unwind" identifier="AddCoffeeExitSegue" unwindAction="addCoffeeExitSegue:" id="j4h-LR-u3E"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LAI-mR-4ZF">
@@ -711,7 +711,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" systemItem="save" id="OGs-g2-tFN">
                             <connections>
-                                <segue destination="ySp-l1-clf" kind="unwind" identifier="addCoffeeExitSegue" unwindAction="addCoffeeExitSegue:" id="tzQ-oh-Eqv"/>
+                                <segue destination="ySp-l1-clf" kind="unwind" identifier="AddCoffeeExitSegue" unwindAction="addCoffeeExitSegue:" id="tzQ-oh-Eqv"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

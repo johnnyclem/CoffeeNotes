@@ -18,7 +18,6 @@
 @property (weak, nonatomic) Coffee *coffee;
 
 // views
-@property (weak, nonatomic) IBOutlet UITableView *coffeesTableView;
 
 // arrays
 @property (strong, nonatomic) NSArray *coffees;
@@ -33,14 +32,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.coffeesTableView.delegate = self;
-    self.coffeesTableView.dataSource = self;
+    _coffeesTableView.delegate = self;
+    _coffeesTableView.dataSource = self;
 
-    [[DataController sharedController] seedInitialDataWithCompletion:^{
-        _coffees = [[DataController sharedController] fetchAllCoffees];
-        [self viewDidAppear:YES];
-        [_coffeesTableView reloadData];
-    }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -48,10 +42,17 @@
     [super didReceiveMemoryWarning];
 }
 
--(void)viewDidAppear:(BOOL)animated
+-(void)viewWillAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
-    [self.coffeesTableView reloadData];
+    [super viewWillAppear:YES];
+    
+    [[DataController sharedController] seedInitialDataWithCompletion:^{
+        _coffees = [[DataController sharedController] fetchAllCoffees];
+        
+        [self viewDidAppear:YES];
+        
+        [_coffeesTableView reloadData];
+    }];
 }
 
 #pragma mark - Segues

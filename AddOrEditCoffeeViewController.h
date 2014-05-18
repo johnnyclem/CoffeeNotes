@@ -26,5 +26,4 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *nameOrOriginTextField;
 
-
 @end

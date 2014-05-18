@@ -112,7 +112,7 @@
     AppDelegate *appDelegate = [UIApplication sharedApplication].delegate;
     [appDelegate createManagedObjectContext:^(NSManagedObjectContext *context) {
         
-        self.objectContext = context;
+        _objectContext = context;
         
 //        Coffee *seattleCoffee = [NSEntityDescription insertNewObjectForEntityForName:@"Coffee" inManagedObjectContext:self.objectContext];
 //        seattleCoffee.nameOrOrigin = @"Ethiopian Yergecheffe";
@@ -125,14 +125,14 @@
 //        Coffee *frenchCoffee = [NSEntityDescription insertNewObjectForEntityForName:@"Coffee" inManagedObjectContext:self.objectContext];
 //        frenchCoffee.nameOrOrigin = @"French Roast (Obviously)";
 //        frenchCoffee.roaster = @"Le Caffee du Chat";
-//        
-//        NSError *error;
-//        
-//        [self.objectContext save:&error];
-//        
-//        if (error) {
-//            NSLog(@"error: %@", error.localizedDescription);
-//        }
+        
+        NSError *error;
+        
+        [_objectContext save:&error];
+        
+        if (error) {
+            NSLog(@"error: %@", error.localizedDescription);
+        }
         
         block();
         
