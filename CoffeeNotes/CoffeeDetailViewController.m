@@ -14,7 +14,7 @@
 #import "AddOrEditCuppingViewController.h"
 #import <AXRatingView/AXRatingView.h>
 
-@interface CoffeeDetailViewController () <UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource>
+@interface CoffeeDetailViewController () <UITableViewDelegate, UITableViewDataSource>
 
 // models
 @property (weak, nonatomic) Cupping *cupping;
@@ -31,7 +31,7 @@
 // views and imageViews
 
 @property (weak, nonatomic) IBOutlet AXRatingView *averageStarRatingView;
-@property (weak, nonatomic) IBOutlet UICollectionView *photosCollectionView;
+@property (weak, nonatomic) IBOutlet UIImageView *mostRecentPhotoImageView;
 @property (weak, nonatomic) IBOutlet UIView *tastingWheelView;
 @property (weak, nonatomic) IBOutlet UITableView *cuppingsTableView;
 
@@ -57,22 +57,22 @@
     [self.averageStarRatingView setStepInterval:0.5];
     [self.averageStarRatingView setUserInteractionEnabled:NO];
     
-    
-    
-    [_cuppingsTableView reloadData];
 }
 
--(void)viewWillAppear:(BOOL)animated
+-(void)viewDidAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
     _cuppings = [_selectedCoffee.cuppings allObjects];
     
-    self.averageStarRatingView.value = [[[DataController sharedController] averageRatingFromCuppingRatingInCoffee:_selectedCoffee]floatValue];
+    _averageStarRatingView.value = [[[DataController sharedController] averageRatingFromCuppingRatingInCoffee:_selectedCoffee]floatValue];
+    
     if (![[[DataController sharedController]averageRatingFromCuppingRatingInCoffee:_selectedCoffee]floatValue]) {
         _averageStarRatingView.value = 0.0;
     }
     
+    _mostRecentPhotoImageView.image = [[DataController sharedController]mostRecentImageInCoffee:_selectedCoffee];
+
     [_cuppingsTableView reloadData];
 }
 
@@ -96,12 +96,12 @@
     } else if ([segue.identifier isEqualToString:@"AddCuppingSegue"]) {
         
         AddOrEditCuppingViewController *destination = segue.destinationViewController;
-        destination.selectedCoffee = self.selectedCoffee;
+        destination.selectedCoffee = _selectedCoffee;
         
     } else if ([segue.identifier isEqualToString:@"EditCoffeeSegue"]) {
         
         AddOrEditCoffeeViewController *destination = segue.destinationViewController;
-        destination.editableCoffee = self.selectedCoffee;
+        destination.editableCoffee = _selectedCoffee;
     }
 }
 

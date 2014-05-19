@@ -34,7 +34,6 @@
     [super viewDidLoad];
     _coffeesTableView.delegate = self;
     _coffeesTableView.dataSource = self;
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,14 +41,12 @@
     [super didReceiveMemoryWarning];
 }
 
--(void)viewWillAppear:(BOOL)animated
+-(void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:YES];
+    [super viewWillAppear:animated];
     
     [[DataController sharedController] seedInitialDataWithCompletion:^{
         _coffees = [[DataController sharedController] fetchAllCoffees];
-        
-        [self viewDidAppear:YES];
         
         [_coffeesTableView reloadData];
     }];

@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AddOrEditCoffeeViewController.m"
-            timestampString = "422135419.062498"
+            timestampString = "422138261.662589"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "276"
-            endingLineNumber = "276"
+            startingLineNumber = "277"
+            endingLineNumber = "277"
             landmarkName = "-imagePickerController:didFinishPickingMediaWithInfo:"
             landmarkType = "5">
             <Locations>
@@ -25,12 +25,12 @@
                   symbolName = "-[AddOrEditCoffeeViewController imagePickerController:didFinishPickingMediaWithInfo:]"
                   moduleName = "CoffeeNotes"
                   urlString = "file:///Users/colebratcher/Documents/Code/CoffeeNotes/AddOrEditCoffeeViewController.m"
-                  timestampString = "422135419.068174"
+                  timestampString = "422158411.575905"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "277"
-                  endingLineNumber = "277"
-                  offsetFromSymbolStart = "160">
+                  startingLineNumber = "278"
+                  endingLineNumber = "278"
+                  offsetFromSymbolStart = "157">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -39,12 +39,12 @@
                   symbolName = "__85-[AddOrEditCoffeeViewController imagePickerController:didFinishPickingMediaWithInfo:]_block_invoke"
                   moduleName = "CoffeeNotes"
                   urlString = "file:///Users/colebratcher/Documents/Code/CoffeeNotes/AddOrEditCoffeeViewController.m"
-                  timestampString = "422135419.068502"
+                  timestampString = "422158411.576139"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "277"
-                  endingLineNumber = "277"
-                  offsetFromSymbolStart = "22">
+                  startingLineNumber = "278"
+                  endingLineNumber = "278"
+                  offsetFromSymbolStart = "27">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -55,13 +55,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "AddOrEditCoffeeViewController.m"
-            timestampString = "422135419.062498"
+            filePath = "CoffeeNotes/CoffeeDetailViewController.m"
+            timestampString = "422159553.228685"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
-            landmarkName = "-prepareForSegue:sender:"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
+            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CoffeeNotes/CoffeesViewController.m"
+            timestampString = "422158241.367315"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "-viewDidAppear:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

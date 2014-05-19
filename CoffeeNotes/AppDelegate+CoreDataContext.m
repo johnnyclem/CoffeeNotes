@@ -18,10 +18,7 @@
     
     if (![[NSFileManager defaultManager] fileExistsAtPath:[url path]]) {
         [self.managedDocument saveToURL:url forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success) {
-            
-            
             self.objectContext = self.managedDocument.managedObjectContext;
-            
             
             completion(self.objectContext);
         }];
@@ -39,12 +36,7 @@
         self.objectContext = self.managedDocument.managedObjectContext;
         
         completion(self.objectContext);
-        
     }
-    
-    
-    
-    
 }
 
 @end

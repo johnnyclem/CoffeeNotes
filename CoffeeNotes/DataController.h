@@ -15,11 +15,11 @@
 @property (strong, nonatomic) NSMutableArray *coffees;
 
 // Init Methods
-+(DataController *)sharedController;
++ (DataController *)sharedController;
 + (NSString *)applicationDocumentsDirectory;
 
 // Management Methods
--(NSArray *)fetchAllCoffees;
+- (NSArray *)fetchAllCoffees;
 //-(NSArray *)fetchAllCuppingsForCoffee:(Coffee *)coffee;
 
 // Calculation Methods
@@ -32,8 +32,10 @@
 // Temporary/Test Methods
 - (void)seedInitialDataWithCompletion:(void (^)())block;
 
--(NSString *)createStringFromDate:(NSDate *)date;
 
--(UIImage *)mostRecentImageInCoffee:(Coffee *)coffee;
+
+- (NSString *)createStringFromDate:(NSDate *)date;
+
+- (UIImage *)mostRecentImageInCoffee:(Coffee *)coffee;
 
 @end

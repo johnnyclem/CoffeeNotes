@@ -79,7 +79,7 @@
         _coffeeCuppingRatingView.enabled                    = NO;
         _dateNotNeeded                                      = YES;
         
-
+ 
         [_chooseRoastDateButtonFromCoffee setTitle:@" " forState:UIControlStateDisabled];
         [_chooseCuppingDateButtonFromCoffee setTitle:@" " forState:UIControlStateDisabled];
         
@@ -145,11 +145,12 @@
 {
     if ([segue.identifier isEqualToString:@"AddCoffeeExitSegue"])
     {
-        // New Coffee Stuff
-        Coffee *newCoffee = [NSEntityDescription insertNewObjectForEntityForName:@"Coffee" inManagedObjectContext:_managedObjectContext];
+        Coffee *newCoffee;
         
         if (_editableCoffee) {
             newCoffee = _editableCoffee;
+        } else {
+            newCoffee = [NSEntityDescription insertNewObjectForEntityForName:@"Coffee" inManagedObjectContext:_managedObjectContext];
         }
         
         newCoffee.nameOrOrigin  = _nameOrOriginTextField.text;
@@ -158,17 +159,17 @@
         NSError *error;
         
         // New Cupping Stuff
-        Cupping *newCupping         = [NSEntityDescription insertNewObjectForEntityForName:@"Cupping" inManagedObjectContext:self.managedObjectContext];
-        newCupping.location         = self.locationTextField.text;
-        newCupping.cuppingDate      = self.coffeeCuppingDateHolder;
+        Cupping *newCupping         = [NSEntityDescription insertNewObjectForEntityForName:@"Cupping" inManagedObjectContext:_managedObjectContext];
+        newCupping.location         = _locationTextField.text;
+        newCupping.cuppingDate      = _coffeeCuppingDateHolder;
         
-        newCupping.roastDate        = self.coffeeRoastDateHolder;
-        newCupping.brewingMethod    = self.brewingMethodTextField.text;
+        newCupping.roastDate        = _coffeeRoastDateHolder;
+        newCupping.brewingMethod    = _brewingMethodTextField.text;
         
-        NSNumber *numberFromFloatValue  = [[NSNumber alloc]initWithFloat:self.coffeeCuppingRatingView.value];
+        NSNumber *numberFromFloatValue  = [[NSNumber alloc]initWithFloat:_coffeeCuppingRatingView.value];
         newCupping.rating               = numberFromFloatValue;
-        newCupping.photo                = self.photoImageView.image;
-        newCupping.cuppingNotes         = self.notesTextView.text;
+        newCupping.photo                = _photoImageView.image;
+        newCupping.cuppingNotes         = _notesTextView.text;
        
         newCupping.coffee = newCoffee;
         
@@ -311,7 +312,8 @@
 {
     if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Delete"]) {
         
-        [self.editableCoffee.managedObjectContext deleteObject:self.editableCoffee];
+        [_editableCoffee.managedObjectContext deleteObject:_editableCoffee];
+        
         [self performSegueWithIdentifier:@"DeleteCoffeeSegue" sender:self];
     }
 }

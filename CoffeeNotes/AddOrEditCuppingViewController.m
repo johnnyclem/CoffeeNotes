@@ -54,7 +54,7 @@
     _locationTextField.delegate         = self;
     _brewingMethodTextField.delegate    = self;
     _notesTextView.delegate             = self;
-    
+    _cuppingRatingView.value            = [[[DataController sharedController] averageRatingFromCuppingRatingInCoffee:_selectedCoffee]floatValue];
     if (_editableCupping) {
         
         _locationTextField.text                                 = _editableCupping.location;
@@ -151,7 +151,7 @@
         newCupping.coffee = _selectedCoffee;
         
         NSError *error;
-        [self.selectedCoffee.managedObjectContext save:&error];
+        [_selectedCoffee.managedObjectContext save:&error];
         
     } else if ([segue.identifier isEqualToString:@"PickCuppingDateFromCupping"]) {
         
@@ -163,6 +163,8 @@
         CoffeeDatePickerViewController *destination = segue.destinationViewController;
         destination.datePickerDate = self.cuppingRoastDateHolder;
         destination.segueKey = @"PickRoastDateFromCupping";
+        
+    } else if ([segue.identifier isEqualToString:@"deleteCupping"]) {
         
     }
 }
@@ -268,7 +270,9 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
 {
     if ([[alertView buttonTitleAtIndex:buttonIndex] isEqualToString:@"Delete"]) {
-        [self.managedObjectContext deleteObject:self.editableCupping];
+
+        [_editableCupping.managedObjectContext deleteObject:_editableCupping];
+        
         [self performSegueWithIdentifier:@"deleteCupping" sender:self];
     }
 }
