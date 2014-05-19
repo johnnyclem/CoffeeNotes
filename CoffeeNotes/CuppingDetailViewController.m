@@ -12,19 +12,22 @@
 
 @interface CuppingDetailViewController ()
 
-@property (weak, nonatomic) IBOutlet UILabel *coffeeNameOrOriginLabel;
-@property (weak, nonatomic) IBOutlet UILabel *coffeeRoasterLabel;
+// labels and text fields
+@property (weak, nonatomic) IBOutlet UILabel *nameOrOriginLabel;
+@property (weak, nonatomic) IBOutlet UILabel *roasterLabel;
+@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *cuppingDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *roastDateLabel;
+@property (weak, nonatomic) IBOutlet UILabel *brewingMethodLabel;
+@property (weak, nonatomic) IBOutlet UITextView *notesTextView;
 
-@property (weak, nonatomic) IBOutlet UILabel *locationDisplayLabel;
-@property (weak, nonatomic) IBOutlet UILabel *cuppingDateDisplayLabel;
-@property (weak, nonatomic) IBOutlet UILabel *roastDateDisplayLabel;
-@property (weak, nonatomic) IBOutlet UILabel *brewingMethodDisplayLabel;
+
+// views
 @property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
-@property (weak, nonatomic) IBOutlet UITextView *notesTextField;
-@property (weak, nonatomic) IBOutlet AXRatingView *detailRatingView;
-
+@property (weak, nonatomic) IBOutlet AXRatingView *ratingView;
 
 @end
+
 
 @implementation CuppingDetailViewController
 
@@ -33,27 +36,28 @@
     [super viewDidLoad];
     
     // labels
-    self.coffeeNameOrOriginLabel.text       = self.selectedCoffee.nameOrOrigin;
-    self.coffeeRoasterLabel.text            = self.selectedCoffee.roaster;
-
-    // text fields
-    self.locationDisplayLabel.text          = self.selectedCupping.location;
-    self.cuppingDateDisplayLabel.text       = [[DataController sharedController] createStringFromDate:self.selectedCupping.cuppingDate];
-    self.roastDateDisplayLabel.text         = [[DataController sharedController] createStringFromDate:self.selectedCupping.roastDate];
+    _nameOrOriginLabel.text         = _selectedCoffee.nameOrOrigin;
+    _roasterLabel.text              = _selectedCoffee.roaster;
+    _locationLabel.text             = _selectedCupping.location;
+    _cuppingDateLabel.text          = [[DataController sharedController] createStringFromDate:_selectedCupping.cuppingDate];
+    _roastDateLabel.text            = [[DataController sharedController] createStringFromDate:_selectedCupping.roastDate];
     if (!_selectedCupping.roastDate){
-        self.roastDateDisplayLabel.text = @" ";
+        _roastDateLabel.text = @" ";
     }
-    self.brewingMethodDisplayLabel.text     = self.selectedCupping.brewingMethod;
-    self.notesTextField.text                = self.selectedCupping.cuppingNotes;
+    
+    _brewingMethodLabel.text        = _selectedCupping.brewingMethod;
+    _notesTextView.text            = _selectedCupping.cuppingNotes;
+    _notesTextView.editable        = NO;
+    
     
     // views and imageViews
-    self.photoImageView.image               = self.selectedCupping.photo;
+    _photoImageView.image           = _selectedCupping.photo;
     
-    [_detailRatingView sizeToFit];
-    [_detailRatingView setStepInterval:0.5];
-    [_detailRatingView setUserInteractionEnabled:NO];
+    [_ratingView sizeToFit];
+    [_ratingView setStepInterval:0.5];
+    [_ratingView setUserInteractionEnabled:NO];
     
-    _detailRatingView.value = _selectedCupping.rating.floatValue;
+    _ratingView.value = _selectedCupping.rating.floatValue;
 
 }
 
@@ -69,8 +73,8 @@
 {
     if ([segue.identifier isEqualToString:@"EditCuppingSegue"]) {
         AddOrEditCuppingViewController *destination = segue.destinationViewController;
-        destination.editableCupping = self.selectedCupping;
-        destination.selectedCoffee = self.selectedCoffee;
+        destination.editableCupping = _selectedCupping;
+        destination.selectedCoffee = _selectedCoffee;
     }
 }
 

@@ -20,6 +20,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="separatorColor" red="0.83529418710000003" green="0.80392163989999998" blue="0.7254902124" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="sectionIndexBackgroundColor" red="0.83529418710000003" green="0.80392163989999998" blue="0.7254902124" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="sectionIndexTrackingBackgroundColor" red="0.83529418710000003" green="0.80392163989999998" blue="0.7254902124" alpha="1" colorSpace="deviceRGB"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CoffeeCell" rowHeight="125" id="3OC-Td-3LP" customClass="CoffeeCell">
                                         <rect key="frame" x="0.0" y="86" width="320" height="125"/>
@@ -29,15 +32,18 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Coffee Name/ Region" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TyN-eq-G7A">
-                                                    <rect key="frame" x="20" y="20" width="190" height="24"/>
+                                                    <rect key="frame" x="20" y="20" width="171" height="24"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="backgroundColor" red="0.83529418710000003" green="0.80392163989999998" blue="0.7254902124" alpha="1" colorSpace="deviceRGB"/>
+                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="18"/>
+                                                    <color key="textColor" red="0.39607846740000002" green="0.23921570180000001" blue="0.050980396570000003" alpha="1" colorSpace="deviceRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zPB-mS-16L">
                                                     <rect key="frame" x="20" y="47" width="171" height="21"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="14"/>
+                                                    <color key="textColor" red="0.39607846740000002" green="0.23921570180000001" blue="0.050980396570000003" alpha="1" colorSpace="deviceRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="x6F-7N-BuD" customClass="AXRatingView">
@@ -50,7 +56,9 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
+                                            <color key="backgroundColor" red="0.83529418710000003" green="0.80392163989999998" blue="0.7254902124" alpha="1" colorSpace="deviceRGB"/>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.83529418706893921" green="0.80392163991928101" blue="0.72549021244049072" alpha="1" colorSpace="deviceRGB"/>
                                         <connections>
                                             <outlet property="coffeeCellAverageRating" destination="x6F-7N-BuD" id="hCw-Ft-0ab"/>
                                             <outlet property="coffeeCellImage" destination="EwB-WS-504" id="2cm-kR-Xh7"/>
@@ -62,10 +70,11 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.83529418710000003" green="0.80392163989999998" blue="0.7254902124" alpha="1" colorSpace="deviceRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="aEN-Jq-maR">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="hIf-LK-AJ8">
+                            <color key="tintColor" red="0.87450987099999999" green="0.49803924560000001" blue="0.36862745879999997" alpha="1" colorSpace="deviceRGB"/>
                             <connections>
                                 <segue destination="5Ll-dC-t14" kind="push" identifier="AddCoffeeSegue" id="BBJ-LZ-y2C"/>
                             </connections>
@@ -92,8 +101,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="1114"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MPW-Ol-G3l">
-                                <rect key="frame" x="0.0" y="44" width="320" height="1070"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="MPW-Ol-G3l">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="1070"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rrr-qC-ZDp">
@@ -107,7 +116,8 @@
                                                     <constraint firstAttribute="width" constant="280" id="3yM-Xa-BW9"/>
                                                     <constraint firstAttribute="height" constant="38" id="4NJ-qB-2hG"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="27"/>
+                                                <color key="textColor" red="0.39607846740000002" green="0.23921570180000001" blue="0.050980396570000003" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Roaster" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K7T-9e-3kp">
@@ -117,7 +127,8 @@
                                                     <constraint firstAttribute="width" constant="280" id="mY9-w9-Oml"/>
                                                     <constraint firstAttribute="height" constant="24" id="tKs-pX-k0b"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="20"/>
+                                                <color key="textColor" red="0.39607846740000002" green="0.23921570180000001" blue="0.050980396570000003" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your Average Rating:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IEJ-AB-abo">
@@ -127,7 +138,8 @@
                                                     <constraint firstAttribute="width" constant="280" id="bFa-Ho-ZwN"/>
                                                     <constraint firstAttribute="height" constant="24" id="egD-Pc-tZH"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="20"/>
+                                                <color key="textColor" red="0.39607846740000002" green="0.23921570180000001" blue="0.050980396570000003" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UT0-DL-LMh" customClass="AXRatingView">
@@ -146,17 +158,19 @@
                                                     <constraint firstAttribute="width" constant="280" id="S4s-Im-HCO"/>
                                                     <constraint firstAttribute="height" constant="21" id="cHM-da-qXV"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                                <color key="textColor" red="0.39607846740000002" green="0.23921570180000001" blue="0.050980396570000003" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tasting Wheel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xxZ-3C-s9f">
-                                                <rect key="frame" x="20" y="423" width="107" height="21"/>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Tasting Wheel" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xxZ-3C-s9f">
+                                                <rect key="frame" x="20" y="423" width="272" height="21"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="107" id="lAl-O3-4HK"/>
                                                     <constraint firstAttribute="height" constant="21" id="xrJ-vg-8k4"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                                <color key="textColor" red="0.39607846740000002" green="0.23921570180000001" blue="0.050980396570000003" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="hfy-si-OBH">
@@ -167,6 +181,9 @@
                                                     <constraint firstAttribute="width" constant="280" id="F80-B0-FxI"/>
                                                     <constraint firstAttribute="height" constant="280" id="l4d-D1-tub"/>
                                                 </constraints>
+                                                <color key="separatorColor" red="0.83529418710000003" green="0.80392163989999998" blue="0.7254902124" alpha="1" colorSpace="deviceRGB"/>
+                                                <color key="sectionIndexBackgroundColor" red="0.83529418710000003" green="0.80392163989999998" blue="0.7254902124" alpha="1" colorSpace="deviceRGB"/>
+                                                <color key="sectionIndexTrackingBackgroundColor" red="0.83529418710000003" green="0.80392163989999998" blue="0.7254902124" alpha="1" colorSpace="deviceRGB"/>
                                                 <prototypes>
                                                     <tableViewCell contentMode="scaleToFill" restorationIdentifier="CuppingCell" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CuppingCell" rowHeight="70" id="e2J-B7-x0d" customClass="CuppingCell">
                                                         <rect key="frame" x="0.0" y="22" width="280" height="70"/>
@@ -175,22 +192,22 @@
                                                             <rect key="frame" x="0.0" y="0.0" width="247" height="69"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <subviews>
-                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kix-2k-Ihp">
-                                                                    <rect key="frame" x="20" y="9" width="36" height="21"/>
+                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kix-2k-Ihp">
+                                                                    <rect key="frame" x="20" y="9" width="154" height="21"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                                    <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LG2-Ux-Eno">
+                                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Location" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LG2-Ux-Eno">
                                                                     <rect key="frame" x="20" y="38" width="67" height="21"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                    <fontDescription key="fontDescription" name="Futura-MediumItalic" family="Futura" pointSize="17"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oZA-lg-ixu">
                                                                     <rect key="frame" x="182" y="2" width="65" height="65"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                                    <color key="backgroundColor" red="0.96470594409999999" green="0.96470594409999999" blue="0.95686280729999995" alpha="1" colorSpace="deviceRGB"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="65" id="1l2-WB-CnN"/>
                                                                         <constraint firstAttribute="width" constant="65" id="hhl-ap-pP4"/>
@@ -208,6 +225,7 @@
                                                                 <constraint firstAttribute="trailing" secondItem="oZA-lg-ixu" secondAttribute="trailing" id="qiG-53-QoK"/>
                                                             </constraints>
                                                         </tableViewCellContentView>
+                                                        <color key="backgroundColor" red="0.83529418710000003" green="0.80392163989999998" blue="0.7254902124" alpha="1" colorSpace="deviceRGB"/>
                                                         <connections>
                                                             <outlet property="cuppingCellDateLabel" destination="kix-2k-Ihp" id="Drg-Mb-7iC"/>
                                                             <outlet property="cuppingCellImageView" destination="oZA-lg-ixu" id="zfA-VD-Q8k"/>
@@ -228,7 +246,8 @@
                                                     <constraint firstAttribute="width" constant="118" id="NOx-X9-qU1"/>
                                                     <constraint firstAttribute="height" constant="22" id="fEB-VS-Ytb"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="17"/>
+                                                <color key="textColor" red="0.39607846740000002" green="0.23921570180000001" blue="0.050980396570000003" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n1e-5g-Kxs">
@@ -245,16 +264,17 @@
                                                     <segue destination="hnC-WX-J8e" kind="push" identifier="AddCuppingSegue" id="YEJ-8o-byp"/>
                                                 </connections>
                                             </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tar-hz-RCV">
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Tar-hz-RCV">
                                                 <rect key="frame" x="83" y="249" width="154" height="154"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <color key="backgroundColor" red="0.96470594409999999" green="0.96470594409999999" blue="0.95686280729999995" alpha="1" colorSpace="deviceRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="154" id="dt4-2V-8Nc"/>
                                                     <constraint firstAttribute="width" constant="154" id="dv9-42-TVe"/>
                                                 </constraints>
                                             </imageView>
                                         </subviews>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <color key="backgroundColor" red="0.83529418710000003" green="0.80392163989999998" blue="0.7254902124" alpha="1" colorSpace="deviceRGB"/>
                                         <constraints>
                                             <constraint firstItem="lz4-Uj-29I" firstAttribute="baseline" secondItem="n1e-5g-Kxs" secondAttribute="baseline" id="1Ek-Vs-yCx"/>
                                             <constraint firstAttribute="width" constant="320" id="1UY-IS-Bi5"/>
@@ -307,6 +327,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="K77-aG-EcF">
                         <barButtonItem key="rightBarButtonItem" title="Item" systemItem="edit" id="w6b-v7-F5j">
+                            <color key="tintColor" red="0.87450987099999999" green="0.49803924560000001" blue="0.36862745879999997" alpha="1" colorSpace="deviceRGB"/>
                             <connections>
                                 <segue destination="5Ll-dC-t14" kind="push" identifier="EditCoffeeSegue" id="7RQ-9d-aF7"/>
                             </connections>
@@ -689,8 +710,8 @@
                         <outlet property="addOrEditCoffeeScrollView" destination="OAE-4i-Dcf" id="Cc5-UO-oUL"/>
                         <outlet property="brewingMethodTextField" destination="3hO-5f-xBy" id="BT5-WH-nnt"/>
                         <outlet property="cancelBarButton" destination="G4d-Bd-wEQ" id="aVw-bh-erK"/>
-                        <outlet property="chooseCuppingDateButtonFromCoffee" destination="g6J-q7-Jlj" id="EfW-T5-Fuz"/>
-                        <outlet property="chooseRoastDateButtonFromCoffee" destination="1E8-DX-r6U" id="4px-v7-yj8"/>
+                        <outlet property="chooseCuppingDateButton" destination="g6J-q7-Jlj" id="mKV-zV-fhI"/>
+                        <outlet property="chooseRoastDateButton" destination="1E8-DX-r6U" id="8Jh-Da-a1N"/>
                         <outlet property="coffeeCuppingRatingView" destination="huQ-72-ZxP" id="11G-EF-xGN"/>
                         <outlet property="deleteCoffeeButton" destination="pz0-7t-Rfe" id="auk-Y0-edL"/>
                         <outlet property="locationTextField" destination="Bbi-37-2d7" id="tXE-RZ-T9N"/>
@@ -1067,15 +1088,15 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="320" height="1252"/>
                     <connections>
-                        <outlet property="brewingMethodDisplayLabel" destination="BqK-0a-Vny" id="0n8-co-Og2"/>
-                        <outlet property="coffeeNameOrOriginLabel" destination="xyE-lr-F1V" id="v0V-fO-dDv"/>
-                        <outlet property="coffeeRoasterLabel" destination="6Z8-CV-oK3" id="F1j-ld-9gV"/>
-                        <outlet property="cuppingDateDisplayLabel" destination="qkS-MX-cct" id="LdI-oZ-pPj"/>
-                        <outlet property="detailRatingView" destination="QHU-Ai-2Jm" id="aSY-a1-HW0"/>
-                        <outlet property="locationDisplayLabel" destination="Qn8-p8-Ebo" id="upq-wq-MzQ"/>
-                        <outlet property="notesTextField" destination="ZXj-np-ebI" id="sg2-Lo-1QX"/>
+                        <outlet property="brewingMethodLabel" destination="BqK-0a-Vny" id="3BF-qA-1UP"/>
+                        <outlet property="cuppingDateLabel" destination="qkS-MX-cct" id="2ha-kw-QT8"/>
+                        <outlet property="locationLabel" destination="Qn8-p8-Ebo" id="JVS-N3-k5r"/>
+                        <outlet property="nameOrOriginLabel" destination="xyE-lr-F1V" id="4GT-1h-0Lb"/>
+                        <outlet property="notesTextView" destination="ZXj-np-ebI" id="KG5-qf-DuU"/>
                         <outlet property="photoImageView" destination="DA3-Jj-S8K" id="e0q-1i-HC8"/>
-                        <outlet property="roastDateDisplayLabel" destination="Vsr-DN-Vts" id="CxK-nn-4G0"/>
+                        <outlet property="ratingView" destination="QHU-Ai-2Jm" id="cnv-2M-aS2"/>
+                        <outlet property="roastDateLabel" destination="Vsr-DN-Vts" id="dCg-1S-zvU"/>
+                        <outlet property="roasterLabel" destination="6Z8-CV-oK3" id="FSx-qC-uK8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V5u-gp-FhH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1415,11 +1436,11 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <outlet property="brewingMethodTextField" destination="8sx-o9-67q" id="YTD-lP-NTH"/>
                         <outlet property="chooseCuppingDateFromCuppingButton" destination="hP2-3H-7xo" id="PUT-8L-yFv"/>
                         <outlet property="chooseRoastDateFromCuppingButton" destination="vpz-hc-Po8" id="TZQ-GI-SaL"/>
-                        <outlet property="coffeeNameOrOriginLabel" destination="oYm-rK-6Z9" id="B5t-WE-eKV"/>
                         <outlet property="cuppingRatingView" destination="803-k9-MWu" id="JTJ-AQ-xRu"/>
                         <outlet property="deleteCuppingButton" destination="GJt-Pb-5ef" id="Q0d-pS-NON"/>
                         <outlet property="locationTextField" destination="toj-MS-uhL" id="wBl-V1-jr7"/>
                         <outlet property="mainViewSaveButton" destination="jrP-76-QCy" id="rc4-T1-trf"/>
+                        <outlet property="nameOrOriginLabel" destination="oYm-rK-6Z9" id="tBd-Iq-YMr"/>
                         <outlet property="navigationBarSaveButton" destination="r3L-zP-GFT" id="Jbh-US-DFI"/>
                         <outlet property="notesTextView" destination="6Ph-ca-wsc" id="qG9-da-l6S"/>
                         <outlet property="photoImageView" destination="LhG-O7-EKz" id="bcy-2Z-HQr"/>
@@ -1527,9 +1548,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="YEJ-8o-byp"/>
         <segue reference="7RQ-9d-aF7"/>
-        <segue reference="3ku-aH-TSn"/>
+        <segue reference="YEJ-8o-byp"/>
         <segue reference="Zf5-Qt-1AL"/>
+        <segue reference="3ku-aH-TSn"/>
     </inferredMetricsTieBreakers>
 </document>

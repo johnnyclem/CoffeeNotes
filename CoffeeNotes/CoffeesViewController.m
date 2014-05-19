@@ -14,15 +14,9 @@
 
 @interface CoffeesViewController () <UITableViewDelegate, UITableViewDataSource>
 
-// models
-@property (weak, nonatomic) Coffee *coffee;
-
-// views
-
-// arrays
-@property (strong, nonatomic) NSArray *coffees;
-
-@property (weak, nonatomic) NSManagedObjectContext *objectContext;
+@property (nonatomic, weak) Coffee *coffee;
+@property (nonatomic, strong) NSArray *coffees;
+@property (nonatomic, weak) NSManagedObjectContext *managedObjectContext;
 
 @end
 
@@ -32,8 +26,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    _coffeesTableView.delegate = self;
-    _coffeesTableView.dataSource = self;
+    _coffeesTableView.delegate      = self;
+    _coffeesTableView.dataSource    = self;
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,8 +53,8 @@
     
     if ([segue.identifier isEqualToString:@"CoffeeDetailSegue"]) {
         CoffeeDetailViewController *destination = segue.destinationViewController;
-        NSIndexPath *indexPath = [self.coffeesTableView indexPathForSelectedRow];
-        destination.selectedCoffee = self.coffees[indexPath.row];
+        NSIndexPath *indexPath      = [_coffeesTableView indexPathForSelectedRow];
+        destination.selectedCoffee  = _coffees[indexPath.row];
     }
 }
 
@@ -83,15 +77,16 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.coffees.count;
+    return _coffees.count;
 }
 
 -(CoffeeCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    CoffeeCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CoffeeCell" forIndexPath:indexPath];
-    Coffee *coffee = [_coffees objectAtIndex:indexPath.row];
-    cell.coffeeCellNameOrOriginLabel.text = [NSString stringWithFormat:@"%@", coffee.nameOrOrigin];
-    cell.coffeeCellRoasterLabel.text = [NSString stringWithFormat:@"%@", coffee.roaster];
+    CoffeeCell *cell    = [tableView dequeueReusableCellWithIdentifier:@"CoffeeCell" forIndexPath:indexPath];
+    Coffee *coffee      = [_coffees objectAtIndex:indexPath.row];
+    
+    cell.coffeeCellNameOrOriginLabel.text   = [NSString stringWithFormat:@"%@", coffee.nameOrOrigin];
+    cell.coffeeCellRoasterLabel.text        = [NSString stringWithFormat:@"%@", coffee.roaster];
     
     [cell.coffeeCellAverageRating sizeToFit];
     [cell.coffeeCellAverageRating setStepInterval:0.5];
@@ -101,12 +96,8 @@
     if (![[[DataController sharedController]averageRatingFromCuppingRatingInCoffee:coffee]floatValue]) {
         cell.coffeeCellAverageRating.value = 0.0;
     }
-    [cell.coffeeCellAverageRating sizeToFit];
-    [cell.coffeeCellAverageRating setStepInterval:0.5];
-    [cell.coffeeCellAverageRating setUserInteractionEnabled:NO];
     
     coffee.mostRecentPhoto = [[DataController sharedController]mostRecentImageInCoffee:coffee];
-    
     cell.coffeeCellImage.layer.cornerRadius = 11;
     cell.coffeeCellImage.layer.masksToBounds = YES;
     cell.coffeeCellImage.image = coffee.mostRecentPhoto;

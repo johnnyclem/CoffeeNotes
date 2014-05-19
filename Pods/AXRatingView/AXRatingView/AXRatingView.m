@@ -12,7 +12,7 @@
   _markFont = [UIFont systemFontOfSize:22.0];
   _baseColor = [UIColor darkGrayColor];
   self.backgroundColor = _baseColor;
-  _highlightColor = [UIColor colorWithRed:1.0 green:0.8 blue:0.0 alpha:1.0];
+  _highlightColor = [UIColor colorWithRed:0.882 green:0.498 blue:0.353 alpha:1];
   _numberOfStar = 5;
   _stepInterval = 0.0;
 }

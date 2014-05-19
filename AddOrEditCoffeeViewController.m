@@ -23,7 +23,6 @@
 // textFields and textViews
 @property (weak, nonatomic) IBOutlet UITextField *roasterTextField;
 @property (weak, nonatomic) IBOutlet UITextField *locationTextField;
-
 @property (weak, nonatomic) IBOutlet UITextField *brewingMethodTextField;
 @property (weak, nonatomic) IBOutlet UITextView *notesTextView;
 
@@ -35,20 +34,16 @@
 // views and imageViews
 @property (weak, nonatomic) IBOutlet UIScrollView *addOrEditCoffeeScrollView;
 @property (weak, nonatomic) IBOutlet UIImageView *photoImageView;
-//@property (weak, nonatomic) IBOutlet UIImageView *tastingWheelImageView;
+@property (weak, nonatomic) IBOutlet AXRatingView *coffeeCuppingRatingView;
 
 // other
 @property (strong, nonatomic) UIActionSheet *addOrChangePhotoActionSheet;
-
 @property (weak, nonatomic) NSManagedObjectContext *managedObjectContext;
-
-@property (weak, nonatomic) IBOutlet AXRatingView *coffeeCuppingRatingView;
-
 @property (nonatomic) BOOL usingCamera;
 @property (nonatomic) BOOL dateNotNeeded;
 
-
 @end
+
 
 @implementation AddOrEditCoffeeViewController
 
@@ -70,8 +65,8 @@
         _nameOrOriginTextField.text                         = _editableCoffee.nameOrOrigin;
         _roasterTextField.text                              = _editableCoffee.roaster;
         _locationTextField.enabled                          = NO;
-        _chooseCuppingDateButtonFromCoffee.enabled          = NO;
-        _chooseRoastDateButtonFromCoffee.enabled            = NO;
+        _chooseCuppingDateButton.enabled                    = NO;
+        _chooseRoastDateButton.enabled                      = NO;
         
         _brewingMethodTextField.enabled                     = NO;
         _notesTextView.editable                             = NO;
@@ -79,12 +74,12 @@
         _coffeeCuppingRatingView.enabled                    = NO;
         _dateNotNeeded                                      = YES;
         
- 
-        [_chooseRoastDateButtonFromCoffee setTitle:@" " forState:UIControlStateDisabled];
-        [_chooseCuppingDateButtonFromCoffee setTitle:@" " forState:UIControlStateDisabled];
         
-        _saveBarButton.enabled          = (_nameOrOriginTextField.text.length > 0) && ((_coffeeCuppingDateHolder != nil) || (_dateNotNeeded == YES));
-        _mainViewSaveButton.enabled     = (_nameOrOriginTextField.text.length > 0) && ((_coffeeCuppingDateHolder != nil) || (_dateNotNeeded == YES));
+        [_chooseRoastDateButton setTitle:@" " forState:UIControlStateDisabled];
+        [_chooseCuppingDateButton setTitle:@" " forState:UIControlStateDisabled];
+        
+        _saveBarButton.enabled          = (_nameOrOriginTextField.text.length > 0) && ((_cuppingDateHolder != nil) || (_dateNotNeeded == YES));
+        _mainViewSaveButton.enabled     = (_nameOrOriginTextField.text.length > 0) && ((_cuppingDateHolder != nil) || (_dateNotNeeded == YES));
     }
     
     [_coffeeCuppingRatingView sizeToFit];
@@ -113,28 +108,28 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if (textField == self.nameOrOriginTextField) {
-        [self.addOrEditCoffeeScrollView setContentOffset:CGPointMake(0, self.nameOrOriginTextField.frame.origin.y - 100) animated:YES];
-    } else if (textField == self.roasterTextField) {
-        [self.addOrEditCoffeeScrollView setContentOffset:CGPointMake(0, self.roasterTextField.frame.origin.y - 100) animated:YES];
-    } else if (textField == self.locationTextField) {
-        [self.addOrEditCoffeeScrollView setContentOffset:CGPointMake(0, self.locationTextField.frame.origin.y - 100) animated:YES];
-    } else if (textField == self.brewingMethodTextField) {
-        [self.addOrEditCoffeeScrollView setContentOffset:CGPointMake(0, self.brewingMethodTextField.frame.origin.y - 100) animated:YES];
+    if (textField == _nameOrOriginTextField) {
+        [_addOrEditCoffeeScrollView setContentOffset:CGPointMake(0, _nameOrOriginTextField.frame.origin.y - 100) animated:YES];
+    } else if (textField == _roasterTextField) {
+        [_addOrEditCoffeeScrollView setContentOffset:CGPointMake(0, _roasterTextField.frame.origin.y - 100) animated:YES];
+    } else if (textField == _locationTextField) {
+        [_addOrEditCoffeeScrollView setContentOffset:CGPointMake(0, _locationTextField.frame.origin.y - 100) animated:YES];
+    } else if (textField == _brewingMethodTextField) {
+        [_addOrEditCoffeeScrollView setContentOffset:CGPointMake(0, _brewingMethodTextField.frame.origin.y - 100) animated:YES];
     }
 }
 
 -(void)textViewDidBeginEditing:(UITextView *)textView
 {
-    if (textView == self.notesTextView) {
-        [self.addOrEditCoffeeScrollView setContentOffset:CGPointMake(0, self.notesTextView.frame.origin.y - 100) animated:YES];
+    if (textView == _notesTextView) {
+        [_addOrEditCoffeeScrollView setContentOffset:CGPointMake(0, _notesTextView.frame.origin.y - 100) animated:YES];
     }
 }
 
 - (void)textFieldDidChange:(NSNotification *)note
 {
-    _saveBarButton.enabled = (_nameOrOriginTextField.text.length > 0) && ((_coffeeCuppingDateHolder != nil) || (_dateNotNeeded == YES));
-    _mainViewSaveButton.enabled = (_nameOrOriginTextField.text.length > 0) && ((_coffeeCuppingDateHolder != nil) || (_dateNotNeeded == YES));
+    _saveBarButton.enabled = (_nameOrOriginTextField.text.length > 0) && ((_cuppingDateHolder != nil) || (_dateNotNeeded == YES));
+    _mainViewSaveButton.enabled = (_nameOrOriginTextField.text.length > 0) && ((_cuppingDateHolder != nil) || (_dateNotNeeded == YES));
 }
 
 // Button title did change method.
@@ -161,16 +156,16 @@
         // New Cupping Stuff
         Cupping *newCupping         = [NSEntityDescription insertNewObjectForEntityForName:@"Cupping" inManagedObjectContext:_managedObjectContext];
         newCupping.location         = _locationTextField.text;
-        newCupping.cuppingDate      = _coffeeCuppingDateHolder;
+        newCupping.cuppingDate      = _cuppingDateHolder;
         
-        newCupping.roastDate        = _coffeeRoastDateHolder;
+        newCupping.roastDate        = _roastDateHolder;
         newCupping.brewingMethod    = _brewingMethodTextField.text;
         
         NSNumber *numberFromFloatValue  = [[NSNumber alloc]initWithFloat:_coffeeCuppingRatingView.value];
         newCupping.rating               = numberFromFloatValue;
         newCupping.photo                = _photoImageView.image;
         newCupping.cuppingNotes         = _notesTextView.text;
-       
+        
         newCupping.coffee = newCoffee;
         
         [newCoffee.managedObjectContext save:&error];
@@ -202,31 +197,33 @@
 {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
-        self.addOrChangePhotoActionSheet = [[UIActionSheet alloc] initWithTitle:@"Photos"
-                                                                       delegate:self
-                                                              cancelButtonTitle:@"Cancel"
-                                                         destructiveButtonTitle:@"Delete Photo"
-                                                              otherButtonTitles:@"Take Photo",@"Choose Photo", nil];
+        _addOrChangePhotoActionSheet = [[UIActionSheet alloc] initWithTitle:@"Photos"
+                                                                   delegate:self
+                                                          cancelButtonTitle:@"Cancel"
+                                                     destructiveButtonTitle:@"Delete Photo"
+                                                          otherButtonTitles:@"Take Photo",@"Choose Photo", nil];
         
     } else {
         
-        self.addOrChangePhotoActionSheet  = [[UIActionSheet alloc] initWithTitle:@"Photos"
-                                                                        delegate:self
-                                                               cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete Photo" otherButtonTitles:@"Choose Photo", nil];
+        _addOrChangePhotoActionSheet  = [[UIActionSheet alloc] initWithTitle:@"Photos"
+                                                                    delegate:self
+                                                           cancelButtonTitle:@"Cancel"
+                                                      destructiveButtonTitle:@"Delete Photo"
+                                                           otherButtonTitles:@"Choose Photo", nil];
     }
-    [self.addOrChangePhotoActionSheet showInView:self.view];
+    [_addOrChangePhotoActionSheet showInView:self.view];
 }
 
 - (IBAction)deleteCoffeeButtonPressed:(id)sender
-    {
-        if ([self.deleteCoffeeButton isEnabled]) {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
-                                                                message:@"Are you sure you want to delete this coffee and all its cuppings?"
-                                                               delegate:self
-                                                      cancelButtonTitle:@"Cancel"
-                                                      otherButtonTitles:@"Delete", nil];
-            
-                [alertView show];
+{
+    if ([self.deleteCoffeeButton isEnabled]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
+                                                            message:@"Are you sure you want to delete this coffee and all its cuppings?"
+                                                           delegate:self
+                                                  cancelButtonTitle:@"Cancel"
+                                                  otherButtonTitles:@"Delete", nil];
+        
+        [alertView show];
     }
 }
 
@@ -282,27 +279,27 @@
         
         if (self.usingCamera)
         {
-        
-        ALAssetsLibrary *assetsLibrary = [ALAssetsLibrary new];
-        if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusAuthorized || [ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusNotDetermined) {
-            [assetsLibrary writeImageToSavedPhotosAlbum:originalImage.CGImage
-                                            orientation:ALAssetOrientationUp
-                                        completionBlock:^(NSURL *assetURL, NSError *error) {
-                                            if (error) {
-                                                NSLog(@"Error Saving Image: %@", error.localizedDescription);
-                                            }
-                                        }];
-        } else if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusDenied || [ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusRestricted) {
-            UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Cannot Save Photo"
-                                                                message:@"Authorization status not granted"
-                                                               delegate:nil
-                                                      cancelButtonTitle:@"OK"
-                                                      otherButtonTitles:nil];
-            [alertView show];
             
-        } else {
-            NSLog(@"Authorization Not Determined");
-        }
+            ALAssetsLibrary *assetsLibrary = [ALAssetsLibrary new];
+            if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusAuthorized || [ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusNotDetermined) {
+                [assetsLibrary writeImageToSavedPhotosAlbum:originalImage.CGImage
+                                                orientation:ALAssetOrientationUp
+                                            completionBlock:^(NSURL *assetURL, NSError *error) {
+                                                if (error) {
+                                                    NSLog(@"Error Saving Image: %@", error.localizedDescription);
+                                                }
+                                            }];
+            } else if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusDenied || [ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusRestricted) {
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Cannot Save Photo"
+                                                                    message:@"Authorization status not granted"
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"OK"
+                                                          otherButtonTitles:nil];
+                [alertView show];
+                
+            } else {
+                NSLog(@"Authorization Not Determined");
+            }
         } }];
 }
 

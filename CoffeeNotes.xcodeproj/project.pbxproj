@@ -83,6 +83,8 @@
 		3DE4604119098514002AF3C0 /* CuppingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CuppingModel.m; sourceTree = "<group>"; };
 		3DE460431909852F002AF3C0 /* TastingWheel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TastingWheel.h; sourceTree = "<group>"; };
 		3DE460441909852F002AF3C0 /* TastingWheel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TastingWheel.m; sourceTree = "<group>"; };
+		3DFBDCD21929B5BB00DC03E7 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		3DFBDCD31929B5D200DC03E7 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		3DFC9A1F190EE3F500970C84 /* DataSourcePropertyList.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = DataSourcePropertyList.plist; sourceTree = "<group>"; };
 		3DFC9A21190EEEFB00970C84 /* DataController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataController.h; sourceTree = "<group>"; };
 		3DFC9A22190EEEFB00970C84 /* DataController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataController.m; sourceTree = "<group>"; };
@@ -255,6 +257,8 @@
 				3DE46014190984D8002AF3C0 /* main.m */,
 				3DE46016190984D8002AF3C0 /* CoffeeNotes-Prefix.pch */,
 				3DFC9A1F190EE3F500970C84 /* DataSourcePropertyList.plist */,
+				3DFBDCD21929B5BB00DC03E7 /* Montserrat-Regular.ttf */,
+				3DFBDCD31929B5D200DC03E7 /* OpenSans-Regular.ttf */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";

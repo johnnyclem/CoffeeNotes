@@ -35,17 +35,17 @@
         
         AddOrEditCoffeeViewController *destination = segue.destinationViewController;
         
-        if ([self.segueKey isEqualToString:@"PickCuppingDateFromCoffee"]) {
+        if ([_segueKey isEqualToString:@"PickCuppingDateFromCoffee"]) {
             
-            destination.coffeeCuppingDateHolder = self.datePicker.date;
-            [destination.chooseCuppingDateButtonFromCoffee setTitle:[[DataController sharedController]createStringFromDate:self.datePicker.date] forState:UIControlStateNormal];
-            destination.saveBarButton.enabled = (destination.nameOrOriginTextField.text.length > 0) && (destination.coffeeCuppingDateHolder != nil);
-            destination.mainViewSaveButton.enabled = (destination.nameOrOriginTextField.text.length > 0) && (destination.coffeeCuppingDateHolder != nil);
+            destination.cuppingDateHolder = _datePicker.date;
+            [destination.chooseCuppingDateButton setTitle:[[DataController sharedController]createStringFromDate:_datePicker.date] forState:UIControlStateNormal];
+            destination.saveBarButton.enabled = (destination.nameOrOriginTextField.text.length > 0) && (destination.cuppingDateHolder != nil);
+            destination.mainViewSaveButton.enabled = (destination.nameOrOriginTextField.text.length > 0) && (destination.cuppingDateHolder != nil);
             
-        } else if ([self.segueKey isEqualToString:@"PickRoastDateFromCoffee"]) {
+        } else if ([_segueKey isEqualToString:@"PickRoastDateFromCoffee"]) {
             
-            destination.coffeeRoastDateHolder = self.datePicker.date;
-            [destination.chooseRoastDateButtonFromCoffee setTitle:[[DataController sharedController]createStringFromDate:self.datePicker.date] forState:UIControlStateNormal];
+            destination.roastDateHolder = _datePicker.date;
+            [destination.chooseRoastDateButton setTitle:[[DataController sharedController]createStringFromDate:_datePicker.date] forState:UIControlStateNormal];
         }
     }
 }

@@ -16,26 +16,20 @@
 
 @interface CoffeeDetailViewController () <UITableViewDelegate, UITableViewDataSource>
 
-// models
 @property (weak, nonatomic) Cupping *cupping;
+@property (strong, nonatomic) NSArray *cuppings;
 
 // labels
 @property (weak, nonatomic) IBOutlet UILabel *nameOrOriginLabel;
 @property (weak, nonatomic) IBOutlet UILabel *roasterLabel;
 
 // buttons
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *editButton;
 @property (weak, nonatomic) IBOutlet UIButton *addNewCuppingButton;
 
-
-// views and imageViews
-
+// views
 @property (weak, nonatomic) IBOutlet AXRatingView *averageStarRatingView;
 @property (weak, nonatomic) IBOutlet UIImageView *mostRecentPhotoImageView;
-@property (weak, nonatomic) IBOutlet UIView *tastingWheelView;
 @property (weak, nonatomic) IBOutlet UITableView *cuppingsTableView;
-
-@property (strong, nonatomic) NSArray *cuppings;
 
 @end
 
@@ -47,15 +41,15 @@
 {
     [super viewDidLoad];
     
-    self.nameOrOriginLabel.text = self.selectedCoffee.nameOrOrigin;
-    self.roasterLabel.text = self.selectedCoffee.roaster;
+    _nameOrOriginLabel.text     = _selectedCoffee.nameOrOrigin;
+    _roasterLabel.text          = _selectedCoffee.roaster;
     
-    self.cuppingsTableView.delegate = self;
-    self.cuppingsTableView.dataSource = self;
+    _cuppingsTableView.delegate     = self;
+    _cuppingsTableView.dataSource   = self;
     
-    [self.averageStarRatingView sizeToFit];
-    [self.averageStarRatingView setStepInterval:0.5];
-    [self.averageStarRatingView setUserInteractionEnabled:NO];
+    [_averageStarRatingView sizeToFit];
+    [_averageStarRatingView setStepInterval:0.5];
+    [_averageStarRatingView setUserInteractionEnabled:NO];
     
 }
 
@@ -72,7 +66,9 @@
     }
     
     _mostRecentPhotoImageView.image = [[DataController sharedController]mostRecentImageInCoffee:_selectedCoffee];
-
+    _mostRecentPhotoImageView.layer.cornerRadius = 11;
+    _mostRecentPhotoImageView.layer.masksToBounds = YES;
+    
     [_cuppingsTableView reloadData];
 }
 
@@ -89,9 +85,10 @@
     if ([segue.identifier isEqualToString:@"CuppingDetailSegue"]) {
         
         CuppingDetailViewController *destination = segue.destinationViewController;
-        destination.selectedCoffee = self.selectedCoffee;
-        NSIndexPath *indexPath = [self.cuppingsTableView indexPathForSelectedRow];
-        destination.selectedCupping = self.cuppings[indexPath.row];
+        destination.selectedCoffee = _selectedCoffee;
+        
+        NSIndexPath *indexPath = [_cuppingsTableView indexPathForSelectedRow];
+        destination.selectedCupping = _cuppings[indexPath.row];
         
     } else if ([segue.identifier isEqualToString:@"AddCuppingSegue"]) {
         
@@ -124,7 +121,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.selectedCoffee.cuppings.count;
+    return _selectedCoffee.cuppings.count;
 }
 
 -(CuppingCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

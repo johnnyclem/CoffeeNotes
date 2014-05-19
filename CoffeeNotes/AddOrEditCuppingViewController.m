@@ -18,7 +18,7 @@
 @interface AddOrEditCuppingViewController () <UIImagePickerControllerDelegate, UIActionSheetDelegate, UITextFieldDelegate, UITextViewDelegate, UINavigationControllerDelegate>
 
 // labels
-@property (weak, nonatomic) IBOutlet UILabel *coffeeNameOrOriginLabel;
+@property (weak, nonatomic) IBOutlet UILabel *nameOrOriginLabel;
 @property (weak, nonatomic) IBOutlet UILabel *roasterLabel;
 
 // text fields
@@ -48,7 +48,7 @@
     AppDelegate *appDelegate                = [UIApplication sharedApplication].delegate;
     _managedObjectContext               = appDelegate.objectContext;
 
-    _coffeeNameOrOriginLabel.text       = _selectedCoffee.nameOrOrigin;
+    _nameOrOriginLabel.text       = _selectedCoffee.nameOrOrigin;
     _roasterLabel.text                  = _selectedCoffee.roaster;
     
     _locationTextField.delegate         = self;
@@ -62,13 +62,15 @@
         _notesTextView.text                                     = _editableCupping.cuppingNotes;
         _cuppingRatingView.value                                = _editableCupping.rating.floatValue;
         _deleteCuppingButton.enabled                            = YES;
-        _cuppingCuppingDateHolder                               = _editableCupping.cuppingDate;
-        _cuppingRoastDateHolder                                 = _editableCupping.roastDate;
-        _chooseCuppingDateFromCuppingButton.titleLabel.text     = [[DataController sharedController]createStringFromDate:_cuppingCuppingDateHolder];
-        _chooseRoastDateFromCuppingButton.titleLabel.text       = [[DataController sharedController]createStringFromDate:_cuppingRoastDateHolder];
-        _mainViewSaveButton.enabled                             = (_cuppingCuppingDateHolder != nil);
-        _navigationBarSaveButton.enabled                        = (_cuppingCuppingDateHolder != nil);
+        _cuppingDateHolder                               = _editableCupping.cuppingDate;
+        _roastDateHolder                                 = _editableCupping.roastDate;
+        _chooseCuppingDateFromCuppingButton.titleLabel.text     = [[DataController sharedController]createStringFromDate:_cuppingDateHolder];
+        _chooseRoastDateFromCuppingButton.titleLabel.text       = [[DataController sharedController]createStringFromDate:_roastDateHolder];
+        _mainViewSaveButton.enabled                             = (_cuppingDateHolder != nil);
+        _navigationBarSaveButton.enabled                        = (_cuppingDateHolder != nil);
         _photoImageView.image                                   = _editableCupping.photo;
+        _photoImageView.layer.cornerRadius = 11;
+        _photoImageView.layer.masksToBounds = YES;
     }
     
     [_cuppingRatingView sizeToFit];
@@ -94,7 +96,7 @@
 {
     if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
-        self.addOrChangePhotoActionSheet = [[UIActionSheet alloc] initWithTitle:@"Photos"
+        _addOrChangePhotoActionSheet = [[UIActionSheet alloc] initWithTitle:@"Photos"
                                                                        delegate:self
                                                               cancelButtonTitle:@"Cancel"
                                                          destructiveButtonTitle:@"Delete Photo"
@@ -102,18 +104,18 @@
         
     } else {
         
-        self.addOrChangePhotoActionSheet  = [[UIActionSheet alloc] initWithTitle:@"Photos"
+        _addOrChangePhotoActionSheet  = [[UIActionSheet alloc] initWithTitle:@"Photos"
                                                                         delegate:self
                                                                cancelButtonTitle:@"Cancel"
                                                           destructiveButtonTitle:@"Delete Photo"
                                                                otherButtonTitles:@"Choose Photo", nil];
     }
-    [self.addOrChangePhotoActionSheet showInView:self.view];
+    [_addOrChangePhotoActionSheet showInView:self.view];
 }
 
 - (IBAction)deleteCuppingButtonPressed:(id)sender
 {
-    if ([self.deleteCuppingButton isEnabled]) {
+    if ([_deleteCuppingButton isEnabled]) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:nil
                                                             message:@"Are you sure you want to delete this cupping?"
                                                            delegate:self
@@ -131,24 +133,24 @@
     {
         Cupping *newCupping;
         
-        if (self.editableCupping) {
-            newCupping = self.editableCupping;
+        if (_editableCupping) {
+            newCupping = _editableCupping;
         } else {
             newCupping = [NSEntityDescription insertNewObjectForEntityForName:@"Cupping" inManagedObjectContext:self.selectedCoffee.managedObjectContext];;
         }
         
-        newCupping.location = self.locationTextField.text;
-        newCupping.rating = [[NSNumber alloc] initWithFloat:self.cuppingRatingView.value];
-        newCupping.brewingMethod = self.brewingMethodTextField.text;
-        newCupping.cuppingNotes = self.notesTextView.text;
-        newCupping.photo = self.photoImageView.image;
-        newCupping.cuppingDate = _cuppingCuppingDateHolder;
-        newCupping.roastDate   = _cuppingRoastDateHolder;
+        newCupping.location             = _locationTextField.text;
+        newCupping.rating               = [[NSNumber alloc] initWithFloat:_cuppingRatingView.value];
+        newCupping.brewingMethod        = _brewingMethodTextField.text;
+        newCupping.cuppingNotes         = _notesTextView.text;
+        newCupping.photo                = _photoImageView.image;
+        newCupping.cuppingDate          = _cuppingDateHolder;
+        newCupping.roastDate            = _roastDateHolder;
         
-        NSNumber *numberFromFloatValue = [[NSNumber alloc]initWithFloat:self.cuppingRatingView.value];
-        newCupping.rating = numberFromFloatValue;
+        NSNumber *numberFromFloatValue  = [[NSNumber alloc]initWithFloat:_cuppingRatingView.value];
+        newCupping.rating               = numberFromFloatValue;
         
-        newCupping.coffee = _selectedCoffee;
+        newCupping.coffee               = _selectedCoffee;
         
         NSError *error;
         [_selectedCoffee.managedObjectContext save:&error];
@@ -156,12 +158,12 @@
     } else if ([segue.identifier isEqualToString:@"PickCuppingDateFromCupping"]) {
         
         CoffeeDatePickerViewController *destination = segue.destinationViewController;
-        destination.datePickerDate = self.cuppingCuppingDateHolder;
+        destination.datePickerDate = _cuppingDateHolder;
         destination.segueKey = @"PickCuppingDateFromCupping";
         
     } else if ([segue.identifier isEqualToString:@"PickRoastDateFromCupping"]) {
         CoffeeDatePickerViewController *destination = segue.destinationViewController;
-        destination.datePickerDate = self.cuppingRoastDateHolder;
+        destination.datePickerDate = _roastDateHolder;
         destination.segueKey = @"PickRoastDateFromCupping";
         
     } else if ([segue.identifier isEqualToString:@"deleteCupping"]) {
@@ -184,17 +186,17 @@
 
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
-    if (textField == self.locationTextField) {
-        [self.addOrEditCuppingScrollView setContentOffset:CGPointMake(0, self.locationTextField.frame.origin.y - 100) animated:YES];
-    } else if (textField == self.brewingMethodTextField) {
-        [self.addOrEditCuppingScrollView setContentOffset:CGPointMake(0, self.brewingMethodTextField.frame.origin.y - 100) animated:YES];
+    if (textField == _locationTextField) {
+        [_addOrEditCuppingScrollView setContentOffset:CGPointMake(0, _locationTextField.frame.origin.y - 100) animated:YES];
+    } else if (textField == _brewingMethodTextField) {
+        [_addOrEditCuppingScrollView setContentOffset:CGPointMake(0, _brewingMethodTextField.frame.origin.y - 100) animated:YES];
     }
 }
 
 -(void)textViewDidBeginEditing:(UITextView *)textView
 {
-    if (textView == self.notesTextView) {
-        [self.addOrEditCuppingScrollView setContentOffset:CGPointMake(0, self.notesTextView.frame.origin.y - 100) animated:YES];
+    if (textView == _notesTextView) {
+        [_addOrEditCuppingScrollView setContentOffset:CGPointMake(0, _notesTextView.frame.origin.y - 100) animated:YES];
     }
 }
 
@@ -240,7 +242,7 @@
     [self dismissViewControllerAnimated:YES completion:^{
         NSLog(@"Completed");
         
-        self.photoImageView.image = originalImage;
+        _photoImageView.image = originalImage;
         
         ALAssetsLibrary *assetsLibrary = [ALAssetsLibrary new];
         if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusAuthorized || [ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusNotDetermined) {

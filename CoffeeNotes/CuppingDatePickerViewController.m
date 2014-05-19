@@ -35,17 +35,17 @@
         
         AddOrEditCuppingViewController *destination = segue.destinationViewController;
         
-        if ([self.segueKey isEqualToString:@"PickCuppingDateFromCupping"]) {
+        if ([_segueKey isEqualToString:@"PickCuppingDateFromCupping"]) {
             
-            destination.cuppingCuppingDateHolder = self.datePicker.date;
-            [destination.chooseCuppingDateFromCuppingButton setTitle:[[DataController sharedController]createStringFromDate:self.datePicker.date] forState:UIControlStateNormal];
-            destination.mainViewSaveButton.enabled = (destination.cuppingCuppingDateHolder != nil);
-            destination.navigationBarSaveButton.enabled = (destination.cuppingCuppingDateHolder != nil);
+            destination.cuppingDateHolder = _datePicker.date;
+            [destination.chooseCuppingDateFromCuppingButton setTitle:[[DataController sharedController]createStringFromDate:_datePicker.date] forState:UIControlStateNormal];
+            destination.mainViewSaveButton.enabled = (destination.cuppingDateHolder != nil);
+            destination.navigationBarSaveButton.enabled = (destination.cuppingDateHolder != nil);
             
-        } else if ([self.segueKey isEqualToString:@"PickRoastDateFromCupping"]) {
+        } else if ([_segueKey isEqualToString:@"PickRoastDateFromCupping"]) {
             
-            destination.cuppingRoastDateHolder = self.datePicker.date;
-            [destination.chooseRoastDateFromCuppingButton setTitle:[[DataController sharedController]createStringFromDate:self.datePicker.date] forState:UIControlStateNormal];
+            destination.roastDateHolder = _datePicker.date;
+            [destination.chooseRoastDateFromCuppingButton setTitle:[[DataController sharedController]createStringFromDate:_datePicker.date] forState:UIControlStateNormal];
         }
     }
 }
