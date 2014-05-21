@@ -51,6 +51,7 @@
     [_averageStarRatingView setStepInterval:0.5];
     [_averageStarRatingView setUserInteractionEnabled:NO];
     
+    _nameOrOriginLabel.font = [UIFont fontWithName:@"Montserrat-Regular" size:47.0];
 }
 
 -(void)viewDidAppear:(BOOL)animated

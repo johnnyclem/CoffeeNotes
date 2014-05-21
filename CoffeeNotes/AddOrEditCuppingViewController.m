@@ -73,6 +73,8 @@
         _photoImageView.layer.masksToBounds = YES;
     }
     
+    _notesTextView.layer.cornerRadius = 11;
+    
     [_cuppingRatingView sizeToFit];
     [_cuppingRatingView setStepInterval:0.5];
 

@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		06D1C1C3F7894517B818AAC5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6076AB8A7E4D45AF8CB9B92E /* libPods.a */; settings = {ATTRIBUTES = (Required, ); }; };
 		3D0518AD191025540020029B /* CuppingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D0518AC191025540020029B /* CuppingCell.m */; };
+		3D094971192BFFB5002508B0 /* year.png in Resources */ = {isa = PBXBuildFile; fileRef = 3D094970192BFFB5002508B0 /* year.png */; };
+		3D094972192C0447002508B0 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3DFBDCD21929B5BB00DC03E7 /* Montserrat-Regular.ttf */; };
+		3D094973192C0447002508B0 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3DFBDCD31929B5D200DC03E7 /* OpenSans-Regular.ttf */; };
 		3D259472191BF47A00AD0326 /* ImageTransformer.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D259471191BF47A00AD0326 /* ImageTransformer.m */; };
 		3D2EE5EF1921819200C413D2 /* CoffeeDatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D2EE5EE1921819200C413D2 /* CoffeeDatePickerViewController.m */; };
 		3D51816C191BF10F0007D85C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3D51816A191BF10F0007D85C /* Model.xcdatamodeld */; };
@@ -41,6 +44,7 @@
 /* Begin PBXFileReference section */
 		3D0518AB191025540020029B /* CuppingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CuppingCell.h; sourceTree = "<group>"; };
 		3D0518AC191025540020029B /* CuppingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CuppingCell.m; sourceTree = "<group>"; };
+		3D094970192BFFB5002508B0 /* year.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = year.png; sourceTree = "<group>"; };
 		3D259470191BF47A00AD0326 /* ImageTransformer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTransformer.h; sourceTree = "<group>"; };
 		3D259471191BF47A00AD0326 /* ImageTransformer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTransformer.m; sourceTree = "<group>"; };
 		3D2EE5ED1921819200C413D2 /* CoffeeDatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoffeeDatePickerViewController.h; sourceTree = "<group>"; };
@@ -237,6 +241,7 @@
 		3DE4600E190984D8002AF3C0 /* CoffeeNotes */ = {
 			isa = PBXGroup;
 			children = (
+				3D094970192BFFB5002508B0 /* year.png */,
 				3DE46017190984D8002AF3C0 /* AppDelegate.h */,
 				3DE46018190984D8002AF3C0 /* AppDelegate.m */,
 				3DE4601A190984D8002AF3C0 /* Main.storyboard */,
@@ -332,7 +337,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3D094972192C0447002508B0 /* Montserrat-Regular.ttf in Resources */,
+				3D094973192C0447002508B0 /* OpenSans-Regular.ttf in Resources */,
 				3DE46021190984D8002AF3C0 /* Images.xcassets in Resources */,
+				3D094971192BFFB5002508B0 /* year.png in Resources */,
 				3DE46013190984D8002AF3C0 /* InfoPlist.strings in Resources */,
 				3DFC9A20190EE3F500970C84 /* DataSourcePropertyList.plist in Resources */,
 				3DE4601C190984D8002AF3C0 /* Main.storyboard in Resources */,

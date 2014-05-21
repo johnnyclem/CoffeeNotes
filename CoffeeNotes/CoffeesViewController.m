@@ -83,6 +83,10 @@
 -(CoffeeCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CoffeeCell *cell    = [tableView dequeueReusableCellWithIdentifier:@"CoffeeCell" forIndexPath:indexPath];
+    
+    cell.accessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    [(UIImageView *)cell.accessoryView setImage:[UIImage imageNamed:@"year"]];
+    
     Coffee *coffee      = [_coffees objectAtIndex:indexPath.row];
     
     cell.coffeeCellNameOrOriginLabel.text   = [NSString stringWithFormat:@"%@", coffee.nameOrOrigin];
