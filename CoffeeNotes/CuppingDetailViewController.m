@@ -52,6 +52,10 @@
     
     // views and imageViews
     _photoImageView.image           = _selectedCupping.photo;
+    _photoImageView.layer.cornerRadius = 11;
+    _photoImageView.layer.masksToBounds = YES;
+    
+    _notesTextView.layer.cornerRadius = 11;
     
     [_ratingView sizeToFit];
     [_ratingView setStepInterval:0.5];

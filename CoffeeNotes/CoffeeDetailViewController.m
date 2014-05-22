@@ -18,7 +18,7 @@
 
 @property (weak, nonatomic) Cupping *cupping;
 @property (strong, nonatomic) NSArray *cuppings;
-
+@property (nonatomic, strong) NSSortDescriptor *cuppingDateSortDescriptor;
 // labels
 @property (weak, nonatomic) IBOutlet UILabel *nameOrOriginLabel;
 @property (weak, nonatomic) IBOutlet UILabel *roasterLabel;
@@ -51,14 +51,17 @@
     [_averageStarRatingView setStepInterval:0.5];
     [_averageStarRatingView setUserInteractionEnabled:NO];
     
-    _nameOrOriginLabel.font = [UIFont fontWithName:@"Montserrat-Regular" size:47.0];
+//    _nameOrOriginLabel.font = [UIFont fontWithName:@"Montserrat-Regular" size:47.0];
+    
+    _cuppingDateSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"cuppingDate" ascending:YES];
+    
 }
 
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    _cuppings = [_selectedCoffee.cuppings allObjects];
+    _cuppings = [DataController cuppingsSortedByDateForCoffee:_selectedCoffee];
     
     _averageStarRatingView.value = [[[DataController sharedController] averageRatingFromCuppingRatingInCoffee:_selectedCoffee]floatValue];
     
@@ -127,8 +130,10 @@
 
 -(CuppingCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    
     CuppingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CuppingCell" forIndexPath:indexPath];
+    
+    cell.accessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    [(UIImageView *)cell.accessoryView setImage:[UIImage imageNamed:@"icon_18269"]];
     
     NSLog(@"%ld",(long)indexPath.row);
     

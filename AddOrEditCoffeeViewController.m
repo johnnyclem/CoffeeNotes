@@ -15,6 +15,7 @@
 #import "AppDelegate.h"
 #import "CoffeeDatePickerViewController.h"
 #import <AXRatingView/AXRatingView.h>
+#import "UIColor+ColorScheme.h"
 
 
 
@@ -71,6 +72,8 @@
         _brewingMethodTextField.enabled                     = NO;
         _notesTextView.editable                             = NO;
         _deleteCoffeeButton.enabled                         = YES;
+        [_deleteCoffeeButton setBackgroundColor:[UIColor darkSalmonColor]];
+        _deleteCoffeeButton.layer.cornerRadius = 11;
         _coffeeCuppingRatingView.enabled                    = NO;
         _dateNotNeeded                                      = YES;
         
@@ -81,6 +84,12 @@
         _saveBarButton.enabled          = (_nameOrOriginTextField.text.length > 0) && ((_cuppingDateHolder != nil) || (_dateNotNeeded == YES));
         _mainViewSaveButton.enabled     = (_nameOrOriginTextField.text.length > 0) && ((_cuppingDateHolder != nil) || (_dateNotNeeded == YES));
     }
+    
+    _notesTextView.layer.cornerRadius = 11;
+    
+    _photoImageView.layer.cornerRadius = 11;
+    _photoImageView.layer.masksToBounds = YES;
+
     
     [_coffeeCuppingRatingView sizeToFit];
     [_coffeeCuppingRatingView setStepInterval:0.5];
@@ -109,7 +118,7 @@
 -(void)textFieldDidBeginEditing:(UITextField *)textField
 {
     if (textField == _nameOrOriginTextField) {
-        [_addOrEditCoffeeScrollView setContentOffset:CGPointMake(0, _nameOrOriginTextField.frame.origin.y - 100) animated:YES];
+        [_addOrEditCoffeeScrollView setContentOffset:CGPointMake(0, 0) animated:YES];
     } else if (textField == _roasterTextField) {
         [_addOrEditCoffeeScrollView setContentOffset:CGPointMake(0, _roasterTextField.frame.origin.y - 100) animated:YES];
     } else if (textField == _locationTextField) {

@@ -12,6 +12,7 @@
 #import <AXRatingView/AXRatingView.h>
 #import "AppDelegate.h"
 #import "CoffeeDatePickerViewController.h"
+#import "UIColor+ColorScheme.h"
 
 
 
@@ -62,6 +63,8 @@
         _notesTextView.text                                     = _editableCupping.cuppingNotes;
         _cuppingRatingView.value                                = _editableCupping.rating.floatValue;
         _deleteCuppingButton.enabled                            = YES;
+        [_deleteCuppingButton setBackgroundColor:[UIColor darkSalmonColor]];
+        _deleteCuppingButton.layer.cornerRadius = 11;
         _cuppingDateHolder                               = _editableCupping.cuppingDate;
         _roastDateHolder                                 = _editableCupping.roastDate;
         _chooseCuppingDateFromCuppingButton.titleLabel.text     = [[DataController sharedController]createStringFromDate:_cuppingDateHolder];
@@ -69,9 +72,11 @@
         _mainViewSaveButton.enabled                             = (_cuppingDateHolder != nil);
         _navigationBarSaveButton.enabled                        = (_cuppingDateHolder != nil);
         _photoImageView.image                                   = _editableCupping.photo;
-        _photoImageView.layer.cornerRadius = 11;
-        _photoImageView.layer.masksToBounds = YES;
+        
     }
+    
+    _photoImageView.layer.cornerRadius = 11;
+    _photoImageView.layer.masksToBounds = YES;
     
     _notesTextView.layer.cornerRadius = 11;
     

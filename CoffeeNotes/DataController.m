@@ -49,6 +49,12 @@
     
     NSError *error;
     
+    NSSortDescriptor *nameOrOriginSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"nameOrOrigin"
+                                                                               ascending:YES
+                                                                                selector:@selector(localizedStandardCompare:)];
+
+    [fetchRequest setSortDescriptors:@[nameOrOriginSortDescriptor]];
+    
     NSArray *fetchedCoffees = [_objectContext executeFetchRequest:fetchRequest error:&error];
 
     NSLog(@"Coffee Count: %lu", (unsigned long)fetchedCoffees.count);
@@ -88,22 +94,14 @@
 
 #pragma mark - Sorting Methods
 
--(void)sortByCoffeeNameOrOrigin
++ (NSArray *)cuppingsSortedByDateForCoffee:(Coffee *)coffee
 {
-    NSSortDescriptor *nameOrOriginSortDescriptor = [[NSSortDescriptor alloc]
-                                                initWithKey:@"nameOrOrigin" ascending:YES selector:@selector(localizedStandardCompare:)];
-    
-    _coffees = [[_coffees sortedArrayUsingDescriptors:@[nameOrOriginSortDescriptor]]mutableCopy];
+    NSArray *cuppings = [coffee.cuppings allObjects];
+    NSSortDescriptor *cuppingDateSortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"cuppingDate"
+                                                                              ascending:YES
+                                                                               selector:@selector(compare:)];
+    return [cuppings sortedArrayUsingDescriptors:@[cuppingDateSortDescriptor]];
 }
-
--(void)sortByCuppingDateInCoffee:(Coffee *)coffee;
-{
-    NSSortDescriptor *cuppingDateSortDescriptor = [[NSSortDescriptor alloc]
-                                                    initWithKey:@"cuppingDate" ascending:YES selector:@selector(localizedStandardCompare:)];
-    
-    coffee.cuppings = [[coffee.cuppings sortedArrayUsingDescriptors:@[cuppingDateSortDescriptor]]mutableCopy];
-}
-
 
 #pragma mark - Temporary/Test Methods
 

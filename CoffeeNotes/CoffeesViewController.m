@@ -33,6 +33,10 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
+    
+    _coffees = nil;
+    _coffees = [[DataController sharedController] fetchAllCoffees];
+
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -40,6 +44,7 @@
     [super viewWillAppear:animated];
     
     [[DataController sharedController] seedInitialDataWithCompletion:^{
+        
         _coffees = [[DataController sharedController] fetchAllCoffees];
         
         [_coffeesTableView reloadData];
@@ -85,7 +90,7 @@
     CoffeeCell *cell    = [tableView dequeueReusableCellWithIdentifier:@"CoffeeCell" forIndexPath:indexPath];
     
     cell.accessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    [(UIImageView *)cell.accessoryView setImage:[UIImage imageNamed:@"year"]];
+    [(UIImageView *)cell.accessoryView setImage:[UIImage imageNamed:@"icon_18269"]];
     
     Coffee *coffee      = [_coffees objectAtIndex:indexPath.row];
     
