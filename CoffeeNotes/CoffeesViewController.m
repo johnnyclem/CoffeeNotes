@@ -33,10 +33,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    
-    _coffees = nil;
-    _coffees = [[DataController sharedController] fetchAllCoffees];
-
 }
 
 -(void)viewDidAppear:(BOOL)animated
@@ -90,7 +86,7 @@
     CoffeeCell *cell    = [tableView dequeueReusableCellWithIdentifier:@"CoffeeCell" forIndexPath:indexPath];
     
     cell.accessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    [(UIImageView *)cell.accessoryView setImage:[UIImage imageNamed:@"icon_18269"]];
+    [(UIImageView *)cell.accessoryView setImage:[UIImage imageNamed:@"right-arrow@2x"]];
     
     Coffee *coffee      = [_coffees objectAtIndex:indexPath.row];
     

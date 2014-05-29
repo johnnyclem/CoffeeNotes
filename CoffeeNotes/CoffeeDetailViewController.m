@@ -79,7 +79,9 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    _cuppingDateSortDescriptor = nil;
+    _cuppings = nil;
+    _cuppings = [DataController cuppingsSortedByDateForCoffee:_selectedCoffee];
 }
 
 #pragma mark - Segues
@@ -133,7 +135,7 @@
     CuppingCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CuppingCell" forIndexPath:indexPath];
     
     cell.accessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    [(UIImageView *)cell.accessoryView setImage:[UIImage imageNamed:@"icon_18269"]];
+    [(UIImageView *)cell.accessoryView setImage:[UIImage imageNamed:@"right-arrow@2x"]];
     
     NSLog(@"%ld",(long)indexPath.row);
     
