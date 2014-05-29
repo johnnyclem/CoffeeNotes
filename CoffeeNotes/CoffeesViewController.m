@@ -14,9 +14,7 @@
 
 @interface CoffeesViewController () <UITableViewDelegate, UITableViewDataSource>
 
-@property (nonatomic, weak) Coffee *coffee;
-@property (nonatomic, strong) NSArray *coffees;
-@property (nonatomic, weak) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 @end
 
@@ -28,6 +26,12 @@
     [super viewDidLoad];
     _coffeesTableView.delegate      = self;
     _coffeesTableView.dataSource    = self;
+    
+}
+
+- (NSArray *)coffees
+{
+    return [[DataController sharedController] fetchAllCoffees];
 }
 
 - (void)didReceiveMemoryWarning
@@ -37,15 +41,18 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-    [super viewWillAppear:animated];
+    [super viewDidAppear:animated];
     
     [[DataController sharedController] seedInitialDataWithCompletion:^{
         
-        _coffees = [[DataController sharedController] fetchAllCoffees];
-        
         [_coffeesTableView reloadData];
+
+
     }];
+
+
 }
+
 
 #pragma mark - Segues
 
@@ -55,7 +62,7 @@
     if ([segue.identifier isEqualToString:@"CoffeeDetailSegue"]) {
         CoffeeDetailViewController *destination = segue.destinationViewController;
         NSIndexPath *indexPath      = [_coffeesTableView indexPathForSelectedRow];
-        destination.selectedCoffee  = _coffees[indexPath.row];
+        destination.selectedCoffee  = [[DataController sharedController] fetchAllCoffees][indexPath.row];
     }
 }
 
@@ -78,17 +85,14 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _coffees.count;
+    return [[DataController sharedController] fetchAllCoffees].count;
 }
 
--(CoffeeCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)configureCell:(CoffeeCell *)cell forIndexPath:(NSIndexPath *)indexPath
 {
-    CoffeeCell *cell    = [tableView dequeueReusableCellWithIdentifier:@"CoffeeCell" forIndexPath:indexPath];
-    
-    cell.accessoryView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     [(UIImageView *)cell.accessoryView setImage:[UIImage imageNamed:@"right-arrow@2x"]];
-    
-    Coffee *coffee      = [_coffees objectAtIndex:indexPath.row];
+
+    Coffee *coffee      = [[[DataController sharedController] fetchAllCoffees] objectAtIndex:indexPath.row];
     
     cell.coffeeCellNameOrOriginLabel.text   = [NSString stringWithFormat:@"%@", coffee.nameOrOrigin];
     cell.coffeeCellRoasterLabel.text        = [NSString stringWithFormat:@"%@", coffee.roaster];
@@ -105,9 +109,66 @@
     coffee.mostRecentPhoto = [[DataController sharedController]mostRecentImageInCoffee:coffee];
     cell.coffeeCellImage.layer.cornerRadius = 11;
     cell.coffeeCellImage.layer.masksToBounds = YES;
-    cell.coffeeCellImage.image = coffee.mostRecentPhoto;
+}
+
+-(CoffeeCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CoffeeCell *cell    = [tableView dequeueReusableCellWithIdentifier:@"CoffeeCell" forIndexPath:indexPath];
+    
+    [self configureCell:cell forIndexPath:indexPath];
     
     return cell;
 }
 
 @end
+
+
+
+
+
+/* 
+ delete me if no longer needed, use this code if you need to seed alot of coffees into core data
+ //        for (int i=0; i<100; i++) {
+ //            Coffee *oldCoffee = i % 2 ? [_coffees firstObject] : [_coffees lastObject];
+ //            _managedObjectContext = oldCoffee.managedObjectContext;
+ //            Coffee *newCoffee = [self newCopyOfCoffee:oldCoffee withNonce:[NSString stringWithFormat:@"#%d", i]];
+ //            NSLog(@"Created New Coffee: %@", newCoffee.nameOrOrigin);
+ //        }
+ 
+ //- (Coffee *)newCopyOfCoffee:(Coffee *)oldCoffee withNonce:(NSString *)nonce
+ //{
+ //    Coffee *newCoffee;
+ //    Cupping *oldCupping = [[oldCoffee.cuppings allObjects] firstObject];
+ //
+ //    newCoffee = [NSEntityDescription insertNewObjectForEntityForName:@"Coffee" inManagedObjectContext:_managedObjectContext];
+ //
+ //    newCoffee.nameOrOrigin  = [oldCoffee.nameOrOrigin stringByAppendingString:nonce];
+ //    newCoffee.roaster       = [oldCoffee.roaster stringByAppendingString:nonce];
+ //
+ //    NSError *error;
+ //
+ //    // New Cupping Stuff
+ //    Cupping *newCupping         = [NSEntityDescription insertNewObjectForEntityForName:@"Cupping" inManagedObjectContext:_managedObjectContext];
+ //    newCupping.location         = oldCupping.location;
+ //    newCupping.cuppingDate      = oldCupping.cuppingDate;
+ //
+ //    newCupping.roastDate        = oldCupping.roastDate;
+ //    newCupping.brewingMethod    = oldCupping.brewingMethod;
+ //
+ //    newCupping.rating               = oldCupping.rating;
+ //    newCupping.photo                = oldCupping.photo;
+ //    newCupping.cuppingNotes         = [oldCupping.cuppingNotes stringByAppendingString:nonce];
+ //
+ //    newCupping.coffee = newCoffee;
+ //
+ //    [_managedObjectContext save:&error];
+ //
+ //    if (error) {
+ //        NSLog(@"Error Duplicating Objects for Seed");
+ //        return nil;
+ //    } else {
+ //        return newCoffee;
+ //    }
+ //}
+
+ */

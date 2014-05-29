@@ -17,7 +17,6 @@
 @interface CoffeeDetailViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (weak, nonatomic) Cupping *cupping;
-@property (strong, nonatomic) NSArray *cuppings;
 @property (nonatomic, strong) NSSortDescriptor *cuppingDateSortDescriptor;
 // labels
 @property (weak, nonatomic) IBOutlet UILabel *nameOrOriginLabel;
@@ -61,8 +60,6 @@
 {
     [super viewWillAppear:animated];
     
-    _cuppings = [DataController cuppingsSortedByDateForCoffee:_selectedCoffee];
-    
     _averageStarRatingView.value = [[[DataController sharedController] averageRatingFromCuppingRatingInCoffee:_selectedCoffee]floatValue];
     
     if (![[[DataController sharedController]averageRatingFromCuppingRatingInCoffee:_selectedCoffee]floatValue]) {
@@ -79,9 +76,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    _cuppingDateSortDescriptor = nil;
-    _cuppings = nil;
-    _cuppings = [DataController cuppingsSortedByDateForCoffee:_selectedCoffee];
 }
 
 #pragma mark - Segues
@@ -94,7 +88,7 @@
         destination.selectedCoffee = _selectedCoffee;
         
         NSIndexPath *indexPath = [_cuppingsTableView indexPathForSelectedRow];
-        destination.selectedCupping = _cuppings[indexPath.row];
+        destination.selectedCupping = _selectedCoffee.cuppings.allObjects[indexPath.row];
         
     } else if ([segue.identifier isEqualToString:@"AddCuppingSegue"]) {
         
@@ -139,7 +133,7 @@
     
     NSLog(@"%ld",(long)indexPath.row);
     
-    Cupping *cupping = [_cuppings objectAtIndex:indexPath.row];
+    Cupping *cupping = [_selectedCoffee.cuppings.allObjects objectAtIndex:indexPath.row];
     cell.cuppingCellDateLabel.text = [[DataController sharedController] createStringFromDate:cupping.cuppingDate];
     cell.cuppingCellLocationLabel.text = [NSString stringWithFormat:@"%@", cupping.location];
     

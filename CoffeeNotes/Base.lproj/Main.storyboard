@@ -201,7 +201,7 @@
                                                                     <color key="textColor" red="0.39607846740000002" green="0.23921570180000001" blue="0.050980396570000003" alpha="1" colorSpace="deviceRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oZA-lg-ixu">
+                                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oZA-lg-ixu">
                                                                     <rect key="frame" x="20" y="2" width="65" height="65"/>
                                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                     <color key="backgroundColor" red="0.96470594409999999" green="0.96470594409999999" blue="0.95686280729999995" alpha="1" colorSpace="deviceRGB"/>
@@ -212,9 +212,8 @@
                                                                 </imageView>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstItem="oZA-lg-ixu" firstAttribute="top" secondItem="NDC-s8-ntd" secondAttribute="top" constant="2" id="0tq-iL-9ft"/>
                                                                 <constraint firstItem="oZA-lg-ixu" firstAttribute="centerY" secondItem="NDC-s8-ntd" secondAttribute="centerY" id="1Um-0g-ORl"/>
-                                                                <constraint firstAttribute="trailing" secondItem="oZA-lg-ixu" secondAttribute="trailing" constant="162" id="qiG-53-QoK"/>
+                                                                <constraint firstAttribute="trailing" secondItem="oZA-lg-ixu" secondAttribute="trailing" constant="195" id="qiG-53-QoK"/>
                                                             </constraints>
                                                         </tableViewCellContentView>
                                                         <color key="backgroundColor" red="0.83529418710000003" green="0.80392163989999998" blue="0.7254902124" alpha="1" colorSpace="deviceRGB"/>
@@ -934,8 +933,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                                 <color key="textColor" red="0.39607846740000002" green="0.23921570180000001" blue="0.050980396570000003" alpha="1" colorSpace="deviceRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BqK-0a-Vny">
-                                                <rect key="frame" x="251" y="295" width="49" height="26"/>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="BqK-0a-Vny">
+                                                <rect key="frame" x="136" y="295" width="164" height="26"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="26" id="ISW-pB-HdP"/>
@@ -1578,9 +1577,9 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Zf5-Qt-1AL"/>
-        <segue reference="7RQ-9d-aF7"/>
-        <segue reference="I4O-TH-JF1"/>
         <segue reference="bBV-Wx-ldD"/>
+        <segue reference="I4O-TH-JF1"/>
+        <segue reference="7RQ-9d-aF7"/>
+        <segue reference="Zf5-Qt-1AL"/>
     </inferredMetricsTieBreakers>
 </document>

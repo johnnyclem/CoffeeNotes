@@ -19,7 +19,7 @@
 
 
 
-@interface AddOrEditCoffeeViewController () <UIImagePickerControllerDelegate, UIActionSheetDelegate, UITextFieldDelegate, UITextViewDelegate, UIAlertViewDelegate>
+@interface AddOrEditCoffeeViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate, UITextFieldDelegate, UITextViewDelegate, UIAlertViewDelegate>
 
 // textFields and textViews
 @property (weak, nonatomic) IBOutlet UITextField *roasterTextField;
@@ -285,7 +285,6 @@
     
     [self dismissViewControllerAnimated:YES completion:^{
         NSLog(@"Completed");
-        
         self.photoImageView.image = originalImage;
         
         if (self.usingCamera)

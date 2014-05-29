@@ -18,4 +18,5 @@
 @dynamic roaster;
 @dynamic cuppings;
 @dynamic thumbnail;
+
 @end
