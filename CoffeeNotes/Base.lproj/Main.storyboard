@@ -13,11 +13,11 @@
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="125" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="aNe-lT-ja6">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="125" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="aNe-lT-ja6">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="0.83529418710000003" green="0.80392163989999998" blue="0.7254902124" alpha="1" colorSpace="deviceRGB"/>
                                 <color key="separatorColor" red="0.39607846740000002" green="0.23921570180000001" blue="0.050980396570000003" alpha="1" colorSpace="deviceRGB"/>
@@ -76,6 +76,16 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="0.83529418710000003" green="0.80392163989999998" blue="0.7254902124" alpha="1" colorSpace="deviceRGB"/>
+                        <constraints>
+                            <constraint firstItem="aNe-lT-ja6" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="Dk2-aN-aSC"/>
+                            <constraint firstItem="aNe-lT-ja6" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Rge-Cd-DjM"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="aNe-lT-ja6" secondAttribute="bottom" id="Sr8-sv-Me3"/>
+                            <constraint firstAttribute="trailing" secondItem="aNe-lT-ja6" secondAttribute="trailing" id="TR2-8i-JQi"/>
+                            <constraint firstItem="aNe-lT-ja6" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="W3q-np-t4S"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="aNe-lT-ja6" secondAttribute="bottom" id="Yat-nl-xNc"/>
+                            <constraint firstItem="aNe-lT-ja6" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="ocQ-WL-HIF"/>
+                            <constraint firstAttribute="trailing" secondItem="aNe-lT-ja6" secondAttribute="trailing" id="pNG-BU-tid"/>
+                        </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" title="My Coffees" id="aEN-Jq-maR">
@@ -86,6 +96,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <size key="freeformSize" width="320" height="480"/>
                     <connections>
                         <outlet property="coffeesTableView" destination="aNe-lT-ja6" id="TML-re-bIb"/>
                     </connections>
@@ -1574,12 +1585,12 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="bBV-Wx-ldD"/>
-        <segue reference="I4O-TH-JF1"/>
         <segue reference="7RQ-9d-aF7"/>
+        <segue reference="YEJ-8o-byp"/>
         <segue reference="Zf5-Qt-1AL"/>
+        <segue reference="bBV-Wx-ldD"/>
     </inferredMetricsTieBreakers>
 </document>
