@@ -14,11 +14,10 @@
 @interface Coffee : NSManagedObject
 
 @property (nonatomic, retain) NSNumber * averageRating;
-@property (nonatomic, retain) id mostRecentPhoto;
 @property (nonatomic, retain) NSString * nameOrOrigin;
 @property (nonatomic, retain) NSString * roaster;
 @property (nonatomic, retain) NSSet *cuppings;
-@property (nonatomic, retain) NSData *thumbnail;
+@property (nonatomic, strong) UIImage *photo;
 @end
 
 @interface Coffee (CoreDataGeneratedAccessors)

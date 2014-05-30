@@ -10,6 +10,7 @@
 #import "CoffeeCell.h"
 #import "CuppingCell.h"
 #import "AppDelegate+CoreDataContext.h"
+#import "UIImage+Scaling.h"
 
 #define dataSourcePListPath [[DataController applicationDocumentsDirectory] stringByAppendingPathComponent:@"DataSourcePropertyList.plist"]
 
@@ -80,13 +81,34 @@
 
 -(UIImage *)mostRecentImageInCoffee:(Coffee *)coffee
 {
-    UIImage *coffeeImage = [UIImage new];
-    for (Cupping *cupping in coffee.cuppings) {
-        if (cupping.photo){
+    UIImage *coffeeImage = [UIImage imageNamed:@"placeholder"];
+    NSURL *docsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
+                                                                      inDomains:NSUserDomainMask] firstObject];
+    NSString *docsDirectory = docsURL.path;
+    
+    if (coffee.photo) {
+        return coffee.photo;
+    } else {
+        for (Cupping *cupping in coffee.cuppings.allObjects.reverseObjectEnumerator.allObjects) {
             coffeeImage = cupping.photo;
-            break;
+            NSData *imageData = UIImageJPEGRepresentation([cupping.photo resizedImage:CGSizeMake(1024.f, 1024.f)], 0.5);
+            NSUUID *imageUUID = [NSUUID UUID];
+            NSString *imagePath = [[docsDirectory stringByAppendingPathComponent:imageUUID.UUIDString] stringByAppendingPathExtension:@"jpg"];
+            if ([imageData writeToFile:imagePath atomically:YES]) {
+                cupping.photoPath = imagePath;
+                NSError *error;
+                if ([cupping.managedObjectContext save:&error]) {
+                    if (error) {
+                        NSLog(@"Error Saving Image: %@", error.localizedDescription);
+                    } else {
+                        return [self mostRecentImageInCoffee:coffee];
+                    }
+                }
+            }
         }
     }
+    
+    
     return coffeeImage;
 }
 

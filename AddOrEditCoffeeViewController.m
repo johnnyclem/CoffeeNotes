@@ -39,7 +39,7 @@
 
 // other
 @property (strong, nonatomic) UIActionSheet *addOrChangePhotoActionSheet;
-@property (weak, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (nonatomic) BOOL usingCamera;
 @property (nonatomic) BOOL dateNotNeeded;
 
@@ -62,7 +62,7 @@
     _notesTextView.delegate             = self;
     _dateNotNeeded                      = NO;
     
-    if (_editableCoffee != nil) {
+    if (_editableCoffee) {
         _nameOrOriginTextField.text                         = _editableCoffee.nameOrOrigin;
         _roasterTextField.text                              = _editableCoffee.roaster;
         _locationTextField.enabled                          = NO;
@@ -150,16 +150,13 @@
 {
     if ([segue.identifier isEqualToString:@"AddCoffeeExitSegue"])
     {
-        Coffee *newCoffee;
-        
-        if (_editableCoffee) {
-            newCoffee = _editableCoffee;
-        } else {
-            newCoffee = [NSEntityDescription insertNewObjectForEntityForName:@"Coffee" inManagedObjectContext:_managedObjectContext];
+        if (!_editableCoffee) {
+            _editableCoffee = [NSEntityDescription insertNewObjectForEntityForName:@"Coffee"
+                                                            inManagedObjectContext:self.managedObjectContext];
         }
         
-        newCoffee.nameOrOrigin  = _nameOrOriginTextField.text;
-        newCoffee.roaster       = _roasterTextField.text;
+        _editableCoffee.nameOrOrigin  = _nameOrOriginTextField.text;
+        _editableCoffee.roaster       = _roasterTextField.text;
         
         NSError *error;
         
@@ -173,13 +170,12 @@
         
         NSNumber *numberFromFloatValue  = [[NSNumber alloc]initWithFloat:_coffeeCuppingRatingView.value];
         newCupping.rating               = numberFromFloatValue;
-        newCupping.thumbnail            = 
         newCupping.photo                = _photoImageView.image;
         newCupping.cuppingNotes         = _notesTextView.text;
         
-        newCupping.coffee = newCoffee;
+        newCupping.coffee = _editableCoffee;
         
-        [newCoffee.managedObjectContext save:&error];
+        [self.managedObjectContext save:&error];
         
         CoffeesViewController *destination = segue.destinationViewController;
         [destination.coffeesTableView reloadData];
@@ -278,40 +274,33 @@
     [self presentViewController:imagePicker animated:YES completion:nil];
 }
 
+- (NSString *)docsDirectory
+{
+    NSURL *docsURL = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
+                                                             inDomains:NSUserDomainMask] firstObject];
+    return docsURL.path;
+}
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    UIImage *originalImage = [info objectForKey:UIImagePickerControllerOriginalImage];
+    UIImage *editedImage = [info objectForKey:UIImagePickerControllerEditedImage];
     
     [self dismissViewControllerAnimated:YES completion:^{
         NSLog(@"Completed");
-        self.photoImageView.image = originalImage;
+        self.photoImageView.image = editedImage;
         
         if (self.usingCamera)
         {
             
             ALAssetsLibrary *assetsLibrary = [ALAssetsLibrary new];
             if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusAuthorized || [ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusNotDetermined) {
-//                [assetsLibrary writeImageToSavedPhotosAlbum:originalImage.CGImage
-//                                                orientation:ALAssetOrientationUp
-//                                            completionBlock:^(NSURL *assetURL, NSError *error) {
-//                                                if (error) {
-//                                                    NSLog(@"Error Saving Image: %@", error.localizedDescription);
-//                                                }
-//                                            }];
-                NSData *imageData = UIImageJPEGRepresentation(originalImage, 0.4);
-                [assetsLibrary writeImageDataToSavedPhotosAlbum:imageData
-                                                       metadata:nil
-                                                completionBlock:^(NSURL *assetURL, NSError *error) {
-                                                    if (error) {
-                                                        NSLog(@"Error Saving Image: %@", error.localizedDescription);
-                                                    } else {
-                                                        __block UIImage *smallerImage = [UIImage imageWithContentsOfFile:assetURL.path];
-                                                        [[NSOperationQueue mainQueue] addOperationWithBlock:^{
-                                                            self.photoImageView.image = smallerImage;
-                                                        }];
-                                                    }
-                                                }];
+                [assetsLibrary writeImageToSavedPhotosAlbum:editedImage.CGImage
+                                                orientation:ALAssetOrientationUp
+                                            completionBlock:^(NSURL *assetURL, NSError *error) {
+                                                if (error) {
+                                                    NSLog(@"Error Saving Image: %@", error.localizedDescription);
+                                                }
+                                            }];
             } else if ([ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusDenied || [ALAssetsLibrary authorizationStatus] == ALAuthorizationStatusRestricted) {
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Cannot Save Photo"
                                                                     message:@"Authorization status not granted"

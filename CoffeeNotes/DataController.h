@@ -26,8 +26,8 @@
 - (NSNumber *)averageRatingFromCuppingRatingInCoffee:(Coffee *)coffee;
 
 // Sorting Methods
-- (void)sortByCoffeeNameOrOrigin;
-- (void)sortByCuppingDateInCoffee:(Coffee *)coffee;
+//- (void)sortByCoffeeNameOrOrigin;
+//- (void)sortByCuppingDateInCoffee:(Coffee *)coffee;
 
 + (NSArray *)cuppingsSortedByDateForCoffee:(Coffee *)coffee;
 

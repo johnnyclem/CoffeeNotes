@@ -16,7 +16,6 @@
 
 @interface CoffeeDetailViewController () <UITableViewDelegate, UITableViewDataSource>
 
-@property (weak, nonatomic) Cupping *cupping;
 @property (nonatomic, strong) NSSortDescriptor *cuppingDateSortDescriptor;
 // labels
 @property (weak, nonatomic) IBOutlet UILabel *nameOrOriginLabel;
@@ -39,6 +38,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    NSLog(@"Cuppings Count: %d", _selectedCoffee.cuppings.count);
     
     _nameOrOriginLabel.text     = _selectedCoffee.nameOrOrigin;
     _roasterLabel.text          = _selectedCoffee.roaster;
@@ -66,7 +67,7 @@
         _averageStarRatingView.value = 0.0;
     }
     
-    _mostRecentPhotoImageView.image = [[DataController sharedController]mostRecentImageInCoffee:_selectedCoffee];
+    _mostRecentPhotoImageView.image = _selectedCoffee.photo;
     _mostRecentPhotoImageView.layer.cornerRadius = 11;
     _mostRecentPhotoImageView.layer.masksToBounds = YES;
     
@@ -85,7 +86,6 @@
     if ([segue.identifier isEqualToString:@"CuppingDetailSegue"]) {
         
         CuppingDetailViewController *destination = segue.destinationViewController;
-        destination.selectedCoffee = _selectedCoffee;
         
         NSIndexPath *indexPath = [_cuppingsTableView indexPathForSelectedRow];
         destination.selectedCupping = _selectedCoffee.cuppings.allObjects[indexPath.row];

@@ -62,7 +62,7 @@
     if ([segue.identifier isEqualToString:@"CoffeeDetailSegue"]) {
         CoffeeDetailViewController *destination = segue.destinationViewController;
         NSIndexPath *indexPath      = [_coffeesTableView indexPathForSelectedRow];
-        destination.selectedCoffee  = [[DataController sharedController] fetchAllCoffees][indexPath.row];
+        destination.selectedCoffee  = [self coffees][indexPath.row];
     }
 }
 
@@ -106,7 +106,7 @@
         cell.coffeeCellAverageRating.value = 0.0;
     }
     
-    coffee.mostRecentPhoto = [[DataController sharedController]mostRecentImageInCoffee:coffee];
+    cell.coffeeCellImage.image = coffee.photo;
     cell.coffeeCellImage.layer.cornerRadius = 11;
     cell.coffeeCellImage.layer.masksToBounds = YES;
 }

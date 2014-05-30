@@ -13,10 +13,23 @@
 @implementation Coffee
 
 @dynamic averageRating;
-@dynamic mostRecentPhoto;
 @dynamic nameOrOrigin;
 @dynamic roaster;
 @dynamic cuppings;
-@dynamic thumbnail;
+
+@synthesize photo = _photo;
+
+- (UIImage *)photo
+{
+    UIImage *mostRecentPhoto;
+    
+    for (Cupping *cupping in self.cuppings.allObjects.reverseObjectEnumerator.allObjects) {
+        if (cupping.photoPath) {
+            mostRecentPhoto = cupping.photo;
+        }
+    }
+
+    return mostRecentPhoto;
+}
 
 @end
